@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SpClima.Data;
 using SpClima.Models;
 using SpClima.ViewModels;
