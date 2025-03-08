@@ -1,13 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Identity;
-using Mysqlx;
 
-namespace SpClima.Models;
+namespace SpCLima.Models;
 
-[Table("usuario")]
-public class Usuario : IdentityUser
+
+[Table("cliente")]
+public class Cliente : IdentityUser
 {
     [Required(ErrorMessage = "Por favor, informe o nome")]
     [StringLength(60, ErrorMessage = "O nome deve possuir no máximo 60 caracteres")]
@@ -34,12 +33,4 @@ public class Usuario : IdentityUser
     [StringLength(300)]
     public string Foto { get; set; }
 
-
-    [Required (ErrorMessage="Inforome o Login")]
-    [StringLength(50)]
-    public string UsuarioLogin { get; set; }
-
-    [Required (ErrorMessage ="Informe Sua Senha")]
-    [StringLength(50)]
-    public string UsuarioSenha { get; set; }
 }

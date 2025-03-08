@@ -37,7 +37,3 @@ public class AppDbContext :IdentityDbContext<Usuario>
 
     }
 }
-
-public class DbContextOptions<T>
-{
-}
