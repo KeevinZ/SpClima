@@ -1,0 +1,22 @@
+# 
+ Anotação feita par melhor compreensão do Site a ser criado
+#
+
+Sobre o Banco::
+@!
+Ter uma tabela para Serviços;
+que guardara os tipos de serviço
+
+Ter uma tabela para Eletrodomesticos;
+que guardara as informações do eletrodomesticos que vao ser apresentados junto com o tipo de Serviço
+
+Ter uma tabela muitos pra muitos de Serviços Com Eletrodomesticos;
+Pode ter Muitos Serviços e vairos eletrodomesticos e Vice-Verça
+
+Ter uma tabela para Orcamento:
+Usada para uma função que aprensente o preço que o cliente quer contratar;
+
+Ter uma tabela para Usuarios;
+armazenara os Usuarios
+PS: com o IdentityUser se consegue separar o ADM do Cliente sem precisar criar um banco Pra cada um deles.
+@!
