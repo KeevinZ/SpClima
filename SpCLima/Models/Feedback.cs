@@ -16,8 +16,8 @@ public class Avaliacao
     public Usuario Usuario { get; set; }
 
     [Required]
-    public int ServicosId { get; set; }
-    public TipoServico TipoServico { get; set; }
+    public int ServicoId { get; set; }
+    public Servico Servico { get; set; }
 
     [Required, Range(1, 5, ErrorMessage = "A nota deve ser entre 1 e 5")]
     public int Nota { get; set; }
@@ -25,6 +25,4 @@ public class Avaliacao
     [StringLength(500)]
     public string Comentario { get; set; }
 
-    [Required]
-    public DateTime DataAvaliacao { get; set; }
 }

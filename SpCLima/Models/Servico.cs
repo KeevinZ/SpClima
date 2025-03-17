@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SpCLima.Models
 {
-    public class Pedido
+    public class Servico
     {
         
     }
