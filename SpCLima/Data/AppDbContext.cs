@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using MySqlX.XDevAPI;
 using SpClima.Models;
+using SpCLima.Models;
 
 namespace SpClima.Data;
 
@@ -11,11 +13,14 @@ public class AppDbContext :IdentityDbContext<Usuario>
     {
     }
 
-    public DbSet<Categoria> Categorias { get; set; }
-    public DbSet<Produto> Produtos { get; set; }
-    public DbSet<ProdutoFoto> ProdutoFotos { get; set; }
+    public DbSet<Client> Clientes { get; set; }
+    public DbSet<Servico> Servicos  { get; set; }
+    public DbSet<ServicoFoto> ServicoFotos  { get; set; }
+    public DbSet<TipoSevico> TipoSevico  { get; set; }
+    public DbSet<Orcamento> Orcamentos  { get; set; }
+    public DbSet<OrcamentoServico> OrcamentoSevicos  { get; set; }
     public DbSet<Usuario> Usuarios { get; set; }
-    public DbSet<TipoDeServico> TiposDeServicos { get; set; }
+    public DbSet<TipoSevico> TiposServicos { get; set; }
     public object Database { get; internal set; }
 
 

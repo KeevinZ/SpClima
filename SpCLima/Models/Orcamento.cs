@@ -41,6 +41,6 @@ public class Orcamento
     public decimal Total { get; set; }
 
     [Required]
-    public bool Realizado { get; set; }
+    public bool Situacao { get; set; }
 }
 

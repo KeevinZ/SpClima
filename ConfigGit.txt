@@ -7,13 +7,9 @@
 ## Cauã
    git config --global user.name 
    git config --global user.email
-   git checkout brKzin
 ##
 
 ## Gabriel
    git config --global user.name 
    git config --global user.email
-   git checkout brGabs
-##
-
-Só salvar as Alterações Normalmente depois de Selecionar a Branch :)
+## 
