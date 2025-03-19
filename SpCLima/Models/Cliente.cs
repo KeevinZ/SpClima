@@ -1,4 +1,3 @@
-
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.InteropServices;
@@ -22,6 +21,7 @@ public class Cliente
 
     [Required(ErrorMessage = "Por favor, Informe o CPF")]
     [StringLength(14)]
+    [CpfValidation(ErrorMessage = "CPF inválido")]
     public string CPF { get; set; }
 
     [DataType(DataType.Date)]

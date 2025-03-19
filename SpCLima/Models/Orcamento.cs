@@ -13,34 +13,31 @@ public class Orcamento
     [Required]
     public DateTime DataPedido { get; set; }
 
-    [Required]
-    public DateTime DataAgendamento { get; set; }
-
-
-    [Required]
-    public int ClienteId { get; set; }
-    public Cliente Cliente { get; set; }
-
-    [Required]
-    public int StatusOrcamentoId { get; set; }
-    public StatusOrcamento StatusOrcamento { get; set; }
-
     [StringLength(300, ErrorMessage ="A Descrição Do Pedido deve possuir no máximo 300 caracteres")]
     public string DescricaoPedido { get; set; }
 
     [StringLength(1000, ErrorMessage ="A Observação deve possuir no máximo 1000 caracteres")]
     public string Observacao { get; set; }
 
-    [Required]
-    public DateTime DataOrcamento { get; set; }
-
     [StringLength(50)]
-    public string Desconto { get; set; }
+    public decimal Desconto { get; set; }
 
     [Required]
     public decimal Total { get; set; }
 
+
     [Required]
-    public bool Situacao { get; set; }
+    [ForeignKey("cliente")]
+    public int ClienteId { get; set; }
+
+    [Key, Column(Order = 1)]
+    [Required]
+    public int ServicoId { get; set; }
+    public Servico Servico { get; set; }
+
+    [Required]
+    [ForeignKey("status_orcamento")]
+    public int StatusOrcamentoId { get; set; }
+    public StatusOrcamento StatusOrcamento { get; set; }
 }
 
