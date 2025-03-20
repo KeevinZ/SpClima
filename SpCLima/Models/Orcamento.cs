@@ -26,18 +26,22 @@ public class Orcamento
     public decimal Total { get; set; }
 
 
+
+    [Required]
+    [Key, Column(Order = 1)]
+    public int ServicoId { get; set; }
+    public Servico Servico { get; set; }
+
     [Required]
     [ForeignKey("cliente")]
     public int ClienteId { get; set; }
-
-    [Key, Column(Order = 1)]
-    [Required]
-    public int ServicoId { get; set; }
-    public Servico Servico { get; set; }
+    public Cliente Cliente { get; set; }
 
     [Required]
     [ForeignKey("status_orcamento")]
     public int StatusOrcamentoId { get; set; }
     public StatusOrcamento StatusOrcamento { get; set; }
+
+   public ICollection<OrcamentoServico> OrcamentoServicos { get; set; }
 }
 

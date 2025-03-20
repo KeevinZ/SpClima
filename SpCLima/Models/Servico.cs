@@ -12,9 +12,14 @@ public class Servico
     public int Id { get; set; }
 
     [Required(ErrorMessage = "Por favor, informe o Qual Tipo Do Serviço")]
-    public int TipoServicoId { get; set; }
     [ForeignKey(nameof(TipoServicoId))]
-    public TipoSevico TipoServico { get; set; }
+    public int TipoServicoId { get; set; }
+    public TipoServico TipoServico { get; set; }
+
+    [ForeignKey(nameof(ClienteId))]
+    public int ClienteId { get; set; }
+     public Cliente Cliente { get; set; }
+
 
     [Required(ErrorMessage = "Por favor, informe o Nome Do Serviço")]
     [StringLength(100, ErrorMessage = "O Nome deve possuir no máximo 100 caracteres")]
@@ -29,4 +34,6 @@ public class Servico
     public decimal Valor { get; set; }
 
     public List<ServicoFoto> Fotos { get; set; }
+    public ICollection<OrcamentoServico> OrcamentoServicos { get; set; }
+
 }
