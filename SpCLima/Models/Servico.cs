@@ -9,6 +9,7 @@ namespace SpCLima.Models;
 public class Servico
 {
     [Required]
+    [Key]
     public int Id { get; set; }
 
     [Required(ErrorMessage = "Por favor, informe o Qual Tipo Do Serviço")]
@@ -32,6 +33,7 @@ public class Servico
     [Range(0, double.MaxValue)]
     [Column(TypeName = "numeric(10,2)")]
     public decimal Valor { get; set; }
+
 
     public List<ServicoFoto> Fotos { get; set; }
     public ICollection<OrcamentoServico> OrcamentoServicos { get; set; }

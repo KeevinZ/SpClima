@@ -14,7 +14,7 @@ public class Orcamento
     public DateTime DataPedido { get; set; }
 
     [StringLength(300, ErrorMessage ="A Descrição Do Pedido deve possuir no máximo 300 caracteres")]
-    public string DescricaoPedido { get; set; }
+    public string? DescricaoPedido { get; set; }
 
     [StringLength(1000, ErrorMessage ="A Observação deve possuir no máximo 1000 caracteres")]
     public string Observacao { get; set; }

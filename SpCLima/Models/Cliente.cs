@@ -1,12 +1,15 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.InteropServices;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace SpCLima.Models;
 
 [Table("cliente")]
-public class Cliente
+public class Cliente : IdentityUser
 {
+
     [Required(ErrorMessage = "Por favor, informe o nome")]
     [StringLength(60, ErrorMessage = "O nome deve possuir no máximo 60 caracteres")]
     public string Nome { get; set; }

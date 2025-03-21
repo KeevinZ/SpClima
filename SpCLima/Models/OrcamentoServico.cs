@@ -1,11 +1,16 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace SpCLima.Models;
 
 [Table("orcamento_servico")]
 public class OrcamentoServico
 {
+    [Key]
+    [Required]
+    public int Id { get; set; }
+
     [Required]
     public decimal Valor { get; set; }
     

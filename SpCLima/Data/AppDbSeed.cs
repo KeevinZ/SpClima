@@ -1,113 +1,108 @@
-// using SpClima.Models;
-// using Microsoft.AspNetCore.Identity;
-// using Microsoft.EntityFrameworkCore;
+using SpClima.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using SpCLima.Models;
 
 
-// namespace SpClima.Data;
 
-// public class AppDbSeed
-// {
-//     public static void Seed(ModelBuilder builder)
-//     {
-//         // Inserção de dados iniciais para TipoServico
-//         builder.Entity<TipoServico>().HasData(
-//             new TipoServico { Id = 1, Nome = "Limpeza" },
-//             new TipoServico { Id = 2, Nome = "Manutenção" }
-//         );
+namespace SpClima.Data;
 
-//         // Inserção de dados iniciais para Cliente
-//         builder.Entity<Cliente>().HasData(
-//             new Cliente { Id = 1, Nome = "João Silva", Email = "joao@example.com" },
-//             new Cliente { Id = 2, Nome = "Maria Souza", Email = "maria@example.com" }
-//         );
+public class AppDbSeed
+{
+    public static void Seed(ModelBuilder builder)
+    {
+        // Servico
+        builder.Entity<Servico>().HasData(
+            new Servico { Id = 1, NomeDoServico = "Limpeza Residencial", Descricao = "Higienização profunda para remover poeira, ácaros e impurezas, garantindo ar mais puro e melhor desempenho do aparelho.", Valor = 250.00m, TipoServicoId = 1 },
+            new Servico { Id = 2, NomeDoServico = "Manutenção de Ar Condicionado", Descricao = "Inspeção e ajustes para prevenir falhas, prolongar a vida útil e manter a eficiência do equipamento.", Valor = 250.00m, TipoServicoId = 2 }
+        );
 
-//         // Inserção de dados iniciais para Servico
-//         builder.Entity<Servico>().HasData(
-//             new Servico { Id = 1, Nome = "Limpeza Residencial", ClienteId = 1, TipoServicoId = 1 },
-//             new Servico { Id = 2, Nome = "Manutenção de Ar Condicionado", ClienteId = 2, TipoServicoId = 2 }
-//         );
+        // TipoServico
+        builder.Entity<TipoServico>().HasData(
+            new TipoServico { Id = 1, Nome = "Ar-Condicionado", Foto = "" },
+            new TipoServico { Id = 2, Nome = "Geladeira", Foto = "" }
+        );
 
-//         // Inserção de dados iniciais para Orcamento
-//         builder.Entity<Orcamento>().HasData(
-//             new Orcamento { Id = 1, Data = DateTime.Now, ValorTotal = 500.00m },
-//             new Orcamento { Id = 2, Data = DateTime.Now, ValorTotal = 300.00m }
-//         );
+        // Orcamento
+        builder.Entity<Orcamento>().HasData(
+            new Orcamento { Id = 1, DataPedido = DateTime.Now, DescricaoPedido = "", Observacao = "", Desconto = 00, Total = 00 },
+            new Orcamento { Id = 2, DataPedido = DateTime.Now, DescricaoPedido = "", Observacao = "", Desconto = 00, Total = 00 }
+        );
 
-//         // Inserção de dados iniciais para OrcamentoServico
-//         builder.Entity<OrcamentoServico>().HasData(
-//             new OrcamentoServico { OrcamentoId = 1, ServicoId = 1 },
-//             new OrcamentoServico { OrcamentoId = 2, ServicoId = 2 }
-//         );
-//     }
+        // StatusOrcamento
+        builder.Entity<StatusOrcamento>().HasData(
+            new StatusOrcamento { Id = 1, Descricao = "", Situacao = true, OrcamentoId = 1 },
+            new StatusOrcamento { Id = 2, Descricao = "", Situacao = true, OrcamentoId = 2 }
+        );
 
-//     #region Populate Roles - Perfis de Usuário
-//     List<IdentityRole> roles = new()
-//         {
-//             new IdentityRole() {
-//                Id = "0b44ca04-f6b0-4a8f-a953-1f2330d30894",
-//                Name = "Administrador",
-//                NormalizedName = "ADMINISTRADOR"
-//             },
-//             new IdentityRole() {
-//                Id = "ddf093a6-6cb5-4ff7-9a64-83da34aee005",
-//                Name = "Cliente",
-//                NormalizedName = "CLIENTE"
-//             },
-//         };
-//     Builder.Entity<IdentityRole>().HasData(roles);
+        // OrcamentoServico
+        builder.Entity<OrcamentoServico>().HasData(
+            new OrcamentoServico { OrcamentoId = 1, ServicoId = 1 },
+            new OrcamentoServico { OrcamentoId = 2, ServicoId = 2 }
+        );
+    }
 
-//     public AppDbSeed(ModelBuilder builder)
-//     {
-//         this.builder = builder;
-//     }
-//     #endregion
+    #region Populate Roles - Perfis de Usuário
+    List<IdentityRole> roles = new()
+        {
+            new IdentityRole() {
+               Id = "0b44ca04-f6b0-4a8f-a953-1f2330d30894",
+               Name = "Administrador",
+               NormalizedName = "ADMINISTRADOR"
+            },
+            new IdentityRole() {
+               Id = "bec71b05-8f3d-4849-88bb-0e8d518d2de8",
+               Name = "Funcionário",
+               NormalizedName = "FUNCIONÁRIO"
+            },
+            new IdentityRole() {
+               Id = "ddf093a6-6cb5-4ff7-9a64-83da34aee005",
+               Name = "Cliente",
+               NormalizedName = "CLIENTE"
+            },
+        };
+    Builder.Entity<IdentityRole>().HasData(roles);
+    #endregion
 
-//     #region Populate Usuário
-//     List<Usuario> usuarios = new() {
-//             new Usuario(){
-//                 Id = "ddf093a6-6cb5-4ff7-9a64-83da34aee005",
-//                 Email = "admin@gmail.com",
-//                 NormalizedEmail = "ADMIN@GMAIL.COM",
-//                 UserName = "Admin",
-//                 NormalizedUserName = "ADMIN",
-//                 LockoutEnabled = true,
-//                 EmailConfirmed = true,
-//                 Nome = "Admin",
-//                 DataNascimento = DateTime.Parse("20/07/2002"),
-//                 Foto = "/img/usuarios/Galingo.png"
-//             }
-//         };
-//         foreach (var user in usuarios)
-//         {
-//             PasswordHasher<IdentityUser> pass = new();
-//     private ModelBuilder builder;
+    #region Populate Usuário
+    List<Usuario> usuarios = new() {
+            new Usuario(){
+                Id = "ddf093a6-6cb5-4ff7-9a64-83da34aee005",
+                Email = "gallojunior@gmail.com",
+                NormalizedEmail = "GALLOJUNIOR@GMAIL.COM",
+                UserName = "GalloJunior",
+                NormalizedUserName = "GALLOJUNIOR",
+                LockoutEnabled = true,
+                EmailConfirmed = true,
+                Nome = "José Antonio Gallo Junior",
+                DataNascimento = DateTime.Parse("05/08/1981"),
+                Foto = "/img/usuarios/ddf093a6-6cb5-4ff7-9a64-83da34aee005.png"
+            }
+        };
+        foreach (var user in usuarios)
+        {
+            PasswordHasher<IdentityUser> pass = new();
+    user.PasswordHash = pass.HashPassword(user, "123456");
+        }
+builder.Entity<Usuario>().HasData(usuarios);
+#endregion
 
-//     user.PasswordHash = pass.HashPassword(user, "123456");
-//         }
-// builder.Entity<Usuario>().HasData(usuarios);
-// #endregion
-
-// #region Populate UserRole - Usuário com Perfil
-// List<IdentityUserRole<string>> userRoles = new()
-//         {
-//             new IdentityUserRole<string>() {
-//                 UserId = usuarios[0].Id,
-//                 RoleId = roles[0].Id
-//             },
-//             new IdentityUserRole<string>() {
-//                 UserId = usuarios[0].Id,
-//                 RoleId = roles[1].Id
-//             },
-//             new IdentityUserRole<string>() {
-//                 UserId = usuarios[0].Id,
-//                 RoleId = roles[2].Id
-//             }
-//         };
-// builder.Entity<IdentityUserRole<string>>().HasData(userRoles);
-//         #endregion
-//     }
-
-//     internal static void Seed(ModelBuilder builder)
-// {
-//     throw new NotImplementedException();
-// }
+#region Populate UserRole - Usuário com Perfil
+List<IdentityUserRole<string>> userRoles = new()
+        {
+            new IdentityUserRole<string>() {
+                UserId = usuarios[0].Id,
+                RoleId = roles[0].Id
+            },
+            new IdentityUserRole<string>() {
+                UserId = usuarios[0].Id,
+                RoleId = roles[1].Id
+            },
+            new IdentityUserRole<string>() {
+                UserId = usuarios[0].Id,
+                RoleId = roles[2].Id
+            }
+        };
+builder.Entity<IdentityUserRole<string>>().HasData(userRoles);
+        #endregion
+}

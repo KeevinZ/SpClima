@@ -6,6 +6,8 @@ namespace SpCLima.Models;
 [Table("status_orcamento")]
 public class StatusOrcamento
 {
+    [Key]
+    [Required]
     public int Id { get; set; }
 
     [Required]
