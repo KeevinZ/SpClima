@@ -12,14 +12,11 @@ public class AppDbContext :IdentityDbContext<Usuario>
     {
     }
 
-    public DbSet<Cliente> Clientes { get; set; }
+    public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Servico> Servicos  { get; set; }
-    public DbSet<ServicoFoto> ServicoFotos  { get; set; }
     public DbSet<TipoServico> TipoServicos { get; set; }
     public DbSet<Orcamento> Orcamentos  { get; set; }
     public DbSet<OrcamentoServico> OrcamentoSevicos  { get; set; }
-    public DbSet<Usuario> Usuarios { get; set; }
-    public DbSet<StatusOrcamento> StatusOrcamentos { get; set; }
 
 protected override void OnModelCreating(ModelBuilder builder)
 {
@@ -36,9 +33,9 @@ protected override void OnModelCreating(ModelBuilder builder)
     #endregion
 
     // Configuração dos relacionamentos
-    builder.Entity<Cliente>()
-        .HasMany(c => c.Servicos)
-        .WithOne(s => s.Cliente)
+    builder.Entity<Usuario>()
+        .HasMany(u => u.Servicos)
+        .WithOne(s => s.Usuario)
         .HasForeignKey(s => s.ClienteId);
 
     builder.Entity<TipoServico>()
@@ -59,7 +56,7 @@ protected override void OnModelCreating(ModelBuilder builder)
     builder.Entity<OrcamentoServico>()
         .HasKey(os => new { os.OrcamentoId, os.ServicoId });
 
-    // Inserção de dados iniciais
+
     // AppDbSeed.Seed(builder);
 }
 }

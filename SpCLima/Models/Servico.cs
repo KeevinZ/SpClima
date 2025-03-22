@@ -1,6 +1,7 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using SpClima.Models;
 
 
 namespace SpCLima.Models;
@@ -19,7 +20,7 @@ public class Servico
 
     [ForeignKey(nameof(ClienteId))]
     public int ClienteId { get; set; }
-     public Cliente Cliente { get; set; }
+     public Usuario Usuario { get; set; }
 
 
     [Required(ErrorMessage = "Por favor, informe o Nome Do Serviço")]
@@ -34,8 +35,6 @@ public class Servico
     [Column(TypeName = "numeric(10,2)")]
     public decimal Valor { get; set; }
 
-
-    public List<ServicoFoto> Fotos { get; set; }
     public ICollection<OrcamentoServico> OrcamentoServicos { get; set; }
 
 }

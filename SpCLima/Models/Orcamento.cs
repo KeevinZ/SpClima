@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using SpClima.Models;
 
 namespace SpCLima.Models;
 
@@ -14,10 +15,10 @@ public class Orcamento
     public DateTime DataPedido { get; set; }
 
     [StringLength(300, ErrorMessage ="A Descrição Do Pedido deve possuir no máximo 300 caracteres")]
-    public string? DescricaoPedido { get; set; }
+    public string DescricaoPedido { get; set; }
 
-    [StringLength(1000, ErrorMessage ="A Observação deve possuir no máximo 1000 caracteres")]
-    public string Observacao { get; set; }
+    [Required]
+    public string StatusOrcamento { get; set; }
 
     [StringLength(50)]
     public decimal Desconto { get; set; }
@@ -35,12 +36,7 @@ public class Orcamento
     [Required]
     [ForeignKey("cliente")]
     public int ClienteId { get; set; }
-    public Cliente Cliente { get; set; }
-
-    [Required]
-    [ForeignKey("status_orcamento")]
-    public int StatusOrcamentoId { get; set; }
-    public StatusOrcamento StatusOrcamento { get; set; }
+    public Usuario Usuario { get; set; }
 
    public ICollection<OrcamentoServico> OrcamentoServicos { get; set; }
 }

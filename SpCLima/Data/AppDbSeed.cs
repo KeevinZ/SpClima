@@ -4,12 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using SpCLima.Models;
 
 
-
 namespace SpClima.Data;
 
 public class AppDbSeed
 {
-    public static void Seed(ModelBuilder builder)
+    public AppDbSeed(ModelBuilder builder)
     {
         // Servico
         builder.Entity<Servico>().HasData(
@@ -25,14 +24,8 @@ public class AppDbSeed
 
         // Orcamento
         builder.Entity<Orcamento>().HasData(
-            new Orcamento { Id = 1, DataPedido = DateTime.Now, DescricaoPedido = "", Observacao = "", Desconto = 00, Total = 00 },
-            new Orcamento { Id = 2, DataPedido = DateTime.Now, DescricaoPedido = "", Observacao = "", Desconto = 00, Total = 00 }
-        );
-
-        // StatusOrcamento
-        builder.Entity<StatusOrcamento>().HasData(
-            new StatusOrcamento { Id = 1, Descricao = "", Situacao = true, OrcamentoId = 1 },
-            new StatusOrcamento { Id = 2, Descricao = "", Situacao = true, OrcamentoId = 2 }
+            new Orcamento { Id = 1, DataPedido = DateTime.Now, DescricaoPedido = "", StatusOrcamento = "Rejeitado", Desconto = 00, Total = 00 },
+            new Orcamento { Id = 2, DataPedido = DateTime.Now, DescricaoPedido = "", StatusOrcamento = "", Desconto = 00, Total = 00 }
         );
 
         // OrcamentoServico
@@ -42,7 +35,7 @@ public class AppDbSeed
         );
     }
 
-    #region Populate Roles - Perfis de Usuário
+#region Populate Roles - Perfis de Usuário
     List<IdentityRole> roles = new()
         {
             new IdentityRole() {
@@ -61,8 +54,7 @@ public class AppDbSeed
                NormalizedName = "CLIENTE"
             },
         };
-    Builder.Entity<IdentityRole>().HasData(roles);
-    #endregion
+#endregion
 
     #region Populate Usuário
     List<Usuario> usuarios = new() {
@@ -79,12 +71,17 @@ public class AppDbSeed
                 Foto = "/img/usuarios/ddf093a6-6cb5-4ff7-9a64-83da34aee005.png"
             }
         };
-        foreach (var user in usuarios)
+        @foreach (var user in Usuario)
         {
             PasswordHasher<IdentityUser> pass = new();
-    user.PasswordHash = pass.HashPassword(user, "123456");
+            user.PasswordHash = pass.HashPassword(user, "123456");
         }
-builder.Entity<Usuario>().HasData(usuarios);
+
+internal class roles
+{
+}
+
+builder.Entity<Usuario>().HasData();
 #endregion
 
 #region Populate UserRole - Usuário com Perfil
@@ -105,4 +102,5 @@ List<IdentityUserRole<string>> userRoles = new()
         };
 builder.Entity<IdentityUserRole<string>>().HasData(userRoles);
         #endregion
+    }
 }
