@@ -15,6 +15,7 @@ public class AppDbContext : IdentityDbContext<Usuario>
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Servico> Servicos { get; set; }
     public DbSet<TipoServico> TipoServicos { get; set; }
+    public DbSet<Btu> Btus { get; set; }
     public DbSet<Orcamento> Orcamentos { get; set; }
     public DbSet<OrcamentoServico> OrcamentoSevicos { get; set; }
 

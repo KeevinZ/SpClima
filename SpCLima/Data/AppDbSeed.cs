@@ -22,6 +22,23 @@ public class AppDbSeed
             new TipoServico { Id = 2, Nome = "Geladeira", Foto = "" }
         );
 
+        
+    // Popula a tabela BTU
+    builder.Entity<Btu>().HasData(
+        new Btu { Id = 1, Valor = 9000, Categoria = "Pequeno", CustoInstalacaoBase = 150.00m },
+        new Btu { Id = 2, Valor = 12000, Categoria = "Médio", CustoInstalacaoBase = 200.00m }
+    );
+
+    // Exemplo: Popula um serviço de Ar-Condicionado com BTU
+    builder.Entity<Servico>().HasData(
+        new Servico
+        {
+            Id = 1,
+            Descricao = "Instalação de Ar-Condicionado Split",
+            TipoServicoId = 1, // ID do "Ar-Condicionado"
+            BtuId = 1 // BTU de 9000
+        });
+
         // Orcamento
         builder.Entity<Orcamento>().HasData(
             new Orcamento { Id = 1, DataPedido = DateTime.Now, DescricaoPedido = "", StatusOrcamento = "Rejeitado", Desconto = 00, Total = 00 },

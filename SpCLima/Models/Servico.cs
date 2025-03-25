@@ -36,5 +36,5 @@ public class Servico
     public decimal Valor { get; set; }
 
     public ICollection<OrcamentoServico> OrcamentoServicos { get; set; }
-
+    public int BtuId { get; internal set; }
 }

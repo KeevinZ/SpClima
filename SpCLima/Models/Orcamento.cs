@@ -32,6 +32,13 @@ public class Orcamento
     [Key, Column(Order = 1)]
     public int ServicoId { get; set; }
     public Servico Servico { get; set; }
+    
+
+   [ForeignKey("btu")]
+    // Campo opcional (apenas para Ar-Condicionado)
+    public int? BtuId { get; set; } // Chave estrangeira nullable
+    public Btu? Btu { get; set; } // Navegação opcional
+
 
     [Required]
     [ForeignKey("cliente")]
