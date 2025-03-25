@@ -33,10 +33,10 @@ public class AppDbSeed
             new OrcamentoServico { OrcamentoId = 1, ServicoId = 1 },
             new OrcamentoServico { OrcamentoId = 2, ServicoId = 2 }
         );
-    }
 
-#region Populate Roles - Perfis de Usuário
-    List<IdentityRole> roles = new()
+
+        #region Populate Roles - Perfis de Usuário
+        List<IdentityRole> roles = new()
         {
             new IdentityRole() {
                Id = "0b44ca04-f6b0-4a8f-a953-1f2330d30894",
@@ -54,10 +54,11 @@ public class AppDbSeed
                NormalizedName = "CLIENTE"
             },
         };
-#endregion
+        builder.Entity<IdentityRole>().HasData(roles);
+        #endregion
 
-    #region Populate Usuário
-    List<Usuario> usuarios = new() {
+        #region Populate Usuário
+        List<Usuario> usuarios = new() {
             new Usuario(){
                 Id = "ddf093a6-6cb5-4ff7-9a64-83da34aee005",
                 Email = "gallojunior@gmail.com",
@@ -71,21 +72,16 @@ public class AppDbSeed
                 Foto = "/img/usuarios/ddf093a6-6cb5-4ff7-9a64-83da34aee005.png"
             }
         };
-        @foreach (var user in Usuario)
+        foreach (var user in usuarios)
         {
             PasswordHasher<IdentityUser> pass = new();
             user.PasswordHash = pass.HashPassword(user, "123456");
         }
+        builder.Entity<Usuario>().HasData(usuarios);
+        #endregion
 
-internal class roles
-{
-}
-
-builder.Entity<Usuario>().HasData();
-#endregion
-
-#region Populate UserRole - Usuário com Perfil
-List<IdentityUserRole<string>> userRoles = new()
+        #region Populate UserRole - Usuário com Perfil
+        List<IdentityUserRole<string>> userRoles = new()
         {
             new IdentityUserRole<string>() {
                 UserId = usuarios[0].Id,
@@ -100,7 +96,9 @@ List<IdentityUserRole<string>> userRoles = new()
                 RoleId = roles[2].Id
             }
         };
-builder.Entity<IdentityUserRole<string>>().HasData(userRoles);
+        builder.Entity<IdentityUserRole<string>>().HasData(userRoles);
         #endregion
     }
 }
+
+

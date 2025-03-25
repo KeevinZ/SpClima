@@ -13,7 +13,7 @@ public class Servico
     [Key]
     public int Id { get; set; }
 
-    [Required(ErrorMessage = "Por favor, informe o Qual Tipo Do Serviço")]
+    [Required]
     [ForeignKey(nameof(TipoServicoId))]
     public int TipoServicoId { get; set; }
     public TipoServico TipoServico { get; set; }

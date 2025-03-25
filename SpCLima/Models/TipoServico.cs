@@ -15,7 +15,7 @@ public class TipoServico
     [StringLength(30, ErrorMessage = "O nome  deve possuir no máximo 30 caracteres")]
     public string Nome { get; set; }
 
-    // ADD PTUS
+    // ADD BTUS
 
     [StringLength(300)]
     public string Foto { get; set; }
