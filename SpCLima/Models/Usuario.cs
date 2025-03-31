@@ -10,28 +10,34 @@ namespace SpClima.Models;
 [Table("usuario")]
 public class Usuario : IdentityUser
 {
-    [Required(ErrorMessage = "Por favor, informe o nome")]
-    [StringLength(60, ErrorMessage = "O nome deve possuir no máximo 60 caracteres")]
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int Id { get; set; }
+
+    [Required(ErrorMessage = "O nome é obrigatório")]
+    [StringLength(100, ErrorMessage = "O nome deve ter no máximo 100 caracteres")]
+    [Column("nome")]
     public string Nome { get; set; }
-
-    [Required(ErrorMessage = "Por favor, Informe o Endereço")]
-    [StringLength(200, ErrorMessage = "O Endereço deve possuir no máximo 200 caracteres")]
-    public string Endereco { get; set; }
-
-    [Phone(ErrorMessage = "Por favor, Informe o Número De Telefone")]
-    public string Telefone { get; set; }
 
     [Required(ErrorMessage = "Por favor, Informe o CPF")]
     [StringLength(14)]
     [CpfValidation(ErrorMessage = "CPF inválido")]
     public string CPF { get; set; }
 
-    [DataType(DataType.Date)]
-    [Display(Name = "Dia de nascimento")]
-    public DateTime DataNascimento { get; set; }
+    [Required(ErrorMessage = "O telefone é obrigatório")]
+    [StringLength(20, ErrorMessage = "Telefone no formato (00) 00000-0000")]
+    [Column("telefone")]
+    public string Telefone { get; set; }
 
-    [StringLength(300)]
-    public string Foto { get; set; }
-    
-    public ICollection<Servico> Servicos { get; set; }
+    [Required(ErrorMessage = "O endereço é obrigatório")]
+    [Column("endereco")]
+    public string Endereco { get; set; }
+
+    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+    [Column("data_cadastro")]
+    public DateTime DataCadastro { get; set; }
+
+    // Relacionamento com Eletrodomestico e Orcamento
+    public ICollection<Eletrodomestico> Eletrodomesticos { get; set; }
+    public ICollection<Orcamento> Orcamentos { get; set; }
 }

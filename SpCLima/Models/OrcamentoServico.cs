@@ -8,22 +8,23 @@ namespace SpCLima.Models;
 public class OrcamentoServico
 {
     [Key]
-    [Required]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
-    [Required]
-    public decimal Valor { get; set; }
-    
 
-    [Key, Column(Order = 0)]
-    [Required]
+    [ForeignKey("Orcamento")]
+    [Column("orcamento_id")]
     public int OrcamentoId { get; set; }
     public Orcamento Orcamento { get; set; }
-    [Key, Column(Order = 1)]
-    [Required]
+
+    [ForeignKey("Servico")]
+    [Column("servico_id")]
     public int ServicoId { get; set; }
     public Servico Servico { get; set; }
 
-    
+    [ForeignKey("Btu")]
+    [Column("btu_id")]
+    public int? BtuId { get; set; } // Nullable para serviços que não usam BTU
+    public Btu? Btu { get; set; }
 }
 

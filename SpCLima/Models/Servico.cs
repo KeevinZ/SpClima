@@ -9,32 +9,24 @@ namespace SpCLima.Models;
 [Table("servico")]
 public class Servico
 {
-    [Required]
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
-    [Required]
-    [ForeignKey(nameof(TipoServicoId))]
-    public int TipoServicoId { get; set; }
-    public TipoServico TipoServico { get; set; }
+    [Required(ErrorMessage = "O nome do serviço é obrigatório")]
+    [StringLength(50, ErrorMessage = "O nome deve ter no máximo 50 caracteres")]
+    [Column("nome")]
+    public string Nome { get; set; }
 
-    [ForeignKey(nameof(ClienteId))]
-    public int ClienteId { get; set; }
-     public Usuario Usuario { get; set; }
+    [StringLength(1000, ErrorMessage = "A descrição deve ter no máximo 1000 caracteres")]
+    [Column("descricao")]
+    public string? Descricao { get; set; }
 
+    [Required(ErrorMessage = "O preço base é obrigatório")]
+    [Range(0, double.MaxValue, ErrorMessage = "O preço deve ser positivo")]
+    [Column("preco_base", TypeName = "decimal(10,2)")]
+    public decimal PrecoBase { get; set; }
 
-    [Required(ErrorMessage = "Por favor, informe o Nome Do Serviço")]
-    [StringLength(100, ErrorMessage = "O Nome deve possuir no máximo 100 caracteres")]
-    public string NomeDoServico { get; set; }
-
-    [Display(Name = "Descrição", Prompt = "Descrição")]
-    [StringLength(1000, ErrorMessage = "A Descrição deve possuir no máximo 1000 caracteres")]
-    public string Descricao { get; set; }
-
-    [Range(0, double.MaxValue)]
-    [Column(TypeName = "numeric(10,2)")]
-    public decimal Valor { get; set; }
-
+    // Relacionamento com OrcamentoServico
     public ICollection<OrcamentoServico> OrcamentoServicos { get; set; }
-    public int BtuId { get; internal set; }
 }
