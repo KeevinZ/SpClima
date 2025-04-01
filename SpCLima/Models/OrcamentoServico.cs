@@ -8,7 +8,6 @@ namespace SpCLima.Models;
 public class OrcamentoServico
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
 

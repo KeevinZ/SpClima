@@ -15,18 +15,19 @@ public class Servico
 
     [Required(ErrorMessage = "O nome do serviço é obrigatório")]
     [StringLength(50, ErrorMessage = "O nome deve ter no máximo 50 caracteres")]
-    [Column("nome")]
     public string Nome { get; set; }
 
     [StringLength(1000, ErrorMessage = "A descrição deve ter no máximo 1000 caracteres")]
-    [Column("descricao")]
-    public string? Descricao { get; set; }
+    public string Descricao { get; set; }
 
     [Required(ErrorMessage = "O preço base é obrigatório")]
     [Range(0, double.MaxValue, ErrorMessage = "O preço deve ser positivo")]
-    [Column("preco_base", TypeName = "decimal(10,2)")]
     public decimal PrecoBase { get; set; }
 
-    // Relacionamento com OrcamentoServico
+    [Required(ErrorMessage = "Por favor, informe a Categoria")]
+    public int EletrodomesticoId { get; set; }
+    [ForeignKey("EletrodomesticoId")]
+    public Eletrodomestico Eletrodomestico { get; set; }
+    
     public ICollection<OrcamentoServico> OrcamentoServicos { get; set; }
 }

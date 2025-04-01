@@ -10,46 +10,38 @@ public class AppDbSeed
 {
     public AppDbSeed(ModelBuilder builder)
     {
-        // Servico
+
         builder.Entity<Servico>().HasData(
-            new Servico { Id = 1, NomeDoServico = "Limpeza Residencial", Descricao = "Higienização profunda para remover poeira, ácaros e impurezas, garantindo ar mais puro e melhor desempenho do aparelho.", Valor = 250.00m, TipoServicoId = 1 },
-            new Servico { Id = 2, NomeDoServico = "Manutenção de Ar Condicionado", Descricao = "Inspeção e ajustes para prevenir falhas, prolongar a vida útil e manter a eficiência do equipamento.", Valor = 250.00m, TipoServicoId = 2 }
+            new Servico { Id = 1, Nome = "Limpeza Residencial", Descricao = "Higienização profunda para remover poeira, ácaros e impurezas, garantindo ar mais puro e melhor desempenho do aparelho.", PrecoBase = 250.00m, EletrodomesticoId = 1 },
+            new Servico { Id = 2, Nome = "Manutenção de Ar Condicionado", Descricao = "Inspeção e ajustes para prevenir falhas, prolongar a vida útil e manter a eficiência do equipamento.", PrecoBase = 250.00m, EletrodomesticoId = 2 }
         );
 
-        // TipoServico
-        builder.Entity<TipoServico>().HasData(
-            new TipoServico { Id = 1, Nome = "Ar-Condicionado", Foto = "" },
-            new TipoServico { Id = 2, Nome = "Geladeira", Foto = "" },
-            new TipoServico { Id = 3     , Nome = "Maquina de Lavar", Foto = "" }
+        builder.Entity<Eletrodomestico>().HasData(
+            new Eletrodomestico { Id = 1, Tipo = "Ar-Condicionado", Marca = "", Modelo = "" },
+            new Eletrodomestico { Id = 2, Tipo = "Geladeira", Marca = "", Modelo = "" },
+            new Eletrodomestico { Id = 3, Tipo = "Maquina de Lavar", Marca = "", Modelo = "" }
         );
 
-        
-    // Popula a tabela BTU
-    builder.Entity<Btu>().HasData(
-        new Btu { Id = 1, Valor = 9000,  CustoInstalacaoBase = 150.00m },
-        new Btu { Id = 2, Valor = 12000, CustoInstalacaoBase = 200.00m }
-    );
 
-    // Exemplo: Popula um serviço de Ar-Condicionado com BTU
-    builder.Entity<Servico>().HasData(
-        new Servico
-        { 
-            Id = 1,
-            Descricao = "Instalação de Ar-Condicionado Split",
-            TipoServicoId = 1, // ID do "Ar-Condicionado"
-            BtuId = 1 // BTU de 9000
-        });
+        builder.Entity<Btu>().HasData(
+            new Btu { Id = 1, ValorBtu = 9000, PrecoAjuste = 150.00m },
+            new Btu { Id = 2, ValorBtu = 12000, PrecoAjuste = 200.00m }
+        );
+
+        // Exemplo: Popula um serviço de Ar-Condicionado com BTU
+        builder.Entity<Servico>().HasData(
+            new Servico
+            {
+                Id = 1,
+                Descricao = "Instalação de Ar-Condicionado Split",
+                TipoServicoId = 1, // ID do "Ar-Condicionado"
+                BtuId = 1 // BTU de 9000
+            });
 
         // Orcamento
         builder.Entity<Orcamento>().HasData(
             new Orcamento { Id = 1, DataPedido = DateTime.Now, DescricaoPedido = "", StatusOrcamento = "Rejeitado", Desconto = 00, Total = 00 },
             new Orcamento { Id = 2, DataPedido = DateTime.Now, DescricaoPedido = "", StatusOrcamento = "", Desconto = 00, Total = 00 }
-        );
-
-        // OrcamentoServico
-        builder.Entity<OrcamentoServico>().HasData(
-            new OrcamentoServico { OrcamentoId = 1, ServicoId = 1 },
-            new OrcamentoServico { OrcamentoId = 2, ServicoId = 2 }
         );
 
 

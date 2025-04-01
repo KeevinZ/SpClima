@@ -12,18 +12,15 @@ public class Eletrodomestico
     public int Id { get; set; }
 
     [Required(ErrorMessage = "O tipo é obrigatório")]
-    [Column("tipo")]
-    public string Tipo { get; set; } // Pode ser substituído por um Enum
+    public string Tipo { get; set; }
 
     [StringLength(50, ErrorMessage = "A marca deve ter no máximo 50 caracteres")]
-    [Column("marca")]
     public string Marca { get; set; }
 
     [StringLength(50, ErrorMessage = "O modelo deve ter no máximo 50 caracteres")]
-    [Column("modelo")]
     public string Modelo { get; set; }
 
-    // Chave estrangeira para Usuario
+
     [ForeignKey("Usuario")]
     [Column("usuario_id")]
     public int UsuarioId { get; set; }

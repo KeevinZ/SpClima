@@ -12,12 +12,10 @@ public class Orcamento
     public int Id { get; set; }
 
     [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-    [Column("data_criacao")]
     public DateTime DataCriacao { get; set; }
 
     [Required(ErrorMessage = "O status é obrigatório")]
-    [Column("status")]
-    public string Status { get; set; } // Pode ser substituído por um Enum
+    public Enum Status { get; set; }
 
     [Column("valor_total", TypeName = "decimal(10,2)")]
     public decimal ValorTotal { get; set; }
