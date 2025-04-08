@@ -3,75 +3,54 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SpClima.Data;
 using SpClima.Models;
-using SpClima.ViewModels;
 
 
-namespace SpClima.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
     private readonly AppDbContext _db;
 
-    public HomeController(ILogger<HomeController> logger, AppDbContext db)
+    public HomeController(AppDbContext db)
     {
-        _logger = logger;
         _db = db;
     }
 
+    // Página inicial lista serviços com eletrodomésticos
     public IActionResult Index()
     {
-        List<Produto> produtos = _db.Produtos
-        .Where(p => p.Destaque)
-        .Include(p => p.Fotos)
-        .ToList();
-        return View(produtos);
+        var servicos = _db.Servicos
+            .Include(s => s.Eletrodomestico)  // Carrega o relacionamento
+            .ToList();
+
+        return View(servicos);
     }
 
-    public IActionResult Produto(int id)
+    // Detalhes de um serviço específico
+    public IActionResult DetalhesServico(int id)
     {
-        Produto produto = _db.Produtos
-            .Where(p => p.Id == id)
-            .Include(p => p.Categoria)
-            .Include(p => p.Fotos)
-            .SingleOrDefault();
+        var servico = _db.Servicos
+            .Include(s => s.Eletrodomestico)
+            .FirstOrDefault(s => s.Id == id);
 
-        ProdutoVM produtoVM = new()
+        if (servico == null)
         {
-            Produto = produto
-        };
-        produtoVM.Produtos = _db.Produtos
-             .Where(p => p.CategoriaId == produto.CategoriaId)
-             .Take(4).ToList();
+            return NotFound();
+        }
 
-        return View(produtoVM);
-    }
-    public IActionResult TipoDeServico(int id)
-    {
-        TipoDeServico tipoDeServico = _db.TiposDeServicos
-               .Where(t => t.TipoDeServicoId == id)
-               .Include(t => t.Categoria)
-               .SingleOrDefault();
-
-        TipoDeServicoVM tipoDeServicoVM = new TipoDeServicoVM
-        {
-            TipoDeServico = tipoDeServico,
-            TiposDeServicos = _db.TiposDeServicos
-                .Where(t => t.CategoriaId == tipoDeServico.CategoriaId)
-                .Take(4).ToList()
-        };
-
-        return View(tipoDeServicoVM);
+        return View(servico);
     }
 
-    public IActionResult Privacy()
+    // Lista serviços por tipo de eletrodoméstico
+    public IActionResult ServicosPorEletrodomestico(int eletrodomesticoId)
     {
-        return View();
-    }
+        var servicos = _db.Servicos
+            .Where(s => s.EletrodomesticoId == eletrodomesticoId)
+            .Include(s => s.Eletrodomestico)
+            .ToList();
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        ViewBag.Eletrodomestico = _db.Eletrodomesticos
+            .FirstOrDefault(e => e.Id == eletrodomesticoId)?.Tipo;
+
+        return View(servicos);
     }
 }
