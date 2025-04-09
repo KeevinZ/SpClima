@@ -1,4 +1,3 @@
-
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using SpClima.Models;
@@ -15,7 +14,6 @@ public class Servico
     [Required(ErrorMessage = "O nome do serviço é obrigatório!")]
     [StringLength(100, ErrorMessage = "O nome deve ter no máximo 100 caracteres.")]
     public string Nome { get; set; }
-
 
     [Range(0, (double)decimal.MaxValue)]
     [Column(TypeName = "numeric(10,2)")]

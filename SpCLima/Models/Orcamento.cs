@@ -12,9 +12,14 @@ public class Orcamento
 
     
     public string NomeCliente { get; set; }
+
+    [DataType(DataType.Date)]
+    [Display(Name = "Data de Nascimento")]
     public DateTime DataCriacao { get; set; }
-    public int StatusId { get; set; }
+
+    
     public decimal ValorTotal { get; set; }
+    public int StatusId { get; set; }
     
 
     public List<Produto> Produtos { get; set; }
