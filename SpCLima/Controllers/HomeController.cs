@@ -1,56 +1,38 @@
-// using System.Diagnostics;
-// using Microsoft.AspNetCore.Mvc;
-// using Microsoft.EntityFrameworkCore;
-// using SpClima.Data;
-// using SpClima.Models;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
+using SpCLima.Models;
+using Microsoft.EntityFrameworkCore;
+using SpClima.Data;
+using SpClima.Models;
 
+namespace SpCLima.Controllers;
 
+public class HomeController : Controller
+{
+    private readonly ILogger<HomeController> _logger;
+    private readonly AppDbContext _db;
 
-// public class HomeController : Controller
-// {
-//     private readonly AppDbContext _db;
+    public HomeController(ILogger<HomeController> logger, AppDbContext db)
+    {
+        _logger = logger;
+        _db = db;
+    }
 
-//     public HomeController(AppDbContext db)
-//     {
-//         _db = db;
-//     }
+    public IActionResult Index()
+    {
+        List<Produto> produtos = _db.Produtos
+            .Include(p => p.Fotos)
+            .ToList();
+        return View(produtos);
+    }
+    public IActionResult Privacy()
+    {
+        return View();
+    }
 
-//     // Página inicial lista serviços com eletrodomésticos
-//     public IActionResult Index()
-//     {
-//         var servicos = _db.Servicos
-//             .Include(s => s.Eletrodomestico)  // Carrega o relacionamento
-//             .ToList();
-
-//         return View(servicos);
-//     }
-
-//     // Detalhes de um serviço específico
-//     public IActionResult DetalhesServico(int id)
-//     {
-//         var servico = _db.Servicos
-//             .Include(s => s.Eletrodomestico)
-//             .FirstOrDefault(s => s.Id == id);
-
-//         if (servico == null)
-//         {
-//             return NotFound();
-//         }
-
-//         return View(servico);
-//     }
-
-//     // Lista serviços por tipo de eletrodoméstico
-//     public IActionResult ServicosPorEletrodomestico(int eletrodomesticoId)
-//     {
-//         var servicos = _db.Servicos
-//             .Where(s => s.EletrodomesticoId == eletrodomesticoId)
-//             .Include(s => s.Eletrodomestico)
-//             .ToList();
-
-//         ViewBag.Eletrodomestico = _db.Eletrodomesticos
-//             .FirstOrDefault(e => e.Id == eletrodomesticoId)?.Tipo;
-
-//         return View(servicos);
-//     }
-// }
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Error()
+    {
+        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+}

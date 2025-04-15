@@ -9,12 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 // Conexão com o banco de dados
-string conexao = builder.Configuration.GetConnectionString("StoreConn");
+string conexao = builder.Configuration.GetConnectionString("SpClimaConn");
 builder.Services.AddDbContext<AppDbContext>(
     options => options.UseMySQL(conexao)
 );
 
-// Configuração do Identity
+// Configuração do identity
 builder.Services.AddIdentity<Usuario, IdentityRole>(
     options => options.SignIn.RequireConfirmedEmail = false
 ).AddEntityFrameworkStores<AppDbContext>()
@@ -24,8 +24,9 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var contexto = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    await contexto.Database.EnsureCreatedAsync();
+    var contexto = scope.ServiceProvider
+        .GetRequiredService<AppDbContext>();
+        await contexto.Database.EnsureCreatedAsync();
 }
 
 // Configure the HTTP request pipeline.
@@ -39,6 +40,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();

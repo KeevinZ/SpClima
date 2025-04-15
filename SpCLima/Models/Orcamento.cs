@@ -10,7 +10,6 @@ public class Orcamento
     [Key]
     public int Id { get; set; }
 
-    
     public string NomeCliente { get; set; }
 
     [DataType(DataType.Date)]
