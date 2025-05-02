@@ -4,9 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SpClima.Models;
 using SpCLima.Models;
 
-
 namespace SpClima.Data;
-
 
 public class AppDbContext : IdentityDbContext<Usuario>
 {
@@ -19,7 +17,7 @@ public class AppDbContext : IdentityDbContext<Usuario>
     public DbSet<ProdutoFoto> ProdutoFotos{ get; set; }
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Orcamento> Orcamentos { get; set; }
-    public DbSet<Servico> Servicos  { get; set; }
+    public DbSet<Servico> Servicos { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder builder)
@@ -35,7 +33,7 @@ public class AppDbContext : IdentityDbContext<Usuario>
         builder.Entity<IdentityRoleClaim<string>>().ToTable("perfil_regra");
         #endregion
 
-        // AppDbSeed seed = new(builder);
+        AppDbSeed seed = new(builder);
        
     }
 

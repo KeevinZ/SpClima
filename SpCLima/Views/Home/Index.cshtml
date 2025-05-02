@@ -1,41 +1,455 @@
-﻿@using SpCLima.Models
-@model List<SpCLima.Models.Produto>
-@{
-    ViewData["Title"] = "Home";
+﻿@{
+    ViewData["Title"] = "Index SPCLIMA";
 }
 
-<header class="bg-dark py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center">
-            <h1 class="display-4 fw-bolder text-white">Shop in style</h1>
-            <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+<!-- Hero Section -->
+<section id="hero" class="hero section dark-background">
+    <img src="assets/img/Carrossel2.png" alt="" data-aos="fade-in">
+
+    <div class="container d-flex flex-column align-items-center">
+        <h2 data-aos="fade-up" data-aos-delay="100">SPCLIMA</h2>
+        <p data-aos="fade-up" data-aos-delay="200">O MELHOR DA REGIÃO</p>
+        <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
+            <a href="#about" class="btn-get-started">Faça seu Orçamento</a>
+            <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
+                class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch
+                    Video</span></a>
         </div>
     </div>
-</header>
-<!-- Section-->
-<section class="py-5">
-    <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            @foreach (Produto produto in Model)
-            {
-                <div class="col mb-5">
-                    <div class="card h-100">
-                        <!-- Product image-->
-                        <img class="card-img-top" src="@produto.Fotos[0].ArquivoFoto" alt="@produto.Nome" />
-                        <!-- Product details-->
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <!-- Product name-->
-                                <h5 class="fw-bolder">@produto.Nome</h5>
-                            </div>
+</section><!-- /Hero Section -->
+
+<!-- Services Section -->
+<section id="services" class="services section">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Serviços</h2>
+        <p>Trabalhamos com:<br></p>
+    </div><!-- End Section Title -->
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-5">
+            <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                <div class="service-item">
+                    <div class="img">
+                        <img src="assets/img/services-1.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="details position-relative">
+                        <div class="icon">
+                            <i class="bi bi-droplet-half"></i>
                         </div>
-                        <!-- Product actions-->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Ver Detalhes</a></div>
-                        </div>
+                        <a href="service-details.html" class="stretched-link">
+                            <h3>Máquinas de lavar</h3>
+                        </a>
+                        <p>Sua máquina de lavar está dando problema? A gente resolve! Fazemos conserto e limpeza de máquinas de
+                            lavar com agilidade e confiança.</p>
                     </div>
                 </div>
-            }
+            </div><!-- End Service Item -->
+
+            <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+                <div class="service-item">
+                    <div class="img">
+                        <img src="assets/img/services-2.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="details position-relative">
+                        <div class="icon">
+                            <i class="bi bi-wind"></i>
+                        </div>
+                        <a href="service-details.html" class="stretched-link">
+                            <h3>Ares Condicionados</h3>
+                        </a>
+                        <p>Ar-condicionado limpo e funcionando bem? A gente cuida disso pra você! Fazemos limpeza, manutenção
+                            preventiva e instalação. Atendimento rápido e de confiança.</p>
+                    </div>
+                </div>
+            </div><!-- End Service Item -->
+
+            <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+                <div class="service-item">
+                    <div class="img">
+                        <img src="assets/img/services-3.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="details position-relative">
+                        <div class="icon">
+                            <i class="bi bi-snow"></i>
+                        </div>
+                        <a href="service-details.html" class="stretched-link">
+                            <h3>Refrigeradores</h3>
+                        </a>
+                        <p> Sua geladeira está com problemas? Fazemos consertos, revisões e higienização completa. Atendimento
+                            técnico confiável e eficiente!
+                        </p>
+                    </div>
+                </div>
+            </div><!-- End Service Item -->
         </div>
     </div>
-</section>
+</section><!-- /Services Section -->
+
+<!-- Stats Section -->
+<section id="stats" class="stats section light-background">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item d-flex align-items-center w-100 h-100">
+                    <i class="bi bi-emoji-smile color-blue flex-shrink-0"></i>
+                    <div>
+                        <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1"
+                            class="purecounter"></span>
+                        <p>Clientes felizes</p>
+                    </div>
+                </div>
+            </div><!-- End Stats Item -->
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item d-flex align-items-center w-100 h-100">
+                    <i class="bi bi-journal-richtext color-orange flex-shrink-0"></i>
+                    <div>
+                        <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
+                            class="purecounter"></span>
+                        <p>Atendimentos Realizados</p>
+                    </div>
+                </div>
+            </div><!-- End Stats Item -->
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item d-flex align-items-center w-100 h-100">
+                    <i class="bi bi-headset color-green flex-shrink-0"></i>
+                    <div>
+                        <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1"
+                            class="purecounter"></span>
+                        <p>Horas de Suporte</p>
+                    </div>
+                </div>
+            </div><!-- End Stats Item -->
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item d-flex align-items-center w-100 h-100">
+                    <i class="bi bi-people color-pink flex-shrink-0"></i>
+                    <div>
+                        <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1"
+                            class="purecounter"></span>
+                        <p>Anos no mercado</p>
+                    </div>
+                </div>
+            </div><!-- End Stats Item -->
+        </div>
+    </div>
+</section><!-- /Stats Section -->
+
+<!-- Features Section -->
+<section id="features" class="features section">
+    <div class="container">
+        <ul class="nav nav-tabs row  d-flex" data-aos="fade-up" data-aos-delay="100">
+            <li class="nav-item col-3">
+                <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1">
+                    <i class="bi bi-binoculars"></i>
+                    <h4 class="d-none d-lg-block">História</h4>
+                </a>
+            </li>
+            <li class="nav-item col-3">
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
+                    <i class="bi bi-box-seam"></i>
+                    <h4 class="d-none d-lg-block">Curiosidades</h4>
+                </a>
+            </li>
+            <li class="nav-item col-3">
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3">
+                    <i class="bi bi-brightness-high"></i>
+                    <h4 class="d-none d-lg-block">Pariatur explica nitro dela</h4>
+                </a>
+            </li>
+            <li class="nav-item col-3">
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-4">
+                    <i class="bi bi-command"></i>
+                    <h4 class="d-none d-lg-block">Nostrum qui dile node</h4>
+                </a>
+            </li>
+        </ul><!-- End Tab Nav -->
+
+        <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
+            <div class="tab-pane fade active show" id="features-tab-1">
+                <div class="row">
+                    <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                        <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+                        <p class="fst-italic">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore
+                            magna aliqua.
+                        </p>
+                        <ul>
+                            <li><i class="bi bi-check2-all"></i>
+                                <spab>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</spab>
+                            </li>
+                            <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in voluptate
+                                    velit</span>.</li>
+                            <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu
+                                    fugiat nulla pariatur.</span></li>
+                        </ul>
+                        <p>
+                            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate
+                            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                            sunt in
+                            culpa qui officia deserunt mollit anim id est laborum
+                        </p>
+                    </div>
+                    <div class="col-lg-6 order-1 order-lg-2 text-center">
+                        <img src="assets/img/working-1.jpg" alt="" class="img-fluid">
+                    </div>
+                </div>
+            </div><!-- End Tab Content Item -->
+
+            <div class="tab-pane fade" id="features-tab-2">
+                <div class="row">
+                    <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                        <h3>Neque exercitationem debitis soluta quos debitis quo mollitia officia est</h3>
+                        <p>
+                            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate
+                            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                            sunt in
+                            culpa qui officia deserunt mollit anim id est laborum
+                        </p>
+                        <p class="fst-italic">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore
+                            magna aliqua.
+                        </p>
+                        <ul>
+                            <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo
+                                    consequat.</span></li>
+                            <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in voluptate
+                                    velit.</span></li>
+                            <li><i class="bi bi-check2-all"></i> <span>Provident mollitia neque rerum asperiores dolores quos qui
+                                    a. Ipsum neque dolor voluptate nisi sed.</span></li>
+                            <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu
+                                    fugiat nulla pariatur.</span></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 order-1 order-lg-2 text-center">
+                        <img src="assets/img/working-2.jpg" alt="" class="img-fluid">
+                    </div>
+                </div>
+            </div><!-- End Tab Content Item -->
+
+            <div class="tab-pane fade" id="features-tab-3">
+                <div class="row">
+                    <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                        <h3>Voluptatibus commodi ut accusamus ea repudiandae ut autem dolor ut assumenda</h3>
+                        <p>
+                            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate
+                            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                            sunt in
+                            culpa qui officia deserunt mollit anim id est laborum
+                        </p>
+                        <ul>
+                            <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo
+                                    consequat.</span></li>
+                            <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in voluptate
+                                    velit.</span></li>
+                            <li><i class="bi bi-check2-all"></i> <span>Provident mollitia neque rerum asperiores dolores quos qui
+                                    a. Ipsum neque dolor voluptate nisi sed.</span></li>
+                        </ul>
+                        <p class="fst-italic">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore
+                            magna aliqua.
+                        </p>
+                    </div>
+                    <div class="col-lg-6 order-1 order-lg-2 text-center">
+                        <img src="assets/img/working-3.jpg" alt="" class="img-fluid">
+                    </div>
+                </div>
+            </div><!-- End Tab Content Item -->
+
+            <div class="tab-pane fade" id="features-tab-4">
+                <div class="row">
+                    <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                        <h3>Omnis fugiat ea explicabo sunt dolorum asperiores sequi inventore rerum</h3>
+                        <p>
+                            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate
+                            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                            sunt in
+                            culpa qui officia deserunt mollit anim id est laborum
+                        </p>
+                        <p class="fst-italic">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore
+                            magna aliqua.
+                        </p>
+                        <ul>
+                            <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo
+                                    consequat.</span></li>
+                            <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in voluptate
+                                    velit.</span></li>
+                            <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu
+                                    fugiat nulla pariatur.</span></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 order-1 order-lg-2 text-center">
+                        <img src="assets/img/working-4.jpg" alt="" class="img-fluid">
+                    </div>
+                </div>
+            </div><!-- End Tab Content Item -->
+        </div>
+    </div>
+</section><!-- /Features Section -->
+
+<!-- Marcas que Trabalhamos -->
+<section id="clients" class="clients section light-background">
+    <div class="container" data-aos="fade-up">
+        <div class="row gy-4">
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h4> Marcas que Trabalhamos</h4>
+            </div><!-- End Section Title -->
+
+            <div class="col-xl-2 col-md-3 col-6 client-logo">
+                <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
+            </div><!-- End Client Item -->
+
+            <div class="col-xl-2 col-md-3 col-6 client-logo">
+                <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
+            </div><!-- End Client Item -->
+
+            <div class="col-xl-2 col-md-3 col-6 client-logo">
+                <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
+            </div><!-- End Client Item -->
+
+            <div class="col-xl-2 col-md-3 col-6 client-logo">
+                <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
+            </div><!-- End Client Item -->
+
+            <div class="col-xl-2 col-md-3 col-6 client-logo">
+                <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
+            </div><!-- End Client Item -->
+
+            <div class="col-xl-2 col-md-3 col-6 client-logo">
+                <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
+            </div><!-- End Client Item -->
+        </div>
+    </div>
+</section><!-- /Clients Section -->
+
+<!-- Produtos à Venda Section -->
+<section id="produtos" class="services section">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Produtos à Venda</h2>
+        <p>Confira os serviços e produtos disponíveis para orçamento:</p>
+    </div><!-- End Section Title -->
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-5">
+            <!-- Produto 1 -->
+            <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                <div class="service-item">
+                    <div class="img">
+                        <img src="assets/img/services-1.jpg" class="img-fluid" alt="Instalação de Ar-condicionado">
+                    </div>
+                    <div class="details position-relative">
+                        <div class="icon">
+                            <i class="bi bi-gear"></i>
+                        </div>
+                        <h3>Instalações </h3>
+                        <p>Preço médio: R$250,00 a R$1000,00</p>
+                        <button class="btn btn-primary btn-adicionar"
+                            onclick="adicionarAoCarrinho('instalacao', 'assets/img/services-1.jpg', 'R$ 350,00')">
+                            <i class="bi bi-cart-plus"></i> Adicionar ao Orçamento
+                        </button>
+                    </div>
+                </div>
+            </div><!-- End Produto -->
+
+            <!-- Produto 2 -->
+            <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+                <div class="service-item">
+                    <div class="img">
+                        <img src="assets/img/services-2.jpg" class="img-fluid" alt="Manutenção Preventiva">
+                    </div>
+                    <div class="details position-relative">
+                        <div class="icon">
+                            <i class="bi bi-wrench-adjustable-circle"></i>
+                        </div>
+                        <h3>Manutenções </h3>
+                        <p>Preço médio: R$10,00 a R$800,00</p>
+                        <button class="btn btn-primary btn-adicionar"
+                            onclick="adicionarAoCarrinho('manutencao', 'assets/img/services-2.jpg', 'R$ 300,00')">
+                            <i class="bi bi-cart-plus"></i> Adicionar ao Orçamento
+                        </button>
+                    </div>
+                </div>
+            </div><!-- End Produto -->
+
+            <!-- Produto 3 -->
+            <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+                <div class="service-item">
+                    <div class="img">
+                        <img src="assets/img/services-3.jpg" class="img-fluid" alt="Limpeza Técnica">
+                    </div>
+                    <div class="details position-relative">
+                        <div class="icon">
+                            <i class="bi bi-water"></i>
+                        </div>
+                        <h3>Limpezas </h3>
+                        <p>Preço médio: R$100,00 a R$400,00</p>
+                        <button class="btn btn-primary btn-adicionar"
+                            onclick="adicionarAoCarrinho('limpeza', 'assets/img/services-2.jpg', 'R$ 300,00')">
+                            <i class="bi bi-cart-plus"></i> Adicionar ao Orçamento
+                        </button>
+                    </div>
+                </div>
+            </div><!-- End Produto -->
+        </div>
+    </div>
+</section><!-- End Produtos à Venda Section -->
+
+<!-- Contact Section -->
+<section id="contact" class="contact section">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Contato</h2>
+        <p>Em caso de dúvidas Contatar</p>
+    </div><!-- End Section Title -->
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4">
+            <div class="col-lg-15">
+                <div class="row gy-4">
+                    <div class="col-lg-12">
+                        <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up"
+                            data-aos-delay="200">
+                            <i class="bi bi-geo-alt"></i>
+                            <h3>Endereço</h3>
+                            <p>A108 Adam Street, New York, NY 535022</p>
+                        </div>
+                    </div><!-- End Info Item -->
+
+                    <div class="col-md-6">
+                        <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up"
+                            data-aos-delay="300">
+                            <i class="bi bi-telephone"></i>
+                            <h3>Telefone</h3>
+                            <p>+55 14 99757-6046</p>
+                        </div>
+                    </div><!-- End Info Item -->
+
+                    <div class="col-md-6">
+                        <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up"
+                            data-aos-delay="400">
+                            <i class="bi bi-envelope"></i>
+                            <h3>Email</h3>
+                            <p>info@example.com</p>
+                        </div>
+                    </div><!-- End Info Item -->
+                </div>
+            </div>
+        </div><!-- End Contact Form -->
+    </div>
+</section><!-- /Contact Section -->

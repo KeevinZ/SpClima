@@ -1,7 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using SpClima.Models;
-
 
 namespace SpCLima.Models;
 
@@ -19,6 +17,10 @@ public class Servico
     [Column(TypeName = "numeric(10,2)")]
     public decimal Preco { get; set; }
 
+
+    [Required(ErrorMessage = "Por favor, informe a Produto")]
     public int ProdutoId { get; set; }
+
+    [ForeignKey(nameof(ProdutoId))]
     public Produto Produto { get; set; }
 }
