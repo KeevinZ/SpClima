@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using SpClima.Models;
 
 namespace SpCLima.Models;
 
@@ -12,9 +11,9 @@ public class Orcamento
 
     public string NomeCliente { get; set; }
 
-    [DataType(DataType.Date)]
-    [Display(Name = "Data de Nascimento")]
-    public DateTime DataCriacao { get; set; }
+    // [DataType(DataType.Date)]
+    // [Display(Name = "Data do orcamento")]
+    // public DateTime DataCriacao { get; set; }
 
     
     public decimal ValorTotal { get; set; }

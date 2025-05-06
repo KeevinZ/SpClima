@@ -25,3 +25,4 @@ public class Produto
 
     public List<ProdutoFoto> Fotos { get; set; }
 }
+    

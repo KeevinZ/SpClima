@@ -5,11 +5,11 @@
 ##
 
 ## Cauã
-   git config --global user.name 
-   git config --global user.email
+   git config --global user.name CauaMaximo013
+   git config --global user.email maximocaua13@gmail.com
 ##
 
 ## Gabriel
-   git config --global user.name 
+   git config --global user.name bielizr
    git config --global user.email
 ## 
