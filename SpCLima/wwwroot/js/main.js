@@ -207,3 +207,63 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
+
+// Get the modal
+var modal = document.getElementById("calcularBtusModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("calcularBtusBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+if (event.target == modal) {
+modal.style.display = "none";
+}
+}
+
+// Function to calculate BTUs
+function calcularBTUs() {
+// Get values from the form
+var largura = parseFloat(document.getElementById("largura").value);
+var comprimento = parseFloat(document.getElementById("comprimento").value);
+var altura = parseFloat(document.getElementById("altura").value);
+
+// Validate if the user has entered valid numbers
+if (isNaN(largura) || isNaN(comprimento) || isNaN(altura) || largura <= 0 || comprimento <= 0 || altura <= 0) {
+alert("Por favor, insira valores válidos.");
+return;
+}
+
+// Calculate the area (largura * comprimento)
+var area = largura * comprimento;
+
+// Calculate the required BTUs (using a basic formula)
+var btus = area * 600; // Simple approximation for residential areas
+
+// Display the result
+document.getElementById("resultadoTexto").textContent = "O seu ambiente precisa de aproximadamente " + btus + " BTUs.";
+document.getElementById("resultadoBTUs").style.display = "block"; // Show the result section
+}
+
+// Attach the calculation function to the form submit event
+document.getElementById("btusForm").onsubmit = function(event) {
+event.preventDefault(); // Prevent form submission and page reload
+calcularBTUs(); // Call the function to calculate BTUs
+};
+
+
+
+

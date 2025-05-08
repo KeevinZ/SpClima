@@ -100,7 +100,6 @@ public class AppDbSeed
             new Servico {Id = 4, Nome = "Manutenção", Preco = 100, CategoriaId = 1},
 
             // Lavadoura
-<<<<<<< HEAD
             new Servico {Id = 5, Nome = "Higienização", Preco = 150, CategoriaId = 2 },
             new Servico {Id = 6, Nome = "Manutenção", Preco = 100, CategoriaId = 2 },
 
@@ -118,36 +117,6 @@ public class AppDbSeed
             // Bebedouro
             new Servico {Id = 12, Nome = "Higienização", Preco = 100, CategoriaId = 6 },
             new Servico {Id = 13, Nome = "Manutenção", Preco = 100, CategoriaId = 6 },
-=======
-            new Servico {Id = 1, Nome = "Instalação Normal", Preco = 450, CategoriaId = 2 },
-            new Servico {Id = 2, Nome = "Instalação Padrão", Preco = 650, CategoriaId = 2 },
-            new Servico {Id = 3, Nome = "Higienização", Preco = 150, CategoriaId = 2 },
-            new Servico {Id = 4, Nome = "Manutenção", Preco = 100, CategoriaId = 2 },
-
-            //Geladeira
-            new Servico {Id = 1, Nome = "Instalação Normal", Preco = 450, CategoriaId = 3 },
-            new Servico {Id = 2, Nome = "Instalação Padrão", Preco = 650, CategoriaId = 3},
-            new Servico {Id = 3, Nome = "Higienização", Preco = 150, CategoriaId = 3 },
-            new Servico {Id = 4, Nome = "Manutenção", Preco = 100, CategoriaId = 3 },
-            
-            //Freezer
-            new Servico {Id = 1, Nome = "Instalação Normal", Preco = 450, CategoriaId = 4 },
-            new Servico {Id = 2, Nome = "Instalação Padrão", Preco = 650, CategoriaId = 4 },
-            new Servico {Id = 3, Nome = "Higienização", Preco = 150, CategoriaId = 4 },
-            new Servico {Id = 4, Nome = "Manutenção", Preco = 100, CategoriaId = 4 },
-            
-            //Cortina
-            new Servico {Id = 1, Nome = "Instalação Normal", Preco = 450, CategoriaId = 5 },
-            new Servico {Id = 2, Nome = "Instalação Padrão", Preco = 650, CategoriaId = 5},
-            new Servico {Id = 3, Nome = "Higienização", Preco = 150, CategoriaId = 5 },
-            new Servico {Id = 4, Nome = "Manutenção", Preco = 100, CategoriaId = 5 },
-            
-            // Bebedouro
-            new Servico {Id = 1, Nome = "Instalação Normal", Preco = 450, CategoriaId = 6 },
-            new Servico {Id = 2, Nome = "Instalação Padrão", Preco = 650, CategoriaId = 6 },
-            new Servico {Id = 3, Nome = "Higienização", Preco = 150, CategoriaId = 6 },
-            new Servico {Id = 4, Nome = "Manutenção", Preco = 100, CategoriaId = 6 },
->>>>>>> 184b39e3560d142e6f5259bc74be1a665c771641
          };
         builder.Entity<Servico>().HasData(servicos);
 
