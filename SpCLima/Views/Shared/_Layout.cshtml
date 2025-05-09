@@ -44,13 +44,42 @@
           <li><a href="#hero" class="active">Home</a></li>
           <li><a href="#features">Sobre</a></li>
           <li><a href="#services">Serviços</a></li>
-          <li><a href="#portfolio">Calculadora Btus</a></li>
+          <li><a href="javascript:void(0);" id="calcularBtusBtn">Calculadora BTUs</a></li>
           <li><a href="#contact">Contato</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="cta-btn" href="javascript:void(0)" onclick="toggleCarrinho()">Faça seu Orçamento</a>
+ <a href="javascript:void(0);" class="btn btn-primary" onclick="abrirCarrinho()">Faça seu Orçamento</a>
+
+    </div>
+
+     <!-- The Modal -->
+    <div id="calcularBtusModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3 class="modal-title">Calcule o Ar Ideal</h3>
+        <form id="btusForm">
+          <div class="input-container">
+            <label for="largura">Largura (m):</label>
+            <input type="number" id="largura" name="largura" required placeholder="Digite a largura do ambiente">
+          </div>
+          <div class="input-container">
+            <label for="comprimento">Comprimento (m):</label>
+            <input type="number" id="comprimento" name="comprimento" required
+              placeholder="Digite o comprimento do ambiente">
+          </div>
+          <div class="input-container">
+            <label for="altura">Altura (m):</label>
+            <input type="number" id="altura" name="altura" required placeholder="Digite a altura do ambiente">
+          </div>
+          <button type="submit" class="btn-calcular">Calcular</button>
+        </form>
+        <div id="resultadoBTUs" class="resultado-container">
+          <h4>Resultado:</h4>
+          <p id="resultadoTexto" class="resultado-texto"></p>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -119,140 +148,55 @@
   <!-- Main JS File -->
   <script src="~/js/main.js"></script>
   
-  <script>
-    let servicosSelecionados = [];
-
-    function toggleCarrinho() {
-      const carrinho = document.getElementById('carrinhoSidebar');
-      carrinho.classList.toggle('open');
-    }
-
-    function adicionarServico(servico) {
-      servicosSelecionados.push(servico);
-      atualizarCarrinho();
-    }
-
-    function atualizarCarrinho() {
-      const lista = document.getElementById('lista-servicos');
-      lista.innerHTML = '';
-      servicosSelecionados.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item;
-        lista.appendChild(li);
-      });
-    }
-
-    function enviarWhatsApp() {
-      const numero = '5514996630863';
-      const mensagem = `Olá! Gostaria de orçamento para os seguintes serviços:\n\n- ${servicosSelecionados.join('\n- ')}`;
-      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
-      window.open(url, '_blank');
-    }
-    
-    function fecharCarrinho() {
-      document.getElementById('carrinho-lateral').classList.remove('aberto');
-    }
-
-    function removerItem(botao) {
-      const card = botao.closest('.col-12');
-      card.remove();
-    }
-
-    function mostrarCamposEspecificos(select) {
-      const container = select.closest('.card-servico');
-      const camposEspecificos = container.querySelector('.campos-especificos');
-      const valor = select.value;
-      camposEspecificos.innerHTML = '';
-
-      if (valor === 'ar-condicionado') {
-        camposEspecificos.innerHTML = `
-          <label for="btus">BTUs:</label>
-          <select class="form-select" name="btus">
-            <option value="">Selecione</option>
-            <option value="5000">5000</option>
-            <option value="7000">7000</option>
-            <option value="9000">9000</option>
-            <option value="12000">12000</option>
-            <option value="18000">18000</option>
-            <option value="24000">24000</option>
-            <option value="30000">30000</option>
-            <option value="36000">36000</option>
-          </select>
-    
-          <label for="ambiente">Ambiente:</label>
-          <select class="form-select" name="ambiente">
-            <option value="">Selecione</option>
-            <option value="residencial">Residencial</option>
-            <option value="comercial">Comercial</option>
-          </select>
-        `;
-      } else if (valor === 'cortina-ar') {
-        camposEspecificos.innerHTML = `
-          <label for="diametro">Diâmetro:</label>
-          <select class="form-select" name="diametro">
-            <option value="">Selecione</option>
-            <option value="90-100">90-100 CM</option>
-            <option value="120-150">120-150 CM</option>
-            <option value="180-200">180-200 CM</option>
-            <option value="250">250 CM</option>
-          </select>
-        `;
-      }
-    }
-
-    function adicionarAoCarrinho(tipoServico, imagem, preco) {
-      const carrinho = document.getElementById("carrinho-itens");
-
-      const servicoTexto = {
-        instalacao: "Instalação",
-        manutencao: "Manutenção",
-        limpeza: "Limpeza"
-      }[tipoServico] || "Outro";
-
-      const card = document.createElement("div");
-      card.className = "col-12";
-      card.innerHTML = `
-        <div class="service-item card-servico d-flex flex-column gap-2 p-2 shadow-sm rounded position-relative">
-          <button class="btn btn-sm btn-danger btn-remover" onclick="removerItem(this)">
-            <i class="bi bi-x"></i>
-          </button>
-          <div class="img" style="flex-shrink: 0;">
-            <img src="${imagem}" class="img-fluid rounded"
-              style="width: 80px; height: 80px; object-fit: cover;" alt="Imagem do serviço">
-          </div>
-          <div class="details w-100">
-            <label>Tipo de serviço:</label>
-            <p class="form-control-plaintext m-0">${servicoTexto}</p>
-
-            <label for="produto">Tipo de produto:</label>
-            <select class="form-select" onchange="mostrarCamposEspecificos(this)">
-              <option value="">Selecione</option>
-              <option value="ar-condicionado">Ar-condicionado</option>
-              <option value="maquina-lavar">Máquina de lavar</option>
-              <option value="geladeira">Geladeira</option>
-              <option value="cortina-ar">Cortina de ar</option>
-              <option value="freezer">Freezer</option>
-              <option value="bebedouro">Bebedouro</option>
-            </select>
-
-            <div class="campos-especificos"></div>
-
-            <label for="preco">Preço:</label>
-            <input type="text" class="form-control" value="${preco}" readonly>
-          </div>
-        </div>
-      `;
-
-      carrinho.appendChild(card);
-      document.getElementById("carrinhoSidebar").style.display = "block";
-    }
-
-    function fecharCarrinho() {
-      const carrinhoSidebar = document.getElementById("carrinhoSidebar");
-      carrinhoSidebar.style.display = "none";
-    }
-  </script>
 
   @await RenderSectionAsync("Scripts", required: false)
+  <!-- Painel do Carrinho -->
+<div id="carrinho">
+    <h4>Seu Orçamento</h4>
+    <ul id="itensCarrinho" class="list-group mb-3"></ul>
+    <button class="btn btn-danger" onclick="fecharCarrinho()">Fechar</button>
+</div>
+
+<!-- Scripts do Carrinho -->
+<script>
+    const carrinho = [];
+
+    function abrirCarrinho() {
+        document.getElementById("carrinho").classList.add("aberto");
+        renderizarCarrinho();
+    }
+
+    function fecharCarrinho() {
+        document.getElementById("carrinho").classList.remove("aberto");
+    }
+
+    function adicionarAoCarrinho(nomeServico) {
+        carrinho.push(nomeServico);
+        renderizarCarrinho();
+        abrirCarrinho();
+    }
+
+    function renderizarCarrinho() {
+        const lista = document.getElementById("itensCarrinho");
+        lista.innerHTML = "";
+        carrinho.forEach((item, index) => {
+            const li = document.createElement("li");
+            li.className = "list-group-item d-flex justify-content-between align-items-center";
+            li.textContent = item;
+
+            const btnRemover = document.createElement("button");
+            btnRemover.className = "btn btn-sm btn-outline-danger";
+            btnRemover.textContent = "Remover";
+            btnRemover.onclick = () => {
+                carrinho.splice(index, 1);
+                renderizarCarrinho();
+            };
+
+            li.appendChild(btnRemover);
+            lista.appendChild(li);
+        });
+    }
+</script>
+
 </body>
 </html>
