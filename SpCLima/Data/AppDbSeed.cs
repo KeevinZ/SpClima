@@ -1,7 +1,6 @@
 using SpClima.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using SpCLima.Models;
 
 namespace SpClima.Data;
 

@@ -1,6 +1,6 @@
-using SpCLima.Models;
+using SpClima.Models;
 
-namespace SpCLima.ViewModels;
+namespace SpClima.ViewModels;
 
 public class ProdutoVM
 {

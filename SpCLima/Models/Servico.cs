@@ -1,8 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using SpClima.Models;
 
-namespace SpCLima.Models;
+namespace SpClima.Models;
 
 [Table("servico")]
 public class Servico

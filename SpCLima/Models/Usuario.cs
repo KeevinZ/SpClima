@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Identity;
 
 namespace SpClima.Models;
 
-[Table("Usuario")]
+[Table("usuario")]
 public class Usuario : IdentityUser
 {
     [Required(ErrorMessage = "Por favor informe seu Nome")]
-    [StringLength(60,ErrorMessage = "O nome deve possuior no máximo 60 caracteres")]
+    [StringLength(60,ErrorMessage = "O nome deve possuir no máximo 60 caracteres")]
     public string Nome { get; set; }
 
     [DataType(DataType.Date)]

@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using SpCLima.Models;
+
 
 namespace SpClima.Models;
 
-[Table("Produto_foto")]
+[Table("produto_foto")]
 public class ProdutoFoto
 {
     [Key]
@@ -22,5 +22,5 @@ public class ProdutoFoto
     public string ArquivoFoto { get; set; }
 
     [StringLength(30, ErrorMessage = "A Descrição deve possuir no máximo 30 caractere")]
-    public string Descrição { get; set; }
+    public string Descricão { get; set; }
 }
