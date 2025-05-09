@@ -2,7 +2,6 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using SpClima.Models;
 
-
 namespace SpCLima.Models;
 
 [Table("produto")]
