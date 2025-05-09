@@ -21,9 +21,10 @@ public class HomeController : Controller
         _db = db;
     }
 
-    public IActionResult Index()
+    public IActionResult Index(int id)
     {
         List<Produto> produtos = _db.Produtos
+            .Where(p => p.Id == id)
             .Include(p => p.Fotos)
             .ToList();
         return View(produtos);

@@ -30,7 +30,7 @@ public class Produto
     [ForeignKey(nameof(ServicoId))]
     public Servico Servico { get; set; }
 
-    public List<Servico> Servicos { get; set; } = new List<Servico>();
+    public List<Servico> Servicos { get; set; }
     public List<ProdutoFoto> Fotos { get; set; }
 
 }

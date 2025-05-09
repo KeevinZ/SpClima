@@ -1,4 +1,4 @@
-@model SpClima.ViewModels.ProdutoVM
+@* @model SpClima.ViewModels.ProdutoVM
 @using System.Linq
 @{
     ViewData["Title"] = "Detalhes dos Produtos";
@@ -26,12 +26,8 @@
                     @Model.Produto.Nome
                 </h1>
 
-                @* <p class="lead">
-                    @Model.Produto.
-                </p> *@
-
                 <!-- Aqui: serviços como badges -->
-                @if (Model.Produto.Servico != null && Model.Produto.Servicos.Any())
+                @if (Model.Produto.Servicos != null && Model.Produto.Servicos.Any())
                 {
                     <div class="mb-4">
                         @foreach (var produto in Model.Produtos)
@@ -88,4 +84,4 @@
             }
         </div>
     </div>
-</section>
+</section> *@
