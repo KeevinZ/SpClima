@@ -1,4 +1,4 @@
-﻿@model List<SpClima.Models.Produto>
+﻿@model List<SpClima.Models.Item>
 @{
     ViewData["Title"] = "Index SPCLIMA";
 }
@@ -25,24 +25,24 @@
 
     <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-5">
-            @foreach (Produto produto in Model)
+            @foreach (Item item in Model)
             {
                 <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
                     <div class="service-item">
                         <div class="img">
-                            <img src="@produto.Fotos[0].ArquivoFoto" class="img-fluid" alt="@produto.Nome">
+                            <img src="@item.ImagemUrl" class="img-fluid" alt="@item.Titulo">
                         </div>
                         <div class="details position-relative">
                             <div class="icon">
                                 <i class="bi bi-wind"></i>
                             </div>
-                            <a href="service-details.html" class="stretched-link">
-                                <h3>@produto.Servico.Nome</h3>
-                            </a>
-                            <p>Ar-condicionado limpo e funcionando bem? A gente cuida disso pra você! Fazemos limpeza,
-                                manutenção
-                                preventiva e instalação. Atendimento rápido e de confiança.
-                            </p>
+                            @foreach(var v in item.Variacoes)
+                        {
+                        <li>
+                            <strong>@v.Nome</strong> — R$ @v.Preco.ToString("N2")
+                        </li>
+                         }
+                            <p>@item.Descricao</p>
                         </div>
                     </div>
                 </div>

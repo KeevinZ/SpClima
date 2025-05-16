@@ -13,7 +13,7 @@ public class AppDbSeed
                     Descricao = "Instalação completa (unidade interna + externa)",
                     Destaque = true ,
                     Tipo = ItemType.ArCondicionado, 
-                    ImagemUrl = "/img/itens/instalacao-ac.jpg" },
+                    ImagemUrl = "/img/produtos/AR/2.jpg" },
 
             new Item { Id = 2, Titulo = "Limpeza de Ar‑Condicionado", 
                     Descricao = "Higienização interna com filtro anti‑mofo",
