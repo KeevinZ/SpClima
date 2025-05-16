@@ -1982,4 +1982,43 @@ section,
   margin-bottom: 15px;
 }
 
+.carrinho-lateral {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+  transition: right 0.3s ease-in-out;
+  z-index: 9999;
+  overflow-y: auto;
+  border-left: 1px solid #eee;
+}
+
+.carrinho-lateral.aberto {
+  right: 0;
+}
+
+.cabecalho-carrinho {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+
+.carrinho-lateral {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 400px;
+  height: 100%;
+  background: #fff;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+  overflow-y: auto;
+  z-index: 9999;
+  transition: right 0.3s ease-in-out;
+}
+.carrinho-lateral.aberto {
+  right: 0;
+}
 

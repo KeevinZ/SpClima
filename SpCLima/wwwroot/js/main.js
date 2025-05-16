@@ -265,5 +265,192 @@ calcularBTUs(); // Call the function to calculate BTUs
 };
 
 
+    const carrinho = [];
+
+    function abrirCarrinho() {
+        document.getElementById("carrinho").classList.add("aberto");
+        renderizarCarrinho();
+    }
+
+    function fecharCarrinho() {
+        document.getElementById("carrinho").classList.remove("aberto");
+    }
+
+    function adicionarAoCarrinho(nome, imagem, preco, descricao, categoria) {
+        carrinho.push({ nome, imagem, preco, descricao, categoria, tipoServico: "", detalhes: {} });
+        abrirCarrinho();
+        renderizarCarrinho();
+    }
+
+    function removerDoCarrinho(index) {
+        carrinho.splice(index, 1);
+        renderizarCarrinho();
+    }
+
+    function renderizarCarrinho() {
+        const container = document.getElementById("itensCarrinho");
+        container.innerHTML = "";
+
+        carrinho.forEach((item, index) => {
+            const card = document.createElement("div");
+            card.className = "col-12";
+
+            let tiposServicos = "";
+            if (item.categoria === "instalacao") {
+                tiposServicos = `
+                    <label class="form-label mt-2">Tipo de Instalação:</label>
+                    <select class="form-select mb-2" onchange="handleTipoServico(this.value, ${index})">
+                        <option value="">Selecione</option>
+                        <option value="ar">Ar-condicionado</option>
+                        <option value="cortina">Cortina de Ar</option>
+                        <option value="bebedouro">Bebedouro</option>
+                        <option value="refrigerador">Refrigerador</option>
+                        <option value="maquina">Máquina de Lavar</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                `;
+            } else if (item.categoria === "manutencao") {
+                tiposServicos = `
+                    <label class="form-label mt-2">Equipamento:</label>
+                    <select class="form-select mb-2" onchange="handleTipoServico(this.value, ${index})">
+                        <option value="">Selecione</option>
+                        <option value="ar">Ar-condicionado</option>
+                        <option value="cortina">Cortina de Ar</option>
+                        <option value="bebedouro">Bebedouro</option>
+                        <option value="refrigerador">Refrigerador</option>
+                        <option value="maquina">Máquina de Lavar</option>
+                    </select>
+                `;
+            } else if (item.categoria === "limpeza") {
+                tiposServicos = `
+                    <label class="form-label mt-2">Tipo de Limpeza:</label>
+                    <select class="form-select mb-2" onchange="handleTipoServico(this.value, ${index})">
+                        <option value="">Selecione</option>
+                        <option value="ar">Ar-condicionado</option>
+                        <option value="maquina">Máquina de Lavar</option>
+                    </select>
+                `;
+            }
+
+            let camposExtras = "";
+            if (item.tipoServico === "ar") {
+                camposExtras = `
+                    <label class="form-label">BTUs:</label>
+                    <select class="form-select mb-2" onchange="atualizarDetalhes(${index}, 'BTUs', this.value)">
+                        <option>9000</option>
+                        <option>12000</option>
+                        <option>14000</option>
+                        <option>16000</option>
+                        <option>Outro</option>
+                    </select>
+                `;
+            } else if (item.tipoServico === "cortina") {
+                camposExtras = `
+                    <label class="form-label">Medidas:</label>
+                    <select class="form-select mb-2" onchange="atualizarDetalhes(${index}, 'Medida', this.value)">
+                        <option>90-150 cm</option>
+                        <option>180-200 cm</option>
+                        <option>250 cm</option>
+                    </select>
+                    <label class="form-label">Marca:</label>
+                    <input type="text" class="form-control mb-2" placeholder="Ex: Elgin" onchange="atualizarDetalhes(${index}, 'Marca', this.value)">
+                `;
+            } else if (item.tipoServico === "maquina") {
+                camposExtras = `
+                    <label class="form-label">Tamanho:</label>
+                    <select class="form-select mb-2" onchange="atualizarDetalhes(${index}, 'Capacidade', this.value)">
+                        <option>Pequena (8-9 KG)</option>
+                        <option>Média (10-12 KG)</option>
+                        <option>Grande (13-16 KG)</option>
+                        <option>Extra Grande (17-20 KG)</option>
+                    </select>
+                `;
+            } else if (item.tipoServico === "refrigerador") {
+                camposExtras = `
+                    <label class="form-label">Tipo:</label>
+                    <select class="form-select mb-2" onchange="atualizarDetalhes(${index}, 'Tipo Refrigerador', this.value)">
+                        <option>Geladeira 1 Porta</option>
+                        <option>Geladeira Duplex</option>
+                        <option>Geladeira Side by Side</option>
+                        <option>Freezer (100-300 L)</option>
+                        <option>Freezer (400-600 L)</option>
+                    </select>
+                `;
+            } else if (item.tipoServico === "bebedouro") {
+                camposExtras = `
+                    <label class="form-label">Capacidade:</label>
+                    <select class="form-select mb-2" onchange="atualizarDetalhes(${index}, 'Litros', this.value)">
+                        <option>Bebedouro (5–10 L)</option>
+                        <option>Bebedouro (20–30 L)</option>
+                        <option>Bebedouro (50+ L)</option>
+                    </select>
+                `;
+            }
+
+            card.innerHTML = `
+                <div class="card shadow-sm border mb-3">
+                    <div class="row g-0">
+                        <div class="col-4">
+                            <img src="${item.imagem}" class="img-fluid rounded-start" alt="${item.nome}">
+                        </div>
+                        <div class="col-8">
+                            <div class="card-body p-2">
+                                <h6 class="card-title mb-1">${item.nome}</h6>
+                                <p class="card-text text-muted mb-1"><small>${item.descricao}</small></p>
+                                <p class="card-text"><strong>${item.preco}</strong></p>
+                                ${tiposServicos}
+                                ${camposExtras}
+                                <button class="btn btn-sm btn-outline-danger mt-2" onclick="removerDoCarrinho(${index})">
+                                    <i class="bi bi-trash"></i> Remover
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            container.appendChild(card);
+        });
+
+        // Adiciona botão de finalização
+        if (carrinho.length > 0) {
+            container.innerHTML += `
+                <div class="text-end mt-3">
+                    <button class="btn btn-success" onclick="finalizarOrcamento()">Finalizar Orçamento</button>
+                </div>
+            `;
+        }
+    }
+
+    function handleTipoServico(valor, index) {
+        carrinho[index].tipoServico = valor;
+        carrinho[index].detalhes = {};
+        renderizarCarrinho();
+    }
+
+    function atualizarDetalhes(index, campo, valor) {
+        carrinho[index].detalhes[campo] = valor;
+    }
+
+    function finalizarOrcamento() {
+        const numeroWhatsApp = "5511999999999"; // <- Altere para o número da empresa
+        let mensagem = "Olá, gostaria de solicitar um orçamento com os seguintes itens:\n\n";
+
+        carrinho.forEach((item, i) => {
+            mensagem += `🔹 *${item.nome}* - ${item.preco}\n`;
+            mensagem += `📄 ${item.descricao}\n`;
+            if (item.tipoServico) mensagem += `🛠 Tipo: ${item.tipoServico}\n`;
+            for (const [chave, valor] of Object.entries(item.detalhes)) {
+                mensagem += `▪️ ${chave}: ${valor}\n`;
+            }
+            mensagem += `\n`;
+        });
+
+        const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+        window.open(url, "_blank");
+    }
+
+
+
 
 
