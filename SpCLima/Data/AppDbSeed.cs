@@ -8,116 +8,57 @@ public class AppDbSeed
 {
     public AppDbSeed(ModelBuilder builder)
     {
-        List<Categoria> categorias = new() {
-            new Categoria { Id = 1, Nome = "Ar-Condicionado" },
-            new Categoria { Id = 2, Nome = "Lavadoura" },
-            new Categoria { Id = 3, Nome = "Geladeira" },
-            new Categoria { Id = 4, Nome = "Freezer" },
-            new Categoria { Id = 5, Nome = "Cortina de Ar" },
-            new Categoria { Id = 6, Nome = "Bebedouro" },
+        List<Item> items = new() {
+        new Item { Id = 1, Titulo = "Instalação de Ar‑Condicionado", 
+                    Descricao = "Instalação completa (unidade interna + externa)",
+                    Destaque = true ,
+                    Tipo = ItemType.ArCondicionado, 
+                    ImagemUrl = "/img/itens/instalacao-ac.jpg" },
+
+            new Item { Id = 2, Titulo = "Limpeza de Ar‑Condicionado", 
+                    Descricao = "Higienização interna com filtro anti‑mofo",
+                    Destaque = true , 
+                    Tipo = ItemType.ArCondicionado, 
+                    ImagemUrl = "/img/itens/limpeza-ac.jpg" },
+
+            new Item { Id = 3, Titulo = "Instalação de Cortina de Ar", 
+                    Descricao = "Fixação e teste de cortina de ar institucional", 
+                    Destaque = true ,
+                    Tipo = ItemType.CortinaAr, 
+                    ImagemUrl = "/img/itens/instalacao-cortina.jpg" },
+
+            new Item { Id = 4, Titulo = "Limpeza de Cortina de Ar", 
+                    Descricao = "Limpeza completa de filtros e pás",
+                    Destaque = true , 
+                    Tipo = ItemType.CortinaAr, 
+                    ImagemUrl = "/img/itens/limpeza-cortina.jpg" }
         };
-        builder.Entity<Categoria>().HasData(categorias);
+        builder.Entity<Item>().HasData(items);
 
-        List<Produto> produtos = new List<Produto>
-        {
-            // AR
-            new Produto { Id = 1, CategoriaId = 1, Nome = "Ar-Condicionado LG", BTU = 9000},
-            new Produto { Id = 2, CategoriaId = 1, Nome = "Ar-Condicionado Elgin", BTU = 9000},
-            new Produto { Id = 3, CategoriaId = 1, Nome = "Ar-Condicionado Samsung", BTU = 9000},
-            new Produto { Id = 4, CategoriaId = 1, Nome = "Ar-Condicionado Carrier", BTU = 9000},
-            new Produto { Id = 5, CategoriaId = 1, Nome = "Ar-Condicionado Philco", BTU = 9000},
+       
+        List<ItemVariacao> itemVariacaos = new(){
             
-            // Lavadoura
-            new Produto { Id = 6, CategoriaId = 2, Nome = "Maquina Pequena (8-9 KG)" },
-            new Produto { Id = 7, CategoriaId = 2, Nome = "Maquina Média (10-12 kg)"},
-            new Produto { Id = 8, CategoriaId = 2, Nome = "Maquina Grande (13-16 kg)"},
-            new Produto { Id = 9, CategoriaId = 2, Nome = "Maquina Extra Grande (17-20 kg)"},
+            // Variações para Item 1 (Instalação AC)
+            new ItemVariacao { Id =  1, ItemId = 1, Nome = "9 000 BTU",  Preco = 250.00M },
+            new ItemVariacao { Id =  2, ItemId = 1, Nome = "12 000 BTU", Preco = 230.00M },
+            new ItemVariacao { Id =  3, ItemId = 1, Nome = "18 000 BTU", Preco = 280.00M },
 
-            // Geladeira
-            new Produto { Id = 10, CategoriaId = 3, Nome = "Geladeira 1 Porta" },
-            new Produto { Id = 11, CategoriaId = 3, Nome = "Geladeira Duplex"},
-            new Produto { Id = 12, CategoriaId = 3, Nome = "Geladeira Side by Side"},
+            // Variações para Item 2 (Limpeza AC)
+            new ItemVariacao { Id =  4, ItemId = 2, Nome = "9 000 BTU",  Preco = 100.00M },
+            new ItemVariacao { Id =  5, ItemId = 2, Nome = "12 000 BTU", Preco = 120.00M },
+            new ItemVariacao { Id =  6, ItemId = 2, Nome = "18 000 BTU", Preco = 150.00M },
 
-            // Freezer
-            new Produto { Id = 13, CategoriaId = 4, Nome = "Freezer (100-300 L)"},
-            new Produto { Id = 14, CategoriaId = 4, Nome = "Freezer (400-600 L)"},
+            // Variações para Item 3 (Instalação Cortina)
+            new ItemVariacao { Id =  7, ItemId = 3, Nome = "90–150 cm",  Preco = 200.00M },
+            new ItemVariacao { Id =  8, ItemId = 3, Nome = "180–200 cm", Preco = 250.00M },
+            new ItemVariacao { Id =  9, ItemId = 3, Nome = "250 cm",     Preco = 300.00M },
 
-            // Cortina
-            new Produto { Id = 15, CategoriaId = 5, Nome = "Cortina de ar (90-150 CM)"},
-            new Produto { Id = 16, CategoriaId = 5, Nome = "Cortina de ar (180-200 CM)"},
-            new Produto { Id = 17, CategoriaId = 5, Nome = "Cortina de ar (250 CM)"},
-
-            // Bebedouro
-            new Produto { Id = 18, CategoriaId = 6, Nome = "Bebedouro (5–10 L)"},
-            new Produto { Id = 19, CategoriaId = 6, Nome = "Bebedouro (20–30 L)"},
-            new Produto { Id = 20, CategoriaId = 6, Nome = "Bebedouro (50+ L)"},
+            // Variações para Item 4 (Limpeza Cortina)
+            new ItemVariacao { Id = 10, ItemId = 4, Nome = "90–150 cm",  Preco = 120.00M },
+            new ItemVariacao { Id = 11, ItemId = 4, Nome = "180–200 cm", Preco = 140.00M },
+            new ItemVariacao { Id = 12, ItemId = 4, Nome = "250 cm",     Preco = 170.00M }
         };
-        builder.Entity<Produto>().HasData(produtos);
-
-        List<ProdutoFoto> produtoFotos = new List<ProdutoFoto>
-        {
-            // Ar (5 produtos)
-            new ProdutoFoto { Id = 1, ProdutoId = 1, ArquivoFoto = "/img/produtos/AR/1.png" },
-            new ProdutoFoto { Id = 2, ProdutoId = 2, ArquivoFoto = "/img/produtos/AR/2.png" },
-            new ProdutoFoto { Id = 3, ProdutoId = 3, ArquivoFoto = "/img/produtos/AR/3.png" },
-            new ProdutoFoto { Id = 4, ProdutoId = 4, ArquivoFoto = "/img/produtos/AR/4.png" },
-            new ProdutoFoto { Id = 5, ProdutoId = 5, ArquivoFoto = "/img/produtos/AR/5.png" },
-
-            // Lavadoura (4 produtos )
-            new ProdutoFoto { Id = 6, ProdutoId = 6, ArquivoFoto = "/img/produtos/Lavadoura/1.png" },
-            new ProdutoFoto { Id = 7, ProdutoId = 7, ArquivoFoto = "/img/produtos/Lavadoura/2.png" },
-            new ProdutoFoto { Id = 8, ProdutoId = 8, ArquivoFoto = "/img/produtos/Lavadoura/3.png" },
-            new ProdutoFoto { Id = 9, ProdutoId = 9, ArquivoFoto = "/img/produtos/Lavadoura/4.png" },
-
-            // Geladeira (3 produtos)
-            new ProdutoFoto { Id = 10, ProdutoId = 10, ArquivoFoto = "/img/produtos/Geladeira/1.png" },
-            new ProdutoFoto { Id = 11, ProdutoId = 11, ArquivoFoto = "/img/produtos/Geladeira/2.png" },
-            new ProdutoFoto { Id = 12, ProdutoId = 12, ArquivoFoto = "/img/produtos/Geladeira/3.png" },
-
-            // Freezer (2 produtos)
-            new ProdutoFoto { Id = 13, ProdutoId = 13, ArquivoFoto = "/img/produtos/Freezer/1.png" },
-            new ProdutoFoto { Id = 14, ProdutoId = 14, ArquivoFoto = "/img/produtos/Freezer/2.png" },
-
-            // Cortina (4 produtos )
-            new ProdutoFoto { Id = 15, ProdutoId = 15, ArquivoFoto = "/img/produtos/Cortina/1.png" },
-            new ProdutoFoto { Id = 16, ProdutoId = 16, ArquivoFoto = "/img/produtos/Cortina/2.png" },
-            new ProdutoFoto { Id = 17, ProdutoId = 17, ArquivoFoto = "/img/produtos/Cortina/3.png" },
-
-            // Bebedouro (3 produtos )
-            new ProdutoFoto { Id = 18, ProdutoId = 18, ArquivoFoto = "/img/produtos/Cortina/4.png" },
-            new ProdutoFoto { Id = 19, ProdutoId = 19, ArquivoFoto = "/img/produtos/Bebedouro/1.png" },
-            new ProdutoFoto { Id = 20, ProdutoId = 20, ArquivoFoto = "/img/produtos/Bebedouro/2.png" },
-        };
-        builder.Entity<ProdutoFoto>().HasData(produtoFotos);
-
-        List<Servico> servicos = new List<Servico>
-         {
-            // Ar-Condicionado
-            new Servico {Id = 1, Nome = "Instalação Normal", Preco = 450, CategoriaId = 1 },
-            new Servico {Id = 2, Nome = "Instalação Padrão", Preco = 650, CategoriaId = 1},
-            new Servico {Id = 3, Nome = "Higienização", Preco = 150, CategoriaId = 1},
-            new Servico {Id = 4, Nome = "Manutenção", Preco = 100, CategoriaId = 1},
-
-            // Lavadoura
-            new Servico {Id = 5, Nome = "Higienização", Preco = 150, CategoriaId = 2 },
-            new Servico {Id = 6, Nome = "Manutenção", Preco = 100, CategoriaId = 2 },
-
-            //Geladeira
-            new Servico {Id = 7, Nome = "Manutenção", Preco = 100, CategoriaId = 3 },
-            
-            //Freezer
-            new Servico {Id = 8, Nome = "Manutenção", Preco = 100, CategoriaId = 4 },
-            
-            //Cortina
-            new Servico {Id = 9, Nome = "Instalação", Preco = 200, CategoriaId = 5 },
-            new Servico {Id = 10, Nome = "Higienização", Preco = 150, CategoriaId = 5 },
-            new Servico {Id = 11, Nome = "Manutenção", Preco = 100, CategoriaId = 5 },
-            
-            // Bebedouro
-            new Servico {Id = 12, Nome = "Higienização", Preco = 100, CategoriaId = 6 },
-            new Servico {Id = 13, Nome = "Manutenção", Preco = 100, CategoriaId = 6 },
-         };
-        builder.Entity<Servico>().HasData(servicos);
+        builder.Entity<ItemVariacao>().HasData(itemVariacaos); 
 
 
         #region Populate Roles - Perfis de Usuário

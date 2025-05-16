@@ -5,19 +5,17 @@ using SpClima.Models;
 
 namespace SpClima.Data;
 
+
 public class AppDbContext : IdentityDbContext<Usuario>
 {
     public AppDbContext (DbContextOptions<AppDbContext> options) : base(options)
     {      
     }
-
-    public DbSet<Categoria> Categorias { get; set; }
-    public DbSet<Produto> Produtos { get; set; }
-    public DbSet<ProdutoFoto> ProdutoFotos{ get; set; }
-    public DbSet<Usuario> Usuarios { get; set; }
+    public DbSet<Item> items { get; set; }
+    public DbSet<ItemVariacao> itemVariacaos { get; set; }
     public DbSet<Orcamento> Orcamentos { get; set; }
-    public DbSet<Servico> Servicos { get; set; }
-
+    public DbSet<OrcamentoItem> OrcamentoItems { get; set; }
+    public DbSet<Usuario> Usuarios { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -31,6 +29,20 @@ public class AppDbContext : IdentityDbContext<Usuario>
         builder.Entity<IdentityUserLogin<string>>().ToTable("usuario_login");
         builder.Entity<IdentityRoleClaim<string>>().ToTable("perfil_regra");
         #endregion
+
+// chave composta para OrcamentoItem
+    builder.Entity<OrcamentoItem>()
+        .HasKey(ci => new { ci.OrcamentoId, ci.ItemVariacaoId });
+
+    builder.Entity<OrcamentoItem>()
+        .HasOne(ci => ci.Orcamento)
+        .WithMany(o => o.OrcamentoItens)
+        .HasForeignKey(ci => ci.OrcamentoId);
+
+    builder.Entity<OrcamentoItem>()
+        .HasOne(ci => ci.Variacao)
+        .WithMany(i => i.OrcamentoItems)
+        .HasForeignKey(ci => ci.ItemVariacaoId);
 
         AppDbSeed seed = new(builder);
        
