@@ -1,0 +1,77 @@
+@model IEnumerable<SpClima.ViewModels.GaleriaVM>
+
+@{
+    ViewData["Title"] = "Nossa Galeria de Serviços";
+}
+
+<div class="container my-5">
+    @foreach(var grupo in Model)
+    {
+        <h3 class="mt-5">@grupo.Tipo.ToString().Replace("ArCondicionado","Ar‑Condicionado").Replace("CortinaAr","Cortina de Ar")</h3>
+        <div class="row">
+            @foreach(var item in grupo.Itens)
+            {
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card h-100" 
+                         data-bs-toggle="modal" 
+                         data-bs-target="#modalItem@item.Id"
+                         style="cursor:pointer">
+                        <img src="@item.ImagemUrl" class="card-img-top" alt="@item.Titulo">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Titulo</h5>
+                            <p class="card-text text-truncate">@item.Descricao</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal para detalhe do item -->
+                <div class="modal fade" id="modalItem@item.Id" tabindex="-1" aria-hidden="true">
+                  <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">@item.Titulo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                      </div>
+                      <div class="modal-body">
+                        <img src="@item.ImagemUrl" class="img-fluid mb-3" alt="@item.Titulo">
+                        <p>@item.Descricao</p>
+
+                        <h6>Variações e preços</h6>
+                        <ul class="list-group mb-3">
+                          @foreach(var v in item.Variacoes)
+                          {
+                              <li class="list-group-item d-flex justify-content-between">
+                                <span>@v.Nome</span>
+                                <span>R$ @v.Preco.ToString("N2")</span>
+                              </li>
+                          }
+                        </ul>
+
+                        <button class="btn btn-primary me-2" onclick="abrirOrcamento(@item.Id)">
+                          Orçar este serviço
+                        </button>
+                        <button class="btn btn-success" onclick="abrirWhatsApp(@item.Titulo)">
+                          <i class="bi bi-whatsapp"></i> WhatsApp
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@section Scripts {
+  <script>
+    function abrirOrcamento(itemId) {
+      // redireciona à página de orçamento rápido, passando o ID selecionado
+      window.location.href = `/Orcamento/Quick?itemId=${itemId}`;
+    }
+    function abrirWhatsApp(titulo) {
+      const text = encodeURIComponent(`Olá, gostaria de orçamento para: ${titulo}`);
+      window.open(`https://wa.me/55SEUNUMERO?text=${text}`, '_blank');
+    }
+  </script>
+}
+

@@ -28,279 +28,296 @@
             @foreach (Item item in Model)
             {
                 <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="service-item">
-                        <div class="img">
-                            <img src="@item.ImagemUrl" class="img-fluid" alt="@item.Titulo">
-                        </div>
-                        <div class="details position-relative">
-                            <div class="icon">
-                                <i class="bi bi-wind"></i>
+                    <a asp-controller="Home" asp-action="Item" asp-route-id="@item.Id" class="text-decoration-none text-dark">
+                        <div class="service-item h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="img">
+                                    <img src="@item.ImagemUrl" class="img-fluid" alt="@item.Titulo">
+                                </div>
+                                <div class="details position-relative">
+                                    <div class="icon">
+                                        <i class="bi bi-wind"></i>
+                                    </div>
+                                    <h4 class="mt-3">@item.Titulo</h4>
+                                    <ul>
+                                        @foreach (var v in item.Variacoes)
+                                        {
+                                            <li>
+                                                <strong>@v.Nome</strong> — R$ @v.Preco.ToString("N2")
+                                            </li>
+                                        }
+                                    </ul>
+                                    <p>@item.Descricao</p>
+                                </div>
                             </div>
-                            @foreach(var v in item.Variacoes)
-                        {
-                        <li>
-                            <strong>@v.Nome</strong> — R$ @v.Preco.ToString("N2")
-                        </li>
-                         }
-                            <p>@item.Descricao</p>
                         </div>
-                    </div>
+                    </a>
                 </div>
             }
         </div>
     </div>
-</section><!-- /Services Section -->
+</section>
 
 
-<!-- Features Section -->
-<section id="features" class="features section">
-    <div class="container">
-        <ul class="nav nav-tabs row d-flex" data-aos="fade-up" data-aos-delay="100">
-            <li class="nav-item col-6">
-                <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1">
-                    <i class="bi bi-binoculars"></i>
-                    <h4 class="d-none d-lg-block">História</h4>
-                </a>
-            </li>
-            <li class="nav-item col-6">
-                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
-                    <i class="bi bi-lightbulb"></i>
-                    <h4 class="d-none d-lg-block">Curiosidades</h4>
-                </a>
-            </li>
-        </ul><!-- End Tab Nav -->
 
-        <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
-            <div class="tab-pane fade active show" id="features-tab-1">
-                <div class="row">
-                    <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                        <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-                        <p class="fst-italic">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua.
-                        </p>
-                        <ul>
-                            <li><i class="bi bi-check2-all"></i>
-                                <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
-                            </li>
-                            <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in
-                                    voluptate velit</span>.</li>
-                            <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat.
-                                    Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro
-                                    dolore eu
-                                    fugiat nulla pariatur.</span></li>
-                        </ul>
-                        <p>
-                            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                            occaecat cupidatat non
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-                        </p>
+                <!-- /Services Section -->
+
+
+    <!-- Features Section -->
+    <section id="features" class="features section">
+        <div class="container">
+            <ul class="nav nav-tabs row d-flex" data-aos="fade-up" data-aos-delay="100">
+                <li class="nav-item col-6">
+                    <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1">
+                        <i class="bi bi-binoculars"></i>
+                        <h4 class="d-none d-lg-block">História</h4>
+                    </a>
+                </li>
+                <li class="nav-item col-6">
+                    <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
+                        <i class="bi bi-lightbulb"></i>
+                        <h4 class="d-none d-lg-block">Curiosidades</h4>
+                    </a>
+                </li>
+            </ul><!-- End Tab Nav -->
+
+            <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
+                <div class="tab-pane fade active show" id="features-tab-1">
+                    <div class="row">
+                        <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+                            <p class="fst-italic">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                labore et dolore magna aliqua.
+                            </p>
+                            <ul>
+                                <li><i class="bi bi-check2-all"></i>
+                                    <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+                                </li>
+                                <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in
+                                        voluptate velit</span>.</li>
+                                <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat.
+                                        Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro
+                                        dolore eu
+                                        fugiat nulla pariatur.</span></li>
+                            </ul>
+                            <p>
+                                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                                occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                            </p>
+                        </div>
+                        <div class="col-lg-6 order-1 order-lg-2 text-center">
+                            <img src="assets/img/working-1.jpg" alt="" class="img-fluid">
+                        </div>
                     </div>
-                    <div class="col-lg-6 order-1 order-lg-2 text-center">
-                        <img src="assets/img/working-1.jpg" alt="" class="img-fluid">
-                    </div>
-                </div>
-            </div><!-- End Tab Content Item -->
+                </div><!-- End Tab Content Item -->
 
-            <div class="tab-pane fade" id="features-tab-2">
-                <div class="row">
-                    <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                        <div class="col-lg-3 col-md-6">
-                            <div class="stats-item d-flex align-items-center w-100 h-100">
-                                <i class="bi bi-people color-pink flex-shrink-0"></i>
-                                <div>
-                                    <span data-purecounter-start="0" data-purecounter-end="15"
-                                        data-purecounter-duration="1" class="purecounter"></span>
-                                    <p>Anos no mercado</p>
+                <div class="tab-pane fade" id="features-tab-2">
+                    <div class="row">
+                        <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                            <div class="col-lg-3 col-md-6">
+                                <div class="stats-item d-flex align-items-center w-100 h-100">
+                                    <i class="bi bi-people color-pink flex-shrink-0"></i>
+                                    <div>
+                                        <span data-purecounter-start="0" data-purecounter-end="15"
+                                            data-purecounter-duration="1" class="purecounter"></span>
+                                        <p>Anos no mercado</p>
+                                    </div>
                                 </div>
                             </div>
+                            <h3>Um dos primeiros na região</h3>
+                            <p>
+                                Quando avia somente mato na grande metropoles Guaréba city,
+                                nos fomos um dos primeiros a começar neste ramo de instalção de ar-condicionado,
+                                sendo hoje em dia um dos mais conhecidos.
+                            </p>
                         </div>
-                        <h3>Um dos primeiros na região</h3>
-                        <p>
-                            Quando avia somente mato na grande metropoles Guaréba city,
-                            nos fomos um dos primeiros a começar neste ramo de instalção de ar-condicionado,
-                            sendo hoje em dia um dos mais conhecidos.
-                        </p>
-                    </div>
-                    <div class="col-lg-6 order-1 order-lg-2 text-center">
-                        <img src="~/img/carro.jpg" alt="" class="img-fluid">
-                    </div>
-                </div>
-            </div><!-- End Tab Content Item -->
-        </div>
-    </div>
-</section>
-<!-- /Features Section -->
-
-<!-- Marcas que Trabalhamos -->
-<section id="clients" class="clients section light-background">
-    <div class="container" data-aos="fade-up">
-        <div class="row gy-4">
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <h4> Marcas que Trabalhamos</h4>
-            </div><!-- End Section Title -->
-
-            <div class="col-xl-2 col-md-3 col-6 client-logo">
-                <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
-            </div><!-- End Client Item -->
-
-            <div class="col-xl-2 col-md-3 col-6 client-logo">
-                <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
-            </div><!-- End Client Item -->
-
-            <div class="col-xl-2 col-md-3 col-6 client-logo">
-                <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
-            </div><!-- End Client Item -->
-
-            <div class="col-xl-2 col-md-3 col-6 client-logo">
-                <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
-            </div><!-- End Client Item -->
-
-            <div class="col-xl-2 col-md-3 col-6 client-logo">
-                <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
-            </div><!-- End Client Item -->
-
-            <div class="col-xl-2 col-md-3 col-6 client-logo">
-                <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
-            </div><!-- End Client Item -->
-        </div>
-    </div>
-</section><!-- /Clients Section -->
-
-<!-- Produtos à Venda Section -->
-<section id="produtos" class="services section">
-    <!-- Section Title -->
-    <div class="container section-title" data-aos="fade-up">
-        <h2>Produtos à Venda</h2>
-        <p>Confira os serviços e produtos disponíveis para orçamento:</p>
-    </div><!-- End Section Title -->
-
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row gy-5">
-            <!-- Produto 1 -->
-            <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
-                <div class="service-item">
-                    <div class="img">
-                        <img src="assets/img/services-1.jpg" class="img-fluid" alt="Instalação de Ar-condicionado">
-                    </div>
-                    <div class="details position-relative">
-                        <div class="icon">
-                            <i class="bi bi-gear"></i>
+                        <div class="col-lg-6 order-1 order-lg-2 text-center">
+                            <img src="~/img/carro.jpg" alt="" class="img-fluid">
                         </div>
-                        <h3>Instalações </h3>
-                        <p>Preço médio: R$250,00 a R$1000,00</p>
-                        <button class="btn btn-primary btn-adicionar" onclick="adicionarAoCarrinho(
+                    </div>
+                </div><!-- End Tab Content Item -->
+            </div>
+        </div>
+    </section>
+    <!-- /Features Section -->
+
+    <!-- Marcas que Trabalhamos -->
+    <section id="clients" class="clients section light-background">
+        <div class="container" data-aos="fade-up">
+            <div class="row gy-4">
+                <!-- Section Title -->
+                <div class="container section-title" data-aos="fade-up">
+                    <h4> Marcas que Trabalhamos</h4>
+                </div><!-- End Section Title -->
+
+                <div class="col-xl-2 col-md-3 col-6 client-logo">
+                    <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
+                </div><!-- End Client Item -->
+
+                <div class="col-xl-2 col-md-3 col-6 client-logo">
+                    <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
+                </div><!-- End Client Item -->
+
+                <div class="col-xl-2 col-md-3 col-6 client-logo">
+                    <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
+                </div><!-- End Client Item -->
+
+                <div class="col-xl-2 col-md-3 col-6 client-logo">
+                    <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
+                </div><!-- End Client Item -->
+
+                <div class="col-xl-2 col-md-3 col-6 client-logo">
+                    <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
+                </div><!-- End Client Item -->
+
+                <div class="col-xl-2 col-md-3 col-6 client-logo">
+                    <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
+                </div><!-- End Client Item -->
+            </div>
+        </div>
+    </section>
+
+                <!-- /Clients Section -->
+
+    <!-- Produtos à Venda Section -->
+    <section id="produtos" class="services section">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Produtos à Venda</h2>
+            <p>Confira os serviços e produtos disponíveis para orçamento:</p>
+        </div><!-- End Section Title -->
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+            <div class="row gy-5">
+                <!-- Produto 1 -->
+                <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="service-item">
+                        <div class="img">
+                            <img src="assets/img/services-1.jpg" class="img-fluid" alt="Instalação de Ar-condicionado">
+                        </div>
+                        <div class="details position-relative">
+                            <div class="icon">
+                                <i class="bi bi-gear"></i>
+                            </div>
+                            <h3>Instalações </h3>
+                            <p>Preço médio: R$250,00 a R$1000,00</p>
+                            <button class="btn btn-primary btn-adicionar" onclick="adicionarAoCarrinho(
                             'Instalações',
                             'assets/img/services-1.jpg',
                             'R$ 350,00',
                             'Serviços de instalação como ar-condicionado, cortina de ar, bebedouro, etc.',
                             'instalacao'
                                                 )">
-                            <i class="bi bi-cart-plus"></i> Adicionar ao Orçamento
-                        </button>
+                                <i class="bi bi-cart-plus"></i> Adicionar ao Orçamento
+                            </button>
 
-                    </div>
-                </div>
-            </div><!-- End Produto -->
-
-            <!-- Produto 2 -->
-            <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
-                <div class="service-item">
-                    <div class="img">
-                        <img src="assets/img/services-2.jpg" class="img-fluid" alt="Manutenção Preventiva">
-                    </div>
-                    <div class="details position-relative">
-                        <div class="icon">
-                            <i class="bi bi-wrench-adjustable-circle"></i>
                         </div>
-                        <h3>Manutenções </h3>
-                        <p>Preço médio: R$10,00 a R$800,00</p>
-                        <button class="btn btn-primary btn-adicionar" onclick="adicionarAoCarrinho(
+                    </div>
+                </div><!-- End Produto -->
+
+                <!-- Produto 2 -->
+                <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="service-item">
+                        <div class="img">
+                            <img src="assets/img/services-2.jpg" class="img-fluid" alt="Manutenção Preventiva">
+                        </div>
+                        <div class="details position-relative">
+                            <div class="icon">
+                                <i class="bi bi-wrench-adjustable-circle"></i>
+                            </div>
+                            <h3>Manutenções </h3>
+                            <p>Preço médio: R$10,00 a R$800,00</p>
+                            <button class="btn btn-primary btn-adicionar" onclick="adicionarAoCarrinho(
                                 'Manutenções',
                                 'assets/img/services-2.jpg',
                                 'R$ 250,00',
                                 'Manutenções elétricas, hidráulicas e preventivas.',
                                 'manutencao'
                             )">
-                            <i class="bi bi-cart-plus"></i> Adicionar ao Orçamento
-                        </button>
+                                <i class="bi bi-cart-plus"></i> Adicionar ao Orçamento
+                            </button>
 
-                    </div>
-                </div>
-            </div><!-- End Produto -->
-
-            <!-- Produto 3 -->
-            <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
-                <div class="service-item">
-                    <div class="img">
-                        <img src="assets/img/services-3.jpg" class="img-fluid" alt="Limpeza Técnica">
-                    </div>
-                    <div class="details position-relative">
-                        <div class="icon">
-                            <i class="bi bi-water"></i>
                         </div>
-                        <h3>Limpezas </h3>
-                        <p>Preço médio: R$100,00 a R$400,00</p>
+                    </div>
+                </div><!-- End Produto -->
 
-                        <button class="btn btn-primary btn-adicionar" onclick="adicionarAoCarrinho(
+                <!-- Produto 3 -->
+                <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="service-item">
+                        <div class="img">
+                            <img src="assets/img/services-3.jpg" class="img-fluid" alt="Limpeza Técnica">
+                        </div>
+                        <div class="details position-relative">
+                            <div class="icon">
+                                <i class="bi bi-water"></i>
+                            </div>
+                            <h3>Limpezas </h3>
+                            <p>Preço médio: R$100,00 a R$400,00</p>
+
+                            <button class="btn btn-primary btn-adicionar" onclick="adicionarAoCarrinho(
                         'Limpezas',
                         'assets/img/services-3.jpg',
                         'R$ 300,00',
                         'Limpezas técnicas como ar-condicionado, máquina de lavar, etc.',
                         'limpeza'
                          )">
-                            <i class="bi bi-cart-plus"></i> Adicionar ao Orçamento
-                        </button>
+                                <i class="bi bi-cart-plus"></i> Adicionar ao Orçamento
+                            </button>
+                        </div>
+                    </div>
+                </div><!-- End Produto -->
+            </div>
+        </div>
+    </section>
+
+                <!-- End Produtos à Venda Section -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Contato</h2>
+            <p>Em caso de dúvidas Contatar</p>
+        </div><!-- End Section Title -->
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+            <div class="row gy-4">
+                <div class="col-lg-15">
+                    <div class="row gy-4">
+                        <div class="col-lg-12">
+                            <div class="info-item d-flex flex-column justify-content-center align-items-center"
+                                data-aos="fade-up" data-aos-delay="200">
+                                <i class="bi bi-geo-alt"></i>
+                                <h3>Endereço</h3>
+                                <p>A108 Adam Street, New York, NY 535022</p>
+                            </div>
+                        </div><!-- End Info Item -->
+
+                        <div class="col-md-6">
+                            <div class="info-item d-flex flex-column justify-content-center align-items-center"
+                                data-aos="fade-up" data-aos-delay="300">
+                                <i class="bi bi-telephone"></i>
+                                <h3>Telefone</h3>
+                                <p>+55 14 99757-6046</p>
+                            </div>
+                        </div><!-- End Info Item -->
+
+                        <div class="col-md-6">
+                            <div class="info-item d-flex flex-column justify-content-center align-items-center"
+                                data-aos="fade-up" data-aos-delay="400">
+                                <i class="bi bi-envelope"></i>
+                                <h3>Email</h3>
+                                <p>info@example.com</p>
+                            </div>
+                        </div><!-- End Info Item -->
                     </div>
                 </div>
-            </div><!-- End Produto -->
+            </div><!-- End Contact Form -->
         </div>
-    </div>
-</section><!-- End Produtos à Venda Section -->
+    </section>
 
-<!-- Contact Section -->
-<section id="contact" class="contact section">
-    <!-- Section Title -->
-    <div class="container section-title" data-aos="fade-up">
-        <h2>Contato</h2>
-        <p>Em caso de dúvidas Contatar</p>
-    </div><!-- End Section Title -->
-
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row gy-4">
-            <div class="col-lg-15">
-                <div class="row gy-4">
-                    <div class="col-lg-12">
-                        <div class="info-item d-flex flex-column justify-content-center align-items-center"
-                            data-aos="fade-up" data-aos-delay="200">
-                            <i class="bi bi-geo-alt"></i>
-                            <h3>Endereço</h3>
-                            <p>A108 Adam Street, New York, NY 535022</p>
-                        </div>
-                    </div><!-- End Info Item -->
-
-                    <div class="col-md-6">
-                        <div class="info-item d-flex flex-column justify-content-center align-items-center"
-                            data-aos="fade-up" data-aos-delay="300">
-                            <i class="bi bi-telephone"></i>
-                            <h3>Telefone</h3>
-                            <p>+55 14 99757-6046</p>
-                        </div>
-                    </div><!-- End Info Item -->
-
-                    <div class="col-md-6">
-                        <div class="info-item d-flex flex-column justify-content-center align-items-center"
-                            data-aos="fade-up" data-aos-delay="400">
-                            <i class="bi bi-envelope"></i>
-                            <h3>Email</h3>
-                            <p>info@example.com</p>
-                        </div>
-                    </div><!-- End Info Item -->
-                </div>
-            </div>
-        </div><!-- End Contact Form -->
-    </div>
-</section><!-- /Contact Section -->
+                <!-- /Contact Section -->
