@@ -1,6 +1,6 @@
 using SpClima.Models;
 
-namespace SpCLima.ViewModels;
+namespace SpClima.ViewModels;
 
 public class ItemVM
 {

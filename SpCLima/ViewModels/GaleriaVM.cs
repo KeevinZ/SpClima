@@ -1,8 +1,8 @@
-  using SpClima.Models;
+using SpClima.Models;
 
-namespace SpCLima.ViewModels;
+namespace SpClima.ViewModels;
 public class GaleriaVM
 {
     public ItemType Tipo { get; set; }
-    public List<Item> Itens { get; set; }
+    public List<SpClima.Models.Item> Itens { get; set; }
 }

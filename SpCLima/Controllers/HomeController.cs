@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SpClima.Data;
 using SpClima.Models;
-using SpCLima.ViewModels;
+using SpClima.ViewModels;
 
 namespace SpClima.Controllers;
 
@@ -63,14 +63,14 @@ public class HomeController : Controller
     public IActionResult GalleryItem()
 {
     // Carrega todos os itens com variações, agrupados por tipo/categoria
-    var grupos = _db.items
+     var grupos = _db.items
         .Include(i => i.Variacoes)
         .AsNoTracking()
         .ToList()
         .GroupBy(i => i.Tipo)
-        .Select(g => new
+        .Select(g => new GaleriaVM
         {
-            Tipo = g.Key,
+            Tipo  = g.Key,
             Itens = g.ToList()
         })
         .ToList();
