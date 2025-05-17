@@ -36,13 +36,15 @@
                             <div class="icon">
                                 <i class="bi bi-wind"></i>
                             </div>
+                            <p>@item.Descricao</p>
                             @foreach(var v in item.Variacoes)
+                            
                         {
                         <li>
                             <strong>@v.Nome</strong> — R$ @v.Preco.ToString("N2")
                         </li>
                          }
-                            <p>@item.Descricao</p>
+                            
                         </div>
                     </div>
                 </div>
