@@ -1,4 +1,3 @@
-using SpClima.Models;
 
 namespace SpClima.ViewModels;
 public class GaleriaVM

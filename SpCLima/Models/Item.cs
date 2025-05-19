@@ -23,7 +23,7 @@ public class Item
   [Display(Name = "Imagem")]
   public string ImagemUrl { get; set; }
 
-  // Relação com as variações (BTU, tamanho) e preços
+
   public ICollection<ItemVariacao> Variacoes { get; set; }
       = new List<ItemVariacao>();
 }
