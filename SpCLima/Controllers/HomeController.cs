@@ -60,7 +60,7 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult GalleryItem()
+    public IActionResult GaleriaOrcamento()
 {
     // Carrega todos os itens com variações, agrupados por tipo/categoria
      var grupos = _db.items
@@ -68,9 +68,9 @@ public class HomeController : Controller
         .AsNoTracking()
         .ToList()
         .GroupBy(i => i.Tipo)
-        .Select(g => new GaleriaVM
+        .Select(g => new GaleriaItemVM
         {
-            Tipo  = g.Key,
+            Tipo  = g.Key.ToString(),
             Itens = g.ToList()
         })
         .ToList();

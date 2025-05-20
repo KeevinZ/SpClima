@@ -1,0 +1,131 @@
+@model List<SpClima.ViewModels.GaleriaItemVM>
+@{
+    ViewData["Title"] = "Serviços e Orçamentos";
+}
+
+<div class="container my-5">
+
+    @* ===== Grid de cards ===== *@
+    @foreach (var grupo in Model)
+    {
+        <h3 class="mt-5">
+            @grupo.Tipo
+                .Replace("ArCondicionado","Ar‑Condicionado")
+                .Replace("CortinaAr","Cortina de Ar")
+        </h3>
+        <div class="row">
+            @foreach (var item in grupo.Itens)
+            {
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card h-100"
+                         data-bs-toggle="modal"
+                         data-bs-target="#modalItem@item.Id"
+                         style="cursor:pointer">
+                        <img src="@item.ImagemUrl"
+                             class="card-img-top"
+                             alt="@item.Titulo" />
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Titulo</h5>
+                            <p class="card-text text-truncate">@item.Descricao</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+    @* ===== Todos os modais, após o grid ===== *@
+    @foreach (var grupo in Model)
+    {
+        @foreach (var item in grupo.Itens)
+        {
+            <div class="modal fade"
+                 id="modalItem@item.Id"
+                 tabindex="-1"
+                 aria-labelledby="modalLabel@item.Id"
+                 aria-hidden="true">
+                <div class="modal-dialog
+                            modal-lg
+                            modal-dialog-centered
+                            modal-dialog-scrollable"
+                     role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabel@item.Id">
+                                @item.Titulo
+                            </h5>
+                            <button type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close">
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="@item.ImagemUrl"
+                                 class="img-fluid mb-3"
+                                 alt="@item.Titulo" />
+                            <p>@item.Descricao</p>
+
+                            <h6>Escolha a variação:</h6>
+                            <select class="form-select mb-3"
+                                    id="varSelect@item.Id"
+                                    onchange="atualizarResumo(@item.Id)">
+                                <option value="">-- Selecione --</option>
+                                @foreach (var v in item.Variacoes)
+                                {
+                                    <option value="@v.Preco.ToString("F2")">
+                                        @v.Nome — R$ @v.Preco.ToString("N2")
+                                    </option>
+                                }
+                            </select>
+
+                            <textarea id="obs@item.Id"
+                                      class="form-control mb-3"
+                                      rows="2"
+                                      placeholder="Observações…"></textarea>
+
+                            <h5>
+                                Total estimado:
+                                <span id="total@item.Id">R$ 0,00</span>
+                            </h5>
+
+                            <button class="btn btn-success w-100 mt-3"
+                                    onclick="enviarZap(@item.Id, '@item.Titulo')">
+                                <i class="bi bi-whatsapp"></i>
+                                Falar com o técnico
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+</div>
+
+@section Scripts {
+    <script>
+        function atualizarResumo(id) {
+            const select = document.getElementById('varSelect' + id);
+            const total  = document.getElementById('total' + id);
+            const preco  = parseFloat(select.value || 0);
+            total.textContent = 'R$ ' + preco.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+        }
+
+        function enviarZap(id, titulo) {
+            const select = document.getElementById('varSelect' + id);
+            const obs    = document.getElementById('obs' + id).value.trim();
+            const variacaoTexto = select.options[select.selectedIndex]?.text || '—';
+            const preco      = parseFloat(select.value || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+
+            const msg = encodeURIComponent(
+                `Olá, gostaria de um orçamento para:\n` +
+                `- Serviço: ${titulo}\n` +
+                `- Variação: ${variacaoTexto}\n` +
+                `- Observações: ${obs || 'Nenhuma'}\n` +
+                `Total estimado: R$ ${preco}`
+            );
+            window.open(`https://wa.me/55SEUNUMERO?text=${msg}`, '_blank');
+        }
+    </script>
+}
