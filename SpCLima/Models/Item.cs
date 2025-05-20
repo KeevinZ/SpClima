@@ -25,6 +25,5 @@ public class Item
 
 
   public ICollection<ItemVariacao> Variacoes { get; set; }
-      = new List<ItemVariacao>();
 }
 

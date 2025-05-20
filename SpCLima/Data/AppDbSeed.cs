@@ -42,13 +42,13 @@ public class AppDbSeed
             new Item { Id = 6, Titulo = "Limpeza de Lavadoura", 
                     Descricao = "Higienização interna da Lavadoura, para melhor limpeza de roupas",
                     Destaque = true , 
-                    Tipo = ItemType.Lavadoura, 
+                    Tipo = ItemType.Lavadora, 
                     ImagemUrl = "/img/produtos/Lavadoura/1.jpg" },
 
             new Item { Id = 7, Titulo = "Manutenção de Lavadoura", 
                     Descricao = "Troca de peça se necessario",
                     Destaque = true , 
-                    Tipo = ItemType.Lavadoura, 
+                    Tipo = ItemType.Lavadora, 
                     ImagemUrl = "/img/produtos/Lavadoura/3.jpg" },
 
             new Item { Id = 8, Titulo = "Manutenção de Geladeira", 

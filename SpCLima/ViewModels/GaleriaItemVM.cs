@@ -3,6 +3,8 @@ using SpClima.Models;
 namespace SpClima.ViewModels;
 public class GaleriaItemVM
 {
-    public string Tipo { get; set; }
-    public List<Item> Itens { get; set; } = new();
+    public int Id { get; set; }
+    public string ImagemUrl { get; set; }
+    public string Titulo { get; set; }
+    public string Descricao { get; set; }
 }

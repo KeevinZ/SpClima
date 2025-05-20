@@ -6,5 +6,5 @@ public enum ItemType
     Geladeira,
     Bebedouro, 
     Freezer,
-    Lavadoura
+    Lavadora
 }

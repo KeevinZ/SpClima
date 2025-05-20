@@ -29,49 +29,22 @@ public class HomeController : Controller
         return View(destaques);
     }
 
-    public IActionResult Item(int id)
-    {
-        // 1) Carrega o item principal com suas variações
-        var item = _db.items
-            .Include(i => i.Variacoes)
-            .FirstOrDefault(i => i.Id == id);
-
-        if (item == null)
-            return NotFound();
-
-        // 2) Carrega outros itens para sugerir na página de detalhes
-        var outros = _db.items
-            .Where(i => i.Id != id && i.Destaque)
-            .Include(i => i.Variacoes)
-            .AsNoTracking()
-            .Take(4)
-            .ToList();
-
-        var vm = new ItemVM
-        {
-            Item = item,
-            Outros = outros
-        };
-
-        return View(vm);
-    }
     public IActionResult Privacy()
     {
         return View();
     }
 
-    public IActionResult GaleriaOrcamento()
+public IActionResult GaleriaOrcamento()
 {
-    // Carrega todos os itens com variações, agrupados por tipo/categoria
-     var grupos = _db.items
+    var grupos = _db.items
         .Include(i => i.Variacoes)
         .AsNoTracking()
         .ToList()
         .GroupBy(i => i.Tipo)
-        .Select(g => new GaleriaItemVM
+        .Select(g => new GaleriaVM
         {
-            Tipo  = g.Key.ToString(),
-            Itens = g.ToList()
+            Tipo = g.Key.ToString(),
+            Items = g.ToList()
         })
         .ToList();
 

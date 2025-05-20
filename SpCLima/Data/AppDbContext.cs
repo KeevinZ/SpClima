@@ -12,7 +12,7 @@ public class AppDbContext : IdentityDbContext<Usuario>
     {      
     }
     public DbSet<Item> items { get; set; }
-    public DbSet<ItemVariacao> itemVariacaos { get; set; }
+    public DbSet<ItemVariacao> itemVariacoes { get; set; }
     public DbSet<Orcamento> Orcamentos { get; set; }
     public DbSet<OrcamentoItem> OrcamentoItems { get; set; }
     public DbSet<Usuario> Usuarios { get; set; }
@@ -36,7 +36,7 @@ public class AppDbContext : IdentityDbContext<Usuario>
 
     builder.Entity<OrcamentoItem>()
         .HasOne(ci => ci.Orcamento)
-        .WithMany(o => o.OrcamentoItens)
+        .WithMany(o => o.OrcamentoItems)
         .HasForeignKey(ci => ci.OrcamentoId);
 
     builder.Entity<OrcamentoItem>()

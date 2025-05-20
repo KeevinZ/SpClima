@@ -1,0 +1,37 @@
+@model SpClima.Models.Item
+
+
+<div class="modal fade" id="modalItem@Model.Id" tabindex="-1" role="dialog" aria-labelledby="modalLabel@Model.Id"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel@Model.Id">@Model.Titulo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <img src="@Model.ImagemUrl" class="img-fluid mb-3" alt="@Model.Titulo">
+                <p>@Model.Descricao</p>
+
+                <h6>Escolha a variação:</h6>
+                <select class="form-select mb-3" id="varSelect@Model.Id" onchange="atualizarResumo(@Model.Id)">
+                    <option value="">-- Selecione --</option>
+                    @foreach (var v in Model.Variacoes)
+                    {
+                        <option value="@v.Preco.ToString("F2")">@v.Nome — R$ @v.Preco.ToString("N2")</option>
+                    }
+                </select>
+
+                <textarea id="obs@Model.Id" class="form-control mb-3" rows="2"
+                          placeholder="Observações…"></textarea>
+
+                <h5>Total estimado: <span id="total@Model.Id">R$ 0,00</span></h5>
+
+                <button class="btn btn-success w-100 mt-3" onclick="enviarZap(@Model.Id, '@Model.Titulo')">
+                    <i class="bi bi-whatsapp"></i> Falar com o técnico
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
