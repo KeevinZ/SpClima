@@ -154,10 +154,6 @@ public class AppDbSeed
                 UserId = usuarios[0].Id,
                 RoleId = roles[1].Id
             },
-            new IdentityUserRole<string>() {
-                UserId = usuarios[0].Id,
-                RoleId = roles[2].Id
-            }
         };
         builder.Entity<IdentityUserRole<string>>().HasData(userRoles);
         #endregion

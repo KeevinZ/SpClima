@@ -5,7 +5,6 @@ using SpClima.Models;
 
 namespace SpClima.Data;
 
-
 public class AppDbContext : IdentityDbContext<Usuario>
 {
     public AppDbContext (DbContextOptions<AppDbContext> options) : base(options)

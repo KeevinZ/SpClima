@@ -24,9 +24,18 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var contexto = scope.ServiceProvider
-        .GetRequiredService<AppDbContext>();
+    var contexto = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    var logger   = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+    try
+    {
         await contexto.Database.EnsureCreatedAsync();
+        logger.LogInformation("Banco criado/verificado com sucesso.");
+    }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "Falha ao criar/verificar o banco de dados");
+        throw; // relança para que o stderr mostre o stack completo
+    }
 }
 
 // Configure the HTTP request pipeline.
