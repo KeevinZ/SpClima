@@ -46,6 +46,7 @@
           <li><a href="#features">Sobre</a></li>
           <li><a href="#contact">Contato</a></li>
           <li><a href="javascript:void(0);" id="calcularBtusBtn">Calculadora BTUs</a></li>
+          <button id="btnAdmin" class="btn btn-link">Admin</button>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -158,5 +159,8 @@
     </div>
     <div id="itensCarrinho" class="p-3"></div>
 </div>
+
+@await Html.PartialAsync("_LoginModal")
+
 </body>
 </html>

@@ -112,11 +112,6 @@ public class AppDbSeed
                NormalizedName = "ADMINISTRADOR"
             },
             new IdentityRole() {
-               Id = "bec71b05-8f3d-4849-88bb-0e8d518d2de8",
-               Name = "Funcionário",
-               NormalizedName = "FUNCIONÁRIO"
-            },
-            new IdentityRole() {
                Id = "ddf093a6-6cb5-4ff7-9a64-83da34aee005",
                Name = "Cliente",
                NormalizedName = "CLIENTE"

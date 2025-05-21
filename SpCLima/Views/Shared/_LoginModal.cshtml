@@ -1,0 +1,27 @@
+<div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form asp-area="" asp-controller="Account" asp-action="Login" method="post">
+        <div class="modal-header">
+          <h5 class="modal-title">Admin Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="Input_Username" class="form-label">Usuário</label>
+            <input type="text" name="Username" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label for="Input_Password" class="form-label">Senha</label>
+            <input type="password" name="Password" class="form-control" required />
+          </div>
+          <input type="hidden" name="ReturnUrl" value="@Url.Action("Index", "Admin", new { area = "Admin" })" />
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Entrar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
