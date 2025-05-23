@@ -3,43 +3,51 @@
 <div class="container py-5">
     <div class="row">
         @foreach (var grupo in Model)
-{
-    <h3 class="text-primary mb-4">@grupo.Tipo</h3>
+        {
+            <h3 class="text-primary mb-4">@grupo.Tipo</h3>
 
-    <div class="row mb-5">
-            @foreach (var item in grupo.Items)
-            {
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100" role="button" data-bs-toggle="modal" data-bs-target="#modalItem@item.Id">
-                        <img src="@item.ImagemUrl" class="card-img-top" alt="@item.Titulo">
-                        <div class="card-body">
-                            <h5 class="card-title">@item.Titulo</h5>
-                            <p class="card-text">@item.Descricao</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Modal -->
-                <div class="modal fade" id="modalItem@item.Id" tabindex="-1" aria-labelledby="modalLabel@item.Id" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalLabel@item.Id">@item.Titulo</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>@item.Descricao</p>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="https://wa.me/SEU_NUMERO?text=Quero orçamento sobre: @item.Titulo" class="btn btn-success">
-                                    Solicitar Orçamento
-                                </a>
+            <div class="row mb-5">
+                @foreach (var item in grupo.Items)
+                {
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100" data-bs-toggle="modal" data-bs-target="#modalItem_@item.Id">
+                            <!-- <- nome único -->
+                            <img src="@item.ImagemUrl" class="card-img-top" alt="@item.Titulo">
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Titulo</h5>
+                                <p class="card-text">@item.Descricao</p>
                             </div>
                         </div>
+
+                        <!-- Modal com nome igual ao usado no data-bs-target -->
+                        <div class="modal fade" id="modalItem_@item.Id" tabindex="-1" aria-labelledby="modalLabel_@item.Id"
+                            aria-hidden="true" data-bs-backdrop="true" data-bs-keyboard="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLabel_@item.Id">@item.Titulo</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Fechar"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>@item.Descricao</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        @{
+                                            var mensagem = $"Quero orçamento sobre: {item.Titulo}\n\nDescrição: {item.Descricao}\n\nPreço: sem preço :) ";
+                                        }
+
+                                        <a href="https://wa.me/5514996630863?text=@Uri.EscapeDataString(mensagem)"
+                                            class="btn btn-success" target="_blank">
+                                            Solicitar Orçamento
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
-                </div>
-            }
-        </div>
-    }
+                }
+            </div>
+        }
     </div>
-</div>
