@@ -1,24 +1,32 @@
-<div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
+@model SpClima.ViewModels.LoginVM
+
+<div class="modal fade modal-admin" id="loginModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered">
     <div class="modal-content">
-      <form asp-area="" asp-controller="Account" asp-action="Login" method="post">
+      <form asp-controller="Account" asp-action="Login" method="post">
         <div class="modal-header">
-          <h5 class="modal-title">Admin Login</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <h5 class="modal-title">Login Admin</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <input asp-for="ReturnUrl" type="hidden" />
+          <input type="hidden"
+                asp-for="ReturnUrl"
+                value="@Url.Action("Index", "Admin", new { area = "Admin" })" />
           <div class="mb-3">
-            <label for="Input_Username" class="form-label">Usuário</label>
-            <input type="text" name="Username" class="form-control" required />
+            <label asp-for="Username" class="form-label"></label>
+            <input asp-for="Username" class="form-control" />
+            <span asp-validation-for="Username" class="text-danger"></span>
           </div>
           <div class="mb-3">
-            <label for="Input_Password" class="form-label">Senha</label>
-            <input type="password" name="Password" class="form-control" required />
+            <label asp-for="Password" class="form-label"></label>
+            <input asp-for="Password" type="password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
           </div>
-          <input type="hidden" name="ReturnUrl" value="@Url.Action("Index", "Admin", new { area = "Admin" })" />
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Entrar</button>
+          <button type="submit" class="btn modal-btn-admin">Entrar</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         </div>
       </form>

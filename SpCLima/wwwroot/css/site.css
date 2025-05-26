@@ -29,3 +29,50 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+/* ===== Estilo Modal Admin ===== */
+.modal-admin .modal-content {
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.3);
+  border: 2px solid #0d6efd;           /* borda azul do Bootstrap */
+}
+.modal-admin .modal-header {
+  background-color: #0d6efd;           /* cabeçalho azul */
+  color: #fff;
+}
+.modal-admin .modal-footer {
+  background-color: #e7f1ff;           /* fundo claro */
+}
+.modal-btn-admin {
+  background-color: #0d6efd;           /* botão Principal */
+  color: #fff;
+  border-radius: 50px;
+  padding: 0.5rem 1.5rem;
+}
+
+/* Floating Admin Button */
+.fab-admin {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: rgba(0, 123, 255, 0.8);
+  color: #fff;
+  border: none;
+  box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1055; /* acima dos modais */
+  transition: background-color 0.2s;
+}
+.fab-admin:hover {
+  background-color: rgba(0, 123, 255, 1);
+}
+.fab-admin i {
+  font-size: 1.25rem;
+}
+
