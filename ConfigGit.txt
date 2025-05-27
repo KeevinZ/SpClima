@@ -11,5 +11,5 @@
 
 ## Gabriel
    git config --global user.name bielizr
-   git config --global user.email
+   git config --global user.email gabrielcallegari789@gmail.com
 ## 
