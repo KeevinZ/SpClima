@@ -3,8 +3,25 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>@ViewData["Title"]</h1>
-<br><br>
-<a asp-controller="" asp-action="Index">Categorias</a>
-<br><br>
-<a asp-controller="" asp-action="Index">Produtos</a>
+@{
+    ViewData["Title"] = "Área Administrativa";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="admin-container">
+  <h1 class="admin-title">@ViewData["Title"]</h1>
+
+  <div class="d-flex gap-3">
+    <a asp-controller="Categorias" asp-action="Index" class="admin-btn">
+      Gerenciar Categorias
+    </a>
+    <a asp-controller="Items" asp-action="Index" class="admin-btn">
+      Gerenciar Produtos
+    </a>
+    <a asp-controller="Orcamentos" asp-action="Index" class="admin-btn">
+      Ver Orçamentos
+    </a>
+  </div>
+</div>
+
+

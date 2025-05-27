@@ -25,5 +25,6 @@ public class Item
 
 
   public ICollection<ItemVariacao> Variacoes { get; set; }
+  public ICollection<OrcamentoItem> OrcamentoItems { get; set; }
 }
 

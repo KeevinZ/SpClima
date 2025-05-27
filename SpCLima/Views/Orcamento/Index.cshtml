@@ -1,0 +1,42 @@
+@model IEnumerable<SpClima.Models.Orcamento>
+@{
+    ViewData["Title"] = "Lista de Orçamentos";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h1>@ViewData["Title"]</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Data Criação</th>
+            <th>Itens</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach(var orc in Model)
+    {
+        <tr>
+            <td>@orc.Id</td>
+            <td>@orc.DataCriacao.ToString("dd/MM/yyyy HH:mm")</td>
+            <td>
+                <ul class="mb-0">
+                @foreach(var oi in orc.OrcamentoItems)
+                {
+                    <li>
+                        <strong>@oi.Item.Titulo</strong> &ndash; Quantidade: @oi.OrcamentoId, Preço Estimado: @oi.PrecoEstimado.ToString("C2")
+                        @if (oi.PrecoFinal.HasValue)
+                        {
+                            <span> (Final: @oi.PrecoFinal.Value.ToString("C2"))</span>
+                        }
+                    </li>
+                }
+                </ul>
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@orc.Id" class="btn btn-sm btn-info">Ver</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

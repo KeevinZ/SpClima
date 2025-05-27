@@ -1,0 +1,100 @@
+body.sb-nav-fixed {
+  background-color: #f8f9fa; 
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #343a40;             
+}
+
+/* 2. Navbar superior */
+.navbar-dark.bg-dark {
+  background-color: #343a40 !important; 
+}
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+.navbar .nav-link {
+  color: rgba(255,255,255,0.8);
+}
+.navbar .nav-link:hover {
+  color: #ffffff;
+}
+
+/* 3. Sidebar */
+.sb-sidenav-dark {
+  background-color: #ffffff;
+  border-right: 1px solid #dee2e6;
+}
+.sb-sidenav .nav-link {
+  color: #495057;
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+}
+.sb-sidenav .nav-link:hover {
+  background-color: #e9ecef;
+  color: #343a40;
+}
+.sb-sidenav .sb-nav-link-icon {
+  color: #6c757d;
+  margin-right: 0.5rem;
+}
+
+/* 4. Container principal */
+.container-fluid.px-4 {
+  padding: 2rem 1rem;
+  background: #ffffff;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+}
+
+/* 5. Tabelas */
+.admin-table {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+.admin-table th {
+  background-color: #f1f3f5;
+  color: #495057;
+  font-weight: 500;
+}
+.admin-table td, .admin-table th {
+  padding: 0.75rem 0.5rem;
+  vertical-align: middle;
+}
+
+
+.admin-btn {
+  background-color: #0d6efd;
+  color: #fff;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border: none;
+}
+.admin-btn:hover {
+  background-color: #0b5ed7;
+}
+a.admin-link {
+  color: #0d6efd;
+}
+a.admin-link:hover {
+  text-decoration: underline;
+}
+
+/* 7. Footer */
+footer.bg-light {
+  background-color: #ffffff !important;
+  border-top: 1px solid #dee2e6;
+}
+footer .small {
+  color: #6c757d;
+}
+
+/* 8. Responsividade */
+@media (max-width: 768px) {
+  .sb-sidenav {
+    display: none;
+  }
+  #layoutSidenav_content {
+    margin-left: 0 !important;
+  }
+}

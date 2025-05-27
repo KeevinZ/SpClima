@@ -10,6 +10,9 @@ public class OrcamentoItem
     public int ItemVariacaoId { get; set; }
     public ItemVariacao Variacao { get; set; }
 
+    public int ItemId { get; set; }
+    public Item Item { get; set; }
+
     // Preço padrão no momento do orçamento
     [Column(TypeName = "decimal(10,2)")]
     public decimal PrecoEstimado { get; set; }

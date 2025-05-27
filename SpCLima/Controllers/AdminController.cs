@@ -1,26 +1,16 @@
+// Controllers/AdminController.cs
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SpClima.Data;
 
-namespace SpClima.Controllers;
-
-[Authorize(Roles = "Administrador")]
-public class AdminController : Controller
+namespace SpClima.Controllers
 {
-    private readonly ILogger<AdminController> _logger;
-
-    public AdminController(ILogger<AdminController> logger)
+    [Authorize(Roles = "Administrador")]
+    public class AdminController : Controller
     {
-        _logger = logger;
-    }
-
-    public IActionResult Index()
-    {
-        return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View("Error!");
+        public IActionResult Index()
+        {
+            return View();
+        }
     }
 }

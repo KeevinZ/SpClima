@@ -20,6 +20,16 @@ builder.Services.AddIdentity<Usuario, IdentityRole>(
 ).AddEntityFrameworkStores<AppDbContext>()
 .AddDefaultTokenProviders();
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/";
+    options.Events.OnRedirectToLogin = context =>
+    {
+        context.Response.Redirect("/");
+        return Task.CompletedTask;
+    };
+});
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())

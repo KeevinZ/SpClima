@@ -1,0 +1,40 @@
+@model SpClima.Models.Orcamento
+@{
+    ViewData["Title"] = $"Detalhes do Orçamento #{Model.Id}";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h1>@ViewData["Title"]</h1>
+<div class="mb-3">
+    <strong>Data Criação:</strong> @Model.DataCriacao.ToString("dd/MM/yyyy HH:mm")
+</div>
+<div class="mb-3">
+    <strong>Valor Total:</strong> @Model.ValorTotal.ToString("C2")
+</div>
+<h2>Itens</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Variação</th>
+            <th>Item</th>
+            <th>Quantidade</th>
+            <th>Preço Estimado</th>
+            <th>Preço Final</th>
+            <th>Descrição</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach(var oi in Model.OrcamentoItems)
+    {
+        <tr>
+            <td>@oi.Variacao?.Nome</td>
+            <td>@oi.Item.Titulo</td>
+            <td>@oi.OrcamentoId</td>
+            <td>@oi.PrecoEstimado.ToString("C2")</td>
+            <td>@(oi.PrecoFinal.HasValue ? oi.PrecoFinal.Value.ToString("C2") : "-")</td>
+            <td>@oi.DescricaoPersonalizada</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<a asp-action="Index" class="btn btn-secondary">Voltar</a>
