@@ -1051,7 +1051,7 @@ section,
 # Stats Section
 --------------------------------------------------------------*/
 .stats .stats-item {
-  background-color: var(--surface-color);
+  background-color: #f1f4fa;
   box-shadow: 0px 0 30px rgba(0, 0, 0, 0.1);
   padding: 30px;
 }
