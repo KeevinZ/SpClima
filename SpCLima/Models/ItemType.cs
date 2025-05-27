@@ -1,4 +1,6 @@
 
+namespace SpClima.Models;
+
 public enum ItemType
 {
     ArCondicionado,

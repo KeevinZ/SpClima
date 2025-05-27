@@ -19,7 +19,7 @@ public class ItemVariacao
 
     [Column(TypeName = "decimal(10,2)")]
     [Range(0, double.MaxValue)]
-    public decimal Preco { get; set; } // preço para essa variação
+    public decimal Preco { get; set; }
 
     public ICollection<OrcamentoItem> OrcamentoItems { get; set; } = new List<OrcamentoItem>();
 

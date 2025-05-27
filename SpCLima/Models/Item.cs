@@ -18,6 +18,11 @@ public class Item
   [Display(Name = "Tipo")]
   public ItemType Tipo { get; set; }            // ArCondicionado ou CortinaAr
 
+
+  [Column(TypeName = "decimal(10,2)")]
+  [Range(0, double.MaxValue)]
+  public decimal Preco { get; set; }
+
   public bool Destaque { get; set; } = false;
 
   [Display(Name = "Imagem")]

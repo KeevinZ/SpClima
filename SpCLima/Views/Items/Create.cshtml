@@ -1,0 +1,57 @@
+@model SpClima.Models.Item
+
+@{
+    ViewData["Title"] = "Criar Item";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Criar Item</h1>
+
+<form asp-action="Create" class="needs-validation" novalidate>
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+    <div class="form-group">
+        <label asp-for="Titulo"></label>
+        <input asp-for="Titulo" class="form-control" />
+        <span asp-validation-for="Titulo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Descricao"></label>
+        <textarea asp-for="Descricao" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Descricao" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Tipo"></label>
+        <select asp-for="Tipo" class="form-control"
+                asp-items="Html.GetEnumSelectList<SpClima.Models.ItemType>()">
+            <option value="">-- selecione o tipo --</option>
+        </select>
+        <span asp-validation-for="Tipo" class="text-danger"></span>
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="Destaque" class="form-check-input" />
+        <label asp-for="Destaque" class="form-check-label"></label>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ImagemUrl">URL da Imagem</label>
+        <input asp-for="ImagemUrl" class="form-control" />
+        <span asp-validation-for="ImagemUrl" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Preco"></label>
+        <input asp-for="Preco" class="form-control" />
+        <span asp-validation-for="Preco" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Salvar</button>
+    <a asp-action="Index" class="btn btn-secondary ml-2">Cancelar</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
