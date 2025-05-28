@@ -73,5 +73,20 @@ namespace SpClima.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+            //Details
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var item = await _db.items
+            .FirstOrDefaultAsync(i => i.Id == id.Value);
+            if (item == null)
+                return NotFound();
+
+            return View(item);
+        }
     }
+
+
 }
