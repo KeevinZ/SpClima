@@ -21,7 +21,8 @@
 
   <!-- Vendor CSS Files -->
   <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-..." crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-..." crossorigin="anonymous">
   <link href="~/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="~/vendor/aos/aos.css" rel="stylesheet">
   <link href="~/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
@@ -55,11 +56,11 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-    <a href="javascript:void(0);" class="btn btn-primary ms-5" onclick="abrirCarrinho()">Faça seu Orçamento</a>
+      <a href="javascript:void(0);" class="btn btn-primary ms-5" onclick="abrirCarrinho()">Faça seu Orçamento</a>
 
     </div>
 
-     <!-- The Modal -->
+    <!-- The Modal -->
     <div id="calcularBtusModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
@@ -100,10 +101,10 @@
             <span class="sitename">SPCLIMA</span>
           </a>
           <div class="footer-contact pt-3">
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
-            <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-            <p><strong>Email:</strong> <span>info@example.com</span></p>
+            <p>R. Palmiro Sancassani, 30</p>
+            <p>Igaraçu do Tietê, São Paulo</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+55 14 99757-6049</span></p>
+            <p><strong>Email:</strong> <span>sahpereira33@gmail.com</span></p>
           </div>
           <div class="social-links d-flex mt-4">
             <a href=""><i class="bi bi-whatsapp"></i></a>
@@ -112,11 +113,12 @@
         </div>
 
         <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Useful Links</h4>
+          <h4>Links úteis</h4>
           <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Sobre</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Serviços</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#hero">Home</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#services">Serviços</a>
+            <li><i class="bi bi-chevron-right"></i> <a href="#features">Sobre</a></li>
+
           </ul>
         </div>
       </div>
@@ -125,10 +127,16 @@
     <div class="container copyright text-center mt-4">
       <p>© <span>Copyright</span> <strong class="px-1 sitename">Dewi</strong> <span>All Rights Reserved</span></p>
       <div class="credits">
-        Desenvolvido por 
-        <a href="https://bootstrapmade.com/">Cauã Máximo</a> 
-        <a href="https://bootstrapmade.com/">Gabriel Callegari</a> 
-        <a href="https://bootstrapmade.com/">Kevin Davi</a>
+        Desenvolvido por
+        <a href="https://www.linkedin.com/in/caua-maximo?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+          target="_blank" rel="noopener noreferrer">Cauã Máximo,
+        </a>
+        <a href="https://www.linkedin.com/in/gabriel-callegari-791b26318?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+          target="_blank" rel="noopener noreferrer">Gabriel Callegari e
+        </a>
+        <a href="https://www.linkedin.com/in/kevin-hd?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+          target="_blank" rel="noopener noreferrer">Kevin Davi.
+        </a>
       </div>
     </div>
   </footer>
@@ -142,7 +150,8 @@
 
   <!-- Vendor JS Files -->
   <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-..."
+    crossorigin="anonymous"></script>
   <script src="~/vendor/php-email-form/validate.js"></script>
   <script src="~/vendor/aos/aos.js"></script>
   <script src="~/vendor/glightbox/js/glightbox.min.js"></script>
@@ -152,11 +161,11 @@
   <script src="~/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      document.getElementById("btnAdmin").addEventListener("click", function() {
-        new bootstrap.Modal(document.getElementById("loginModal")).show();
-      });
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("btnAdmin").addEventListener("click", function () {
+          new bootstrap.Modal(document.getElementById("loginModal")).show();
+        });
     });
   </script>
 
@@ -164,26 +173,28 @@
   <!-- Main JS File -->
   <script src="~/js/main.js"></script>
 
-@RenderSection("Scripts", required: false)
+  @RenderSection("Scripts", required: false)
 
-<!-- Carrinho Lateral -->
-<div id="carrinho" class="carrinho-lateral">
+  <!-- Carrinho Lateral -->
+  <div id="carrinho" class="carrinho-lateral">
     <div class="carrinho-cabecalho d-flex justify-content-between align-items-center p-3 border-bottom">
-        <h5 class="mb-0">Seu Orçamento</h5>
-        <button class="btn-close" onclick="fecharCarrinho()"></button>
+      <h5 class="mb-0">Seu Orçamento</h5>
+      <button class="btn-close" onclick="fecharCarrinho()"></button>
     </div>
     <div id="itensCarrinho" class="p-3"></div>
-</div>
+  </div>
 
-<!-- Floating Admin Button -->
-<button id="btnAdmin" class="fab-admin" title="Painel Admin"
- onclick="new bootstrap.Modal(document.getElementById('loginModal')).show()">>
-  <i class="bi bi-shield-lock-fill"></i>
-</button>
+  <!-- Floating Admin Button -->
+  <button id="btnAdmin" class="fab-admin" title="Painel Admin"
+    onclick="new bootstrap.Modal(document.getElementById('loginModal')).show()">>
+    <i class="bi bi-shield-lock-fill"></i>
+  </button>
 
-@await Html.PartialAsync("_LoginModal", new SpClima.ViewModels.LoginVM {
-    ReturnUrl = Url.Action("Index", "Admin", new { area = "Admin" })
+  @await Html.PartialAsync("_LoginModal", new SpClima.ViewModels.LoginVM
+{
+  ReturnUrl = Url.Action("Index", "Admin", new { area = "Admin" })
 })
 
 </body>
+
 </html>
