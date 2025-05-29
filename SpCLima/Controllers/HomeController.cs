@@ -10,47 +10,42 @@ namespace SpClima.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    private readonly AppDbContext _db;
+    private readonly AppDbContext _context; 
 
-    public HomeController(ILogger<HomeController> logger, AppDbContext db)
+    public HomeController(ILogger<HomeController> logger, AppDbContext context)
     {
         _logger = logger;
-        _db = db;
+        _context = context; 
     }
 
     public IActionResult Index()
     {
-        var destaques = _db.items
-        .Where(i => i.Destaque)
-        .Include(i => i.Variacoes)
-        .AsNoTracking()
-        .ToList();
+        var destaques = _context.items
+            .Where(i => i.Destaque)
+            .Include(i => i.Variacoes) 
+            .AsNoTracking()
+            .ToList();
 
         return View(destaques);
     }
 
-    public IActionResult Privacy()
+    public IActionResult GaleriaOrcamento()
     {
-        return View();
+        var grupos = _context.items
+            .Include(i => i.Categoria) 
+            .Include(i => i.Variacoes)
+            .AsNoTracking()
+            .ToList()
+            .GroupBy(i => i.Categoria.Nome)
+            .Select(g => new GaleriaVM
+            {
+                Tipo = g.Key, 
+                Items = g.ToList()
+            })
+            .ToList();
+
+        return View(grupos);
     }
-
-public IActionResult GaleriaOrcamento()
-{
-    var grupos = _db.items
-        .Include(i => i.Variacoes)
-        .AsNoTracking()
-        .ToList()
-        .GroupBy(i => i.Tipo)
-        .Select(g => new GaleriaVM
-        {
-            Tipo = g.Key.ToString(),
-            Items = g.ToList()
-        })
-        .ToList();
-
-    return View(grupos);
-}
-
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

@@ -15,21 +15,17 @@ public class Item
   [StringLength(500)]
   public string Descricao { get; set; }         // “Instalação padrão…”
 
-  [Display(Name = "Tipo")]
-  public ItemType Tipo { get; set; }            // ArCondicionado ou CortinaAr
+  public int ItemCategoriaId { get; set; }
 
-
-  [Column(TypeName = "decimal(10,2)")]
-  [Range(0, double.MaxValue)]
-  public decimal Preco { get; set; }
+  [ForeignKey("ItemCategoriaId")]
+  public ItemCategoria Categoria { get; set; }
 
   public bool Destaque { get; set; } = false;
 
   [Display(Name = "Imagem")]
   public string ImagemUrl { get; set; }
 
-
-  public ICollection<ItemVariacao> Variacoes { get; set; }
+  public List<ItemVariacao> Variacoes { get; set; }
   public ICollection<OrcamentoItem> OrcamentoItems { get; set; }
 }
 

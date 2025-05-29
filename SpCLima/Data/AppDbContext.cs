@@ -11,7 +11,8 @@ public class AppDbContext : IdentityDbContext<Usuario>
     {      
     }
     public DbSet<Item> items { get; set; }
-    public DbSet<ItemVariacao> itemVariacoes { get; set; }
+    public DbSet<ItemCategoria> ItemCategorias { get; set; }
+    public DbSet<ItemVariacao> ItemVariacoes { get; set; }
     public DbSet<Orcamento> Orcamentos { get; set; }
     public DbSet<OrcamentoItem> OrcamentoItems { get; set; }
     public DbSet<Usuario> Usuarios { get; set; }

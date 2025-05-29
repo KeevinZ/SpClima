@@ -1,0 +1,47 @@
+@model ItemCategoria
+
+@{
+    ViewData["Title"] = "Excluir Categoria";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";    
+}
+
+<div class="container mt-4">
+    <h1>@ViewData["Title"]</h1>
+    
+    <div class="alert alert-warning">
+        <h4>Tem certeza que deseja excluir esta categoria?</h4>
+        @if (ViewBag.ItensVinculados)
+        {
+            <div class="alert alert-danger mt-3">
+                <strong>Atenção!</strong> Existem itens vinculados a esta categoria.
+                Você não pode excluí-la até remover ou alterar esses itens.
+            </div>
+        }
+    </div>
+    
+    <div class="card">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">ID:</dt>
+                <dd class="col-sm-9">@Model.Id</dd>
+                
+                <dt class="col-sm-3">Nome:</dt>
+                <dd class="col-sm-9">@Model.Nome</dd>
+            </dl>
+        </div>
+    </div>
+    
+    <form asp-action="Delete" class="mt-3">
+        <input type="hidden" asp-for="Id" />
+        
+        @if (!ViewBag.ItensVinculados)
+        {
+            <button type="submit" class="btn btn-danger">
+                <i class="bi bi-trash"></i> Confirmar Exclusão
+            </button>
+        }
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Cancelar
+        </a>
+    </form>
+</div>

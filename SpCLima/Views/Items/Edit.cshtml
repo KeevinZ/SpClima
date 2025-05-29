@@ -1,53 +1,103 @@
 @model SpClima.Models.Item
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Item";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>Edit</h1>
+<h1>Editar Item</h1>
 
-<h4>Item</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+<form asp-action="Edit" method="post" class="needs-validation" novalidate>
+    <input type="hidden" asp-for="Id" />
 
-            <div class="form-group">
-                <label asp-for="Titulo" class="control-label"></label>
-                <input asp-for="Titulo" class="form-control" />
-                <span asp-validation-for="Titulo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Descricao" class="control-label"></label>
-                <input asp-for="Descricao" class="form-control" />
-                <span asp-validation-for="Descricao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tipo" class="control-label"></label>
-                <input asp-for="Tipo" class="form-control" />
-                <span asp-validation-for="Tipo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Preco" class="control-label"></label>
-                <input asp-for="Preco" class="form-control" />
-                <span asp-validation-for="Preco" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Destaque" /> @Html.DisplayNameFor(model => model.Destaque)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    <!-- Campos do Item principal -->
+    <div class="form-group">
+        <label asp-for="Titulo"></label>
+        <input asp-for="Titulo" class="form-control" />
+        <span asp-validation-for="Titulo" class="text-danger"></span>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div class="form-group">
+        <label asp-for="Descricao"></label>
+        <textarea asp-for="Descricao" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Descricao" class="text-danger"></span>
+    </div>
 
+    <div class="form-group mb-3">
+        <label asp-for="ItemCategoriaId"></label>
+        <select asp-for="ItemCategoriaId" class="form-control" asp-items="ViewBag.ItemCategoriaId"></select>
+        <span asp-validation-for="ItemCategoriaId" class="text-danger"></span>
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="Destaque" class="form-check-input" />
+        <label asp-for="Destaque" class="form-check-label"></label>
+    </div>
+
+    <!-- ================================================ -->
+    <!-- Seção de Variações (Preço) – cole daqui em diante -->
+    <h4>Variações / Preços</h4>
+    <table class="table table-sm mb-3">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th style="width:1px"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var variacoes = Model.Variacoes.ToList();
+
+
+                @for (int i = 0; i < variacoes.Count; i++)
+                {
+                    <div class="form-group">
+                        <label>Nome</label>
+                        <input asp-for="Variacoes[@i].Nome" class="form-control" />
+                        <input type="hidden" asp-for="Variacoes[@i].Id" />
+                        <input type="hidden" asp-for="Variacoes[@i].ItemId" />
+                    </div>
+                    <div class="form-group">
+                        <label>Preço</label>
+                        <input asp-for="Variacoes[@i].Preco" class="form-control" />
+                    </div>
+                }
+
+            }
+        </tbody>
+    </table>
+
+    <button type="button" id="addVar" class="btn btn-sm btn-outline-primary mb-4">
+        + Nova Variação
+    </button>
+    <button type="submit" class="btn btn-success">Salvar</button>
+    <a asp-action="Index" class="btn btn-secondary ml-2">Cancelar</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        // Script mínimo para clonar a primeira linha de variação como template
+        document.getElementById('addVar').addEventListener('click', function () {
+            var tbody = document.querySelector('table tbody');
+            var firstRow = tbody.querySelector('tr');
+            var clone = firstRow.cloneNode(true);
+
+            // Limpa valores dos inputs
+            clone.querySelectorAll('input').forEach(input => {
+                if (input.type === 'hidden') {
+                    input.value = '0';        // faz o binder enxergar como nova
+                } else {
+                    input.value = '';
+                }
+            });
+
+            // Atualiza os índices nos names para ASP.NET ModelBinder
+            var idx = tbody.querySelectorAll('tr').length;
+            clone.innerHTML = clone.innerHTML.replace(/\[0\]/g, '[' + idx + ']');
+
+            tbody.appendChild(clone);
+        });
+    </script>
+}

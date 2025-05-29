@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using SpClima.Models;
+
+namespace SpClima.Models;
 
 [Table("orcamento_item")]
 public class OrcamentoItem
@@ -17,7 +18,6 @@ public class OrcamentoItem
     [Column(TypeName = "decimal(10,2)")]
     public decimal PrecoEstimado { get; set; }
 
-    // Preço ajustado após a escolha do cliente (opcional)
     [Column(TypeName = "decimal(10,2)")]
     public decimal? PrecoFinal { get; set; }
 

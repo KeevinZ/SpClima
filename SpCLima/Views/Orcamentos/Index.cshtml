@@ -1,42 +1,37 @@
-@model IEnumerable<SpClima.Models.Orcamento>
+@model IEnumerable<Orcamento>
 @{
     ViewData["Title"] = "Lista de Orçamentos";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-<h1>@ViewData["Title"]</h1>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Data Criação</th>
-            <th>Itens</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach(var orc in Model)
-    {
-        <tr>
-            <td>@orc.Id</td>
-            <td>@orc.DataCriacao.ToString("dd/MM/yyyy HH:mm")</td>
-            <td>
-                <ul class="mb-0">
-                @foreach(var oi in orc.OrcamentoItems)
-                {
-                    <li>
-                        <strong>@oi.Item.Titulo</strong> &ndash; Quantidade: @oi.OrcamentoId, Preço Estimado: @oi.PrecoEstimado.ToString("C2")
-                        @if (oi.PrecoFinal.HasValue)
-                        {
-                            <span> (Final: @oi.PrecoFinal.Value.ToString("C2"))</span>
-                        }
-                    </li>
-                }
-                </ul>
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@orc.Id" class="btn btn-sm btn-info">Ver</a>
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
+<div class="container mt-4">
+    <h1>@ViewData["Title"]</h1>
+    
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Data</th>
+                    <th>Itens</th>
+                    <th>Valor Total</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var orcamento in Model) {
+                <tr>
+                    <td>@orcamento.Id</td>
+                    <td>@orcamento.DataCriacao.ToString("dd/MM/yyyy")</td>
+                    <td>@orcamento.OrcamentoItems.Count</td>
+                    <td>@orcamento.ValorTotal.ToString("C")</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@orcamento.Id" class="btn btn-sm btn-info">
+                            <i class="bi bi-eye"></i> Detalhes
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

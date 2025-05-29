@@ -1,57 +1,114 @@
 @model SpClima.Models.Item
 
 @{
-    ViewData["Title"] = "Criar Item";
+    ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <h1>Criar Item</h1>
 
-<form asp-action="Create" class="needs-validation" novalidate>
-    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-
-    <div class="form-group">
-        <label asp-for="Titulo"></label>
-        <input asp-for="Titulo" class="form-control" />
-        <span asp-validation-for="Titulo" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Descricao"></label>
-        <textarea asp-for="Descricao" class="form-control" rows="3"></textarea>
-        <span asp-validation-for="Descricao" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Tipo"></label>
-        <select asp-for="Tipo" class="form-control"
-                asp-items="Html.GetEnumSelectList<SpClima.Models.ItemType>()">
-            <option value="">-- selecione o tipo --</option>
-        </select>
-        <span asp-validation-for="Tipo" class="text-danger"></span>
-    </div>
-
-    <div class="form-check mb-3">
-        <input asp-for="Destaque" class="form-check-input" />
-        <label asp-for="Destaque" class="form-check-label"></label>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="ImagemUrl">URL da Imagem</label>
-        <input asp-for="ImagemUrl" class="form-control" />
-        <span asp-validation-for="ImagemUrl" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Preco"></label>
-        <input asp-for="Preco" class="form-control" />
-        <span asp-validation-for="Preco" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-success">Salvar</button>
-    <a asp-action="Index" class="btn btn-secondary ml-2">Cancelar</a>
-</form>
+<div class="container mt-4">
+    <h1>@ViewData["Title"]</h1>
+    
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                    <label asp-for="Titulo" class="control-label"></label>
+                    <input asp-for="Titulo" class="form-control" />
+                    <span asp-validation-for="Titulo" class="text-danger"></span>
+                </div>
+                
+                <div class="form-group mb-3">
+                    <label asp-for="Descricao" class="control-label"></label>
+                    <textarea asp-for="Descricao" class="form-control"></textarea>
+                    <span asp-validation-for="Descricao" class="text-danger"></span>
+                </div>
+                
+                <div class="form-group mb-3">
+                    <label asp-for="ItemCategoriaId" class="control-label"></label>
+                    <select asp-for="ItemCategoriaId" class="form-control" 
+                            asp-items="ViewBag.ItemCategoriaId"></select>
+                    <span asp-validation-for="ItemCategoriaId" class="text-danger"></span>
+                </div>
+                
+                <div class="form-group mb-3">
+                    <label asp-for="ImagemUrl" class="control-label"></label>
+                    <input asp-for="ImagemUrl" class="form-control" />
+                    <span asp-validation-for="ImagemUrl" class="text-danger"></span>
+                </div>
+                
+                <div class="form-check mb-3">
+                    <input asp-for="Destaque" class="form-check-input" />
+                    <label asp-for="Destaque" class="form-check-label"></label>
+                    <span asp-validation-for="Destaque" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <h4>Preços</h4>
+                
+                <div id="variacoes-container">
+                    <div class="variacao-item mb-3 p-3 border rounded">
+                        <div class="form-group">
+                            <label class="control-label">Nome da Variação</label>
+                            <input name="Variacoes[0].Nome" class="form-control" value="Padrão" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="control-label">Preço</label>
+                            <input name="Variacoes[0].PrecoVariado" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="button" id="add-variacao" class="btn btn-secondary mt-2">
+                    <i class="bi bi-plus"></i> Adicionar Variação
+                </button>
+            </div>
+        </div>
+        
+        <div class="form-group mt-4">
+            <button type="submit" class="btn btn-primary">Criar</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        $(document).ready(function() {
+            let variacaoIndex = 1;
+            
+
+            $("#add-variacao").click(function() {
+                const newItem = `
+                <div class="variacao-item mb-3 p-3 border rounded">
+                    <button type="button" class="btn btn-sm btn-danger float-end remove-variacao">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                    <div class="form-group">
+                        <label class="control-label">Nome da Variação</label>
+                        <input name="Variacoes[${variacaoIndex}].Nome" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Preço</label>
+                        <input name="Variacoes[${variacaoIndex}].PrecoVariado" class="form-control" />
+                    </div>
+                </div>`;
+                
+                $("#variacoes-container").append(newItem);
+                variacaoIndex++;
+            });
+            
+            // Remover variação
+            $(document).on("click", ".remove-variacao", function() {
+                $(this).closest(".variacao-item").remove();
+            });
+        });
+    </script>
 }

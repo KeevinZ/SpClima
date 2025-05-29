@@ -11,6 +11,5 @@ public class LoginVM
     [DataType(DataType.Password)]
     public string Password { get; set; }
 
-    // para enviar a URL de retorno pro modal
     public string ReturnUrl { get; set; }
 }

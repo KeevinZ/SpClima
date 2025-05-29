@@ -3,38 +3,52 @@
     ViewData["Title"] = $"Detalhes do Orçamento #{Model.Id}";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-<h1>@ViewData["Title"]</h1>
-<div class="mb-3">
-    <strong>Data Criação:</strong> @Model.DataCriacao.ToString("dd/MM/yyyy HH:mm")
+<div class="container mt-4">
+    <h1>@ViewData["Title"]</h1>
+    
+    <div class="card mb-4">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Número:</dt>
+                <dd class="col-sm-9">@Model.Id</dd>
+                
+                <dt class="col-sm-3">Data:</dt>
+                <dd class="col-sm-9">@Model.DataCriacao.ToString("dd/MM/yyyy HH:mm")</dd>
+                
+                <dt class="col-sm-3">Valor Total:</dt>
+                <dd class="col-sm-9">@Model.ValorTotal.ToString("C")</dd>
+            </dl>
+        </div>
+    </div>
+    
+    <h4>Itens do Orçamento</h4>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Serviço</th>
+                    <th>Variação</th>
+                    <th>Preço Estimado</th>
+                    <th>Preço Final</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrcamentoItems)
+                {
+                    <tr>
+                        <td>@item.Item.Titulo</td>
+                        <td>@item.Variacao.Nome</td>
+                        <td>@item.PrecoEstimado.ToString("C")</td>
+                        <td>@(item.PrecoFinal?.ToString("C") ?? "-")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="mt-4">
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Voltar
+        </a>
+    </div>
 </div>
-<div class="mb-3">
-    <strong>Valor Total:</strong> @Model.ValorTotal.ToString("C2")
-</div>
-<h2>Itens</h2>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Variação</th>
-            <th>Item</th>
-            <th>Quantidade</th>
-            <th>Preço Estimado</th>
-            <th>Preço Final</th>
-            <th>Descrição</th>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach(var oi in Model.OrcamentoItems)
-    {
-        <tr>
-            <td>@oi.Variacao?.Nome</td>
-            <td>@oi.Item.Titulo</td>
-            <td>@oi.OrcamentoId</td>
-            <td>@oi.PrecoEstimado.ToString("C2")</td>
-            <td>@(oi.PrecoFinal.HasValue ? oi.PrecoFinal.Value.ToString("C2") : "-")</td>
-            <td>@oi.DescricaoPersonalizada</td>
-        </tr>
-    }
-    </tbody>
-</table>
-
-<a asp-action="Index" class="btn btn-secondary">Voltar</a>

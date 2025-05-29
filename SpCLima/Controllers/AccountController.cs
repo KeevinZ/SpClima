@@ -1,9 +1,10 @@
-// Controllers/AccountController.cs
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SpClima.Models;
-using SpClima.ViewModels; 
+using SpClima.ViewModels;
+
+namespace SpClima.Controllers;
 
 [AllowAnonymous]
 public class AccountController : Controller
@@ -34,8 +35,8 @@ public class AccountController : Controller
             if (await _users.IsInRoleAsync(user, "Administrador"))
             {
                 // Se ReturnUrl for nulo ou vazio, vai para /Admin/Index
-                var dest = string.IsNullOrEmpty(vm.ReturnUrl) 
-                           ? Url.Action("Index","Admin") 
+                var dest = string.IsNullOrEmpty(vm.ReturnUrl)
+                           ? Url.Action("Index", "Admin")
                            : vm.ReturnUrl;
                 return LocalRedirect(dest);
             }
@@ -55,6 +56,6 @@ public class AccountController : Controller
     public async Task<IActionResult> Logout()
     {
         await _signIn.SignOutAsync();
-        return RedirectToAction("Index","Home");
+        return RedirectToAction("Index", "Home");
     }
 }
