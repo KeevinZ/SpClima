@@ -29,19 +29,27 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Fechar"></button>
                                     </div>
+                                    <img src="@item.ImagemUrl" class="img-fluid mb-3" alt="@item.Titulo">
                                     <div class="modal-body">
                                         <p>@item.Descricao</p>
                                     </div>
-                                    <div class="modal-footer">
-                                        @{
-                                            var mensagem = $"Quero orçamento sobre: {item.Titulo}\n\nDescrição: {item.Descricao}\n\nPreço: sem preço :) ";
+                                    <h6>Escolha a variação:</h6>
+                                    <select class="form-select mb-3" id="varSelect@item.Id" onchange="atualizarResumo(@item.Id)">
+                                        <option value="">-- Selecione --</option>
+                                        @foreach (var v in item.Variacoes)
+                                        {
+                                            <option value="@v.Preco.ToString("F2")">@v.Nome — R$ @v.Preco.ToString("N2")</option>
                                         }
-
+                                        </select>
+                                            <div class="modal-footer">
+                                            @{
+                                                var mensagem = $"Quero orçamento sobre: {item.Titulo}\n\nDescrição: {item.Descricao}\n\nPreço: Sem preço ) ";
+                                            }
                                         <a href="https://wa.me/5514996630863?text=@Uri.EscapeDataString(mensagem)"
                                             class="btn btn-success" target="_blank">
                                             Solicitar Orçamento
                                         </a>
-                                    </div>
+                                    </div> 
                                 </div>
                             </div>
                         </div>

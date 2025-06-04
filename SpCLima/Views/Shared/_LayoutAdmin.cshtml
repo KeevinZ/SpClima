@@ -6,72 +6,73 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title> SpClima - @ViewData["Title"]</title>
+     <!-- Favicons -->
+  <link href="~/img/Favicons/favicon.ico" rel="icon">
+  <link href="~/img/Favicons/apple-touch-icon.png" rel="apple-touch-icon">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-…" crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="~/css/admin.css" rel="stylesheet" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
 
 
     @await RenderSectionAsync("Styles", required: false)
 </head>
 
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand ps-3" asp-controller="Admin" asp-action="Index">SpClima</a>
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 fs-4" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button>
-        <!-- Navbar-->
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"><i class="fas fa-user fa-fw fs-4"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="home">Logout</a></li>
-                </ul>
-            </li>
-        </ul>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand ps-3" href="#">SpClima</a>
     </nav>
+
     <div id="layoutSidenav">
+        <!-- Sidebar Lateral -->
         <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <nav class="sb-sidenav sb-sidenav-dark">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <a class="nav-link" asp-controller="Admin" asp-action="Index">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        <a class="nav-link" href="/Admin">
+                            <i class="bi bi-house-door-fill sb-nav-link-icon"></i>
                             Dashboard
                         </a>
+                        <a class="nav-link" asp-controller="Items" asp-action="Index">
+                            <i class="bi bi-box-seam sb-nav-link-icon"></i>
+                            Gerenciar Itens
+                        </a>
+                        <a class="nav-link" asp-controller="Orcamentos" asp-action="Index">
+                            <i class="bi bi-currency-dollar sb-nav-link-icon"></i>
+                            Ver Orçamentos
+                        </a>
+                        <a class="nav-link"asp-controller="ItemCategorias" asp-action="Index">
+                            <i class="bi bi-tags sb-nav-link-icon"></i>
+                            Gerenciar Categorias
+                        </a>
                     </div>
+                </div>
             </nav>
         </div>
+
+        <!-- Conteúdo Principal -->
         <div id="layoutSidenav_content">
-            <main>
-                <div class="container-fluid px-4">
-
-                    @RenderBody()
-
-                </div>
+            <main class="container-fluid px-4 mt-4">
+                @RenderBody()
             </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2025</div>
+                    <div class="d-flex justify-content-between small">
+                        <div class="text-muted">Copyright © SpClima 2025</div>
                         <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
+                            <a href="#">Privacy Policy</a> ·
+                            <a href="#">Terms & Conditions</a>
                         </div>
                     </div>
                 </div>
             </footer>
         </div>
     </div>
-
-    <!-- Bootstrap JS bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-
 </body>
+
 
 </html>

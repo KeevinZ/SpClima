@@ -6,7 +6,7 @@
 * License: https://bootstrapmade.com/license/
 */
 
-(function() {
+(function () {
   "use strict";
 
   /**
@@ -50,7 +50,7 @@
    * Toggle mobile nav dropdowns
    */
   document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function(e) {
+    navmenu.addEventListener('click', function (e) {
       e.preventDefault();
       this.parentNode.classList.toggle('active');
       this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
@@ -118,7 +118,7 @@
    * Init swiper sliders
    */
   function initSwiper() {
-    document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
+    document.querySelectorAll(".init-swiper").forEach(function (swiperElement) {
       let config = JSON.parse(
         swiperElement.querySelector(".swiper-config").innerHTML.trim()
       );
@@ -136,13 +136,13 @@
   /**
    * Init isotope layout and filters
    */
-  document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
+  document.querySelectorAll('.isotope-layout').forEach(function (isotopeItem) {
     let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
     let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
     let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
 
     let initIsotope;
-    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
+    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function () {
       initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
         itemSelector: '.isotope-item',
         layoutMode: layout,
@@ -151,8 +151,8 @@
       });
     });
 
-    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
-      filters.addEventListener('click', function() {
+    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function (filters) {
+      filters.addEventListener('click', function () {
         isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
         this.classList.add('filter-active');
         initIsotope.arrange({
@@ -169,7 +169,7 @@
   /**
    * Correct scrolling position upon page load for URLs containing hash links.
    */
-  window.addEventListener('load', function(e) {
+  window.addEventListener('load', function (e) {
     if (window.location.hash) {
       if (document.querySelector(window.location.hash)) {
         setTimeout(() => {
@@ -218,86 +218,86 @@ var btn = document.getElementById("calcularBtusBtn");
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal
-btn.onclick = function() {
-modal.style.display = "block";
+btn.onclick = function () {
+  modal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-modal.style.display = "none";
+span.onclick = function () {
+  modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-if (event.target == modal) {
-modal.style.display = "none";
-}
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 }
 
 // Function to calculate BTUs
 function calcularBTUs() {
-// Get values from the form
-var largura = parseFloat(document.getElementById("largura").value);
-var comprimento = parseFloat(document.getElementById("comprimento").value);
-var altura = parseFloat(document.getElementById("altura").value);
+  // Get values from the form
+  var largura = parseFloat(document.getElementById("largura").value);
+  var comprimento = parseFloat(document.getElementById("comprimento").value);
+  var altura = parseFloat(document.getElementById("altura").value);
 
-// Validate if the user has entered valid numbers
-if (isNaN(largura) || isNaN(comprimento) || isNaN(altura) || largura <= 0 || comprimento <= 0 || altura <= 0) {
-alert("Por favor, insira valores válidos.");
-return;
-}
+  // Validate if the user has entered valid numbers
+  if (isNaN(largura) || isNaN(comprimento) || isNaN(altura) || largura <= 0 || comprimento <= 0 || altura <= 0) {
+    alert("Por favor, insira valores válidos.");
+    return;
+  }
 
-// Calculate the area (largura * comprimento)
-var area = largura * comprimento;
+  // Calculate the area (largura * comprimento)
+  var area = largura * comprimento;
 
-// Calculate the required BTUs (using a basic formula)
-var btus = area * 600; // Simple approximation for residential areas
+  // Calculate the required BTUs (using a basic formula)
+  var btus = area * 600; // Simple approximation for residential areas
 
-// Display the result
-document.getElementById("resultadoTexto").textContent = "O seu ambiente precisa de aproximadamente " + btus + " BTUs.";
-document.getElementById("resultadoBTUs").style.display = "block"; // Show the result section
+  // Display the result
+  document.getElementById("resultadoTexto").textContent = "O seu ambiente precisa de aproximadamente " + btus + " BTUs.";
+  document.getElementById("resultadoBTUs").style.display = "block"; // Show the result section
 }
 
 // Attach the calculation function to the form submit event
-document.getElementById("btusForm").onsubmit = function(event) {
-event.preventDefault(); // Prevent form submission and page reload
-calcularBTUs(); // Call the function to calculate BTUs
+document.getElementById("btusForm").onsubmit = function (event) {
+  event.preventDefault(); // Prevent form submission and page reload
+  calcularBTUs(); // Call the function to calculate BTUs
 };
 
 
-    const carrinho = [];
+const carrinho = [];
 
-    function abrirCarrinho() {
-        document.getElementById("carrinho").classList.add("aberto");
-        renderizarCarrinho();
-    }
+function abrirCarrinho() {
+  document.getElementById("carrinho").classList.add("aberto");
+  renderizarCarrinho();
+}
 
-    function fecharCarrinho() {
-        document.getElementById("carrinho").classList.remove("aberto");
-    }
+function fecharCarrinho() {
+  document.getElementById("carrinho").classList.remove("aberto");
+}
 
-    function adicionarAoCarrinho(nome, imagem, preco, descricao, categoria) {
-        carrinho.push({ nome, imagem, preco, descricao, categoria, tipoServico: "", detalhes: {} });
-        abrirCarrinho();
-        renderizarCarrinho();
-    }
+function adicionarAoCarrinho(nome, imagem, preco, descricao, categoria) {
+  carrinho.push({ nome, imagem, preco, descricao, categoria, tipoServico: "", detalhes: {} });
+  abrirCarrinho();
+  renderizarCarrinho();
+}
 
-    function removerDoCarrinho(index) {
-        carrinho.splice(index, 1);
-        renderizarCarrinho();
-    }
+function removerDoCarrinho(index) {
+  carrinho.splice(index, 1);
+  renderizarCarrinho();
+}
 
-    function renderizarCarrinho() {
-        const container = document.getElementById("itensCarrinho");
-        container.innerHTML = "";
+function renderizarCarrinho() {
+  const container = document.getElementById("itensCarrinho");
+  container.innerHTML = "";
 
-        carrinho.forEach((item, index) => {
-            const card = document.createElement("div");
-            card.className = "col-12";
+  carrinho.forEach((item, index) => {
+    const card = document.createElement("div");
+    card.className = "col-12";
 
-            let tiposServicos = "";
-            if (item.categoria === "instalacao") {
-                tiposServicos = `
+    let tiposServicos = "";
+    if (item.categoria === "instalacao") {
+      tiposServicos = `
                     <label class="form-label mt-2">Tipo de Instalação:</label>
                     <select class="form-select mb-2" onchange="handleTipoServico(this.value, ${index})">
                         <option value="">Selecione</option>
@@ -309,8 +309,8 @@ calcularBTUs(); // Call the function to calculate BTUs
                         <option value="outro">Outro</option>
                     </select>
                 `;
-            } else if (item.categoria === "manutencao") {
-                tiposServicos = `
+    } else if (item.categoria === "manutencao") {
+      tiposServicos = `
                     <label class="form-label mt-2">Equipamento:</label>
                     <select class="form-select mb-2" onchange="handleTipoServico(this.value, ${index})">
                         <option value="">Selecione</option>
@@ -321,8 +321,8 @@ calcularBTUs(); // Call the function to calculate BTUs
                         <option value="maquina">Máquina de Lavar</option>
                     </select>
                 `;
-            } else if (item.categoria === "limpeza") {
-                tiposServicos = `
+    } else if (item.categoria === "limpeza") {
+      tiposServicos = `
                     <label class="form-label mt-2">Tipo de Limpeza:</label>
                     <select class="form-select mb-2" onchange="handleTipoServico(this.value, ${index})">
                         <option value="">Selecione</option>
@@ -330,11 +330,11 @@ calcularBTUs(); // Call the function to calculate BTUs
                         <option value="maquina">Máquina de Lavar</option>
                     </select>
                 `;
-            }
+    }
 
-            let camposExtras = "";
-            if (item.tipoServico === "ar") {
-                camposExtras = `
+    let camposExtras = "";
+    if (item.tipoServico === "ar") {
+      camposExtras = `
                     <label class="form-label">BTUs:</label>
                     <select class="form-select mb-2" onchange="atualizarDetalhes(${index}, 'BTUs', this.value)">
                         <option>9000</option>
@@ -344,8 +344,8 @@ calcularBTUs(); // Call the function to calculate BTUs
                         <option>Outro</option>
                     </select>
                 `;
-            } else if (item.tipoServico === "cortina") {
-                camposExtras = `
+    } else if (item.tipoServico === "cortina") {
+      camposExtras = `
                     <label class="form-label">Medidas:</label>
                     <select class="form-select mb-2" onchange="atualizarDetalhes(${index}, 'Medida', this.value)">
                         <option>90-150 cm</option>
@@ -355,8 +355,8 @@ calcularBTUs(); // Call the function to calculate BTUs
                     <label class="form-label">Marca:</label>
                     <input type="text" class="form-control mb-2" placeholder="Ex: Elgin" onchange="atualizarDetalhes(${index}, 'Marca', this.value)">
                 `;
-            } else if (item.tipoServico === "maquina") {
-                camposExtras = `
+    } else if (item.tipoServico === "maquina") {
+      camposExtras = `
                     <label class="form-label">Tamanho:</label>
                     <select class="form-select mb-2" onchange="atualizarDetalhes(${index}, 'Capacidade', this.value)">
                         <option>Pequena (8-9 KG)</option>
@@ -365,8 +365,8 @@ calcularBTUs(); // Call the function to calculate BTUs
                         <option>Extra Grande (17-20 KG)</option>
                     </select>
                 `;
-            } else if (item.tipoServico === "refrigerador") {
-                camposExtras = `
+    } else if (item.tipoServico === "refrigerador") {
+      camposExtras = `
                     <label class="form-label">Tipo:</label>
                     <select class="form-select mb-2" onchange="atualizarDetalhes(${index}, 'Tipo Refrigerador', this.value)">
                         <option>Geladeira 1 Porta</option>
@@ -376,8 +376,8 @@ calcularBTUs(); // Call the function to calculate BTUs
                         <option>Freezer (400-600 L)</option>
                     </select>
                 `;
-            } else if (item.tipoServico === "bebedouro") {
-                camposExtras = `
+    } else if (item.tipoServico === "bebedouro") {
+      camposExtras = `
                     <label class="form-label">Capacidade:</label>
                     <select class="form-select mb-2" onchange="atualizarDetalhes(${index}, 'Litros', this.value)">
                         <option>Bebedouro (5–10 L)</option>
@@ -385,9 +385,9 @@ calcularBTUs(); // Call the function to calculate BTUs
                         <option>Bebedouro (50+ L)</option>
                     </select>
                 `;
-            }
+    }
 
-            card.innerHTML = `
+    card.innerHTML = `
                 <div class="card shadow-sm border mb-3">
                     <div class="row g-0">
                         <div class="col-4">
@@ -409,46 +409,46 @@ calcularBTUs(); // Call the function to calculate BTUs
                 </div>
             `;
 
-            container.appendChild(card);
-        });
+    container.appendChild(card);
+  });
 
-        // Adiciona botão de finalização
-        if (carrinho.length > 0) {
-            container.innerHTML += `
+  // Adiciona botão de finalização
+  if (carrinho.length > 0) {
+    container.innerHTML += `
                 <div class="text-end mt-3">
                     <button class="btn btn-success" onclick="finalizarOrcamento()">Finalizar Orçamento</button>
                 </div>
             `;
-        }
+  }
+};
+
+function handleTipoServico(valor, index) {
+  carrinho[index].tipoServico = valor;
+  carrinho[index].detalhes = {};
+  renderizarCarrinho();
+}
+
+function atualizarDetalhes(index, campo, valor) {
+  carrinho[index].detalhes[campo] = valor;
+}
+
+function finalizarOrcamento() {
+  const numeroWhatsApp = "5511999999999"; // <- Altere para o número da empresa
+  let mensagem = "Olá, gostaria de solicitar um orçamento com os seguintes itens:\n\n";
+
+  carrinho.forEach((item, i) => {
+    mensagem += `🔹 *${item.nome}* - ${item.preco}\n`;
+    mensagem += `📄 ${item.descricao}\n`;
+    if (item.tipoServico) mensagem += `🛠 Tipo: ${item.tipoServico}\n`;
+    for (const [chave, valor] of Object.entries(item.detalhes)) {
+      mensagem += `▪️ ${chave}: ${valor}\n`;
     }
+    mensagem += `\n`;
+  });
 
-    function handleTipoServico(valor, index) {
-        carrinho[index].tipoServico = valor;
-        carrinho[index].detalhes = {};
-        renderizarCarrinho();
-    }
-
-    function atualizarDetalhes(index, campo, valor) {
-        carrinho[index].detalhes[campo] = valor;
-    }
-
-    function finalizarOrcamento() {
-        const numeroWhatsApp = "5511999999999"; // <- Altere para o número da empresa
-        let mensagem = "Olá, gostaria de solicitar um orçamento com os seguintes itens:\n\n";
-
-        carrinho.forEach((item, i) => {
-            mensagem += `🔹 *${item.nome}* - ${item.preco}\n`;
-            mensagem += `📄 ${item.descricao}\n`;
-            if (item.tipoServico) mensagem += `🛠 Tipo: ${item.tipoServico}\n`;
-            for (const [chave, valor] of Object.entries(item.detalhes)) {
-                mensagem += `▪️ ${chave}: ${valor}\n`;
-            }
-            mensagem += `\n`;
-        });
-
-        const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
-        window.open(url, "_blank");
-    }
+  const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+  window.open(url, "_blank");
+};
 
 
 
