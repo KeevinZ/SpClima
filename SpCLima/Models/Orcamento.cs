@@ -10,5 +10,4 @@ public class Orcamento
     public string UsuarioId { get; set; }
     public DateTime DataCriacao { get; set; } = DateTime.Now;
     public decimal ValorTotal { get; set; }
-    public ICollection<OrcamentoItem> OrcamentoItems { get; set; }
 }

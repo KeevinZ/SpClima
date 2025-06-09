@@ -33,7 +33,7 @@
             <nav class="sb-sidenav sb-sidenav-dark">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <a class="nav-link" href="/Admin">
+                        <a class="nav-link" asp-controller="Admin" asp-action="Index">
                             <i class="bi bi-house-door-fill sb-nav-link-icon"></i>
                             Dashboard
                         </a>
@@ -41,11 +41,11 @@
                             <i class="bi bi-box-seam sb-nav-link-icon"></i>
                             Gerenciar Itens
                         </a>
-                        <a class="nav-link" asp-controller="Orcamentos" asp-action="Index">
+                        <a class="nav-link" asp-controller="Pedidos" asp-action="Index">
                             <i class="bi bi-currency-dollar sb-nav-link-icon"></i>
                             Ver Orçamentos
                         </a>
-                        <a class="nav-link"asp-controller="ItemCategorias" asp-action="Index">
+                        <a class="nav-link" asp-controller="ItemCategorias" asp-action="Index">
                             <i class="bi bi-tags sb-nav-link-icon"></i>
                             Gerenciar Categorias
                         </a>

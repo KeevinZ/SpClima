@@ -21,6 +21,5 @@ public class ItemVariacao
     [Range(0, double.MaxValue)]
     public decimal Preco { get; set; }
 
-    public ICollection<OrcamentoItem> OrcamentoItems { get; set; }
 }
 

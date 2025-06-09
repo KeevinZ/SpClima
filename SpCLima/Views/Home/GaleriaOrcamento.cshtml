@@ -11,7 +11,6 @@
                 {
                     <div class="col-md-4 mb-4">
                         <div class="card h-100" data-bs-toggle="modal" data-bs-target="#modalItem_@item.Id">
-                            <!-- <- nome único -->
                             <img src="@item.ImagemUrl" class="card-img-top" alt="@item.Titulo">
                             <div class="card-body">
                                 <h5 class="card-title">@item.Titulo</h5>
@@ -19,43 +18,58 @@
                             </div>
                         </div>
 
-                        <!-- Modal com nome igual ao usado no data-bs-target -->
-                        <div class="modal fade" id="modalItem_@item.Id" tabindex="-1" aria-labelledby="modalLabel_@item.Id"
-                            aria-hidden="true" data-bs-backdrop="true" data-bs-keyboard="true">
+                        <!-- Modal -->
+                        <div class="modal fade" id="modalItem_@item.Id" tabindex="-1" aria-labelledby="modalLabel_@item.Id" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="modalLabel_@item.Id">@item.Titulo</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Fechar"></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                                     </div>
+
                                     <img src="@item.ImagemUrl" class="img-fluid mb-3" alt="@item.Titulo">
+
                                     <div class="modal-body">
                                         <p>@item.Descricao</p>
+
+                                        <form method="post" asp-controller="Pedido" asp-action="Create">
+                                            <input type="hidden" name="ItemId" value="@item.Id" />
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Seu nome:</label>
+                                                <input type="text" name="ClienteNome" class="form-control" required />
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Endereço:</label>
+                                                <input type="text" name="ClienteEndereco" class="form-control" required />
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Telefone:</label>
+                                                <input type="text" name="ClienteTelefone" class="form-control" required />
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Escolha a variação:</label>
+                                                <select name="ItemVariacaoId" class="form-select" required>
+                                                    <option value="">-- Selecione --</option>
+                                                    @foreach (var v in item.Variacoes)
+                                                    {
+                                                        <option value="@v.Id">@v.Nome — R$ @v.Preco.ToString("N2")</option>
+                                                    }
+                                                </select>
+                                            </div>
+
+                                            <button type="submit" class="btn btn-primary w-100">Solicitar Orçamento</button>
+                                        </form>
                                     </div>
-                                    <h6>Escolha a variação:</h6>
-                                    <select class="form-select mb-3" id="varSelect@item.Id" onchange="atualizarResumo(@item.Id)">
-                                        <option value="">-- Selecione --</option>
-                                        @foreach (var v in item.Variacoes)
-                                        {
-                                            <option value="@v.Preco.ToString("F2")">@v.Nome — R$ @v.Preco.ToString("N2")</option>
-                                        }
-                                        </select>
-                                            <div class="modal-footer">
-                                            @{
-                                                var mensagem = $"Quero orçamento sobre: {item.Titulo}\n\nDescrição: {item.Descricao}\n\nPreço: Sem preço ) ";
-                                            }
-                                        <a href="https://wa.me/5514996630863?text=@Uri.EscapeDataString(mensagem)"
-                                            class="btn btn-success" target="_blank">
-                                            Solicitar Orçamento
-                                        </a>
-                                    </div> 
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
                 }
             </div>
         }
     </div>
+</div>

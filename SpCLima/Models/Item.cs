@@ -26,6 +26,5 @@ public class Item
   public string ImagemUrl { get; set; }
 
   public List<ItemVariacao> Variacoes { get; set; }
-  public ICollection<OrcamentoItem> OrcamentoItems { get; set; }
 }
 

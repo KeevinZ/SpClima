@@ -185,10 +185,10 @@
   </div>
 
   <!-- Floating Admin Button -->
-  <button id="btnAdmin" class="fab-admin" title="Painel Admin"
-    onclick="new bootstrap.Modal(document.getElementById('loginModal')).show()">
+ <button id="btnAdmin" class="fab-admin" title="Painel Admin" data-bs-toggle="modal" data-bs-target="#loginModal">
     <i class="bi bi-shield-lock-fill"></i>
-  </button>
+</button>
+
 
   @await Html.PartialAsync("_LoginModal", new SpClima.ViewModels.LoginVM
 {
