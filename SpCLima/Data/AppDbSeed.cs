@@ -34,7 +34,7 @@ public class AppDbSeed
                 Id = 2, 
                 Titulo = "Limpeza de Ar‑Condicionado",
                 Descricao = "Higienização interna e externa para melhor eficiencia",
-                Destaque = true,
+                Destaque = false,
                 ItemCategoriaId = 1,
                 ImagemUrl = "/img/produtos/AR/3.jpg" 
             },
@@ -42,7 +42,7 @@ public class AppDbSeed
                 Id = 3, 
                 Titulo = "Manutenção de Ar‑Condicionado",
                 Descricao = "Verificação de gás e revisão completa para garantir o bom funcionamento do ar-condicionado.",
-                Destaque = true,
+                Destaque = false,
                 ItemCategoriaId = 1,
                 ImagemUrl = "/img/produtos/AR/1.jpg" 
             },
@@ -58,7 +58,7 @@ public class AppDbSeed
                 Id = 5, 
                 Titulo = "Limpeza de Cortina de Ar",
                 Descricao = "Limpeza completa de filtros e pás",
-                Destaque = true,
+                Destaque = false,
                 ItemCategoriaId = 2,
                 ImagemUrl = "/img/produtos/Cortina/2.jpg" 
             },
@@ -74,7 +74,7 @@ public class AppDbSeed
                 Id = 7, 
                 Titulo = "Manutenção de Lavadoura", 
                 Descricao = "Troca de peça se necessario",
-                Destaque = true, 
+                Destaque = false, 
                 ItemCategoriaId = 3,
                 ImagemUrl = "/img/produtos/Lavadoura/3.jpg" 
             },
@@ -98,7 +98,7 @@ public class AppDbSeed
                 Id = 10, 
                 Titulo = "Instalação de Bebedouro", 
                 Descricao = "Instale seu bebedouro com praticidade e segurança! Fazemos a fixação, conexão à rede de água e ajustes finais para garantir o funcionamento perfeito.",
-                Destaque = true, 
+                Destaque = false, 
                 ItemCategoriaId = 5,
                 ImagemUrl = "/img/produtos/Bebedouro/3.jpg" 
             },

@@ -55,9 +55,6 @@
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
-
-      <a href="javascript:void(0);" class="btn btn-primary ms-5" onclick="abrirCarrinho()">Faça seu Orçamento</a>
-
     </div>
 
     <!-- The Modal -->
@@ -107,8 +104,8 @@
             <p><strong>Email:</strong> <span>sahpereira33@gmail.com</span></p>
           </div>
           <div class="social-links d-flex mt-4">
-            <a href=""><i class="bi bi-whatsapp"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href="https://api.whatsapp.com/send/?phone=5514997576049" target="_blank"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://www.facebook.com/share/1UVzZyViAY/" target="_blank"><i class="bi bi-facebook"></i></a>
           </div>
         </div>
 
@@ -174,15 +171,6 @@
   <script src="~/js/main.js"></script>
 
   @RenderSection("Scripts", required: false)
-
-  <!-- Carrinho Lateral -->
-  <div id="carrinho" class="carrinho-lateral">
-    <div class="carrinho-cabecalho d-flex justify-content-between align-items-center p-3 border-bottom">
-      <h5 class="mb-0">Seu Orçamento</h5>
-      <button class="btn-close" onclick="fecharCarrinho()"></button>
-    </div>
-    <div id="itensCarrinho" class="p-3"></div>
-  </div>
 
   <!-- Floating Admin Button -->
  <button id="btnAdmin" class="fab-admin" title="Painel Admin" data-bs-toggle="modal" data-bs-target="#loginModal">
