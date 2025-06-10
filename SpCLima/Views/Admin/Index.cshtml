@@ -1,10 +1,25 @@
 @{
-    ViewData["Title"] = "Área Administrativa";
+    ViewData["Title"] = "Dashboard"; // Melhor nome para a página principal do admin
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="admin-container">
-  <h1 class="admin-title">@ViewData["Title"]</h1>
+@* Removemos o admin-container e admin-title pois o layout principal já cria o contêiner e o h1 abaixo será o título *@
+
+<h1 class="admin-title mb-4">@ViewData["Title"]</h1>
+
+<div class="card p-4 mb-4 welcome-banner"> @* Adicionada a classe customizada "welcome-banner" aqui *@
+    <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between">
+        <div class="mb-3 mb-md-0"> @* Margem inferior em mobile, 0 em desktop *@
+            <h4 class="mb-1 text-primary">Olá, Administrador! 👋</h4>
+            <p class="mb-0 text-muted">É bom ter você de volta! Pronto para gerenciar o conteúdo?</p>
+        </div>
+        <div class="d-grid gap-2 d-md-block"> @* Botões em grid em mobile, block em desktop *@
+            <a href="@Url.Action("Index", "Items", new { area = "Admin" })" class="btn btn-primary me-md-2">
+                <i class="bi bi-list-check me-1"></i> Gerenciar Itens
+            </a>
+            <a href="@Url.Action("Create", "Items", new { area = "Admin" })" class="btn btn-success">
+                <i class="bi bi-plus-circle me-1"></i> Adicionar Novo
+            </a>
+        </div>
+    </div>
 </div>
-
-

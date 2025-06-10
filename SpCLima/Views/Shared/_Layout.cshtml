@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>@ViewData["Title"]SPCLIMA</title>
+  <title>@ViewData["Title"]</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -157,14 +157,19 @@
   <script src="~/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="~/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById("btnAdmin").addEventListener("click", function () {
-          new bootstrap.Modal(document.getElementById("loginModal")).show();
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const btnAdmin = document.getElementById("btnAdmin");
+    if (btnAdmin) {
+        btnAdmin.addEventListener("click", function () {
+            const loginModalElement = document.getElementById("loginModal");
+            const modalInstance = bootstrap.Modal.getOrCreateInstance(loginModalElement);
+            modalInstance.show();
         });
-    });
-  </script>
+    }
+  });
+</script>
 
 
   <!-- Main JS File -->

@@ -10,7 +10,8 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div id="loginErrorMessage" class="text-danger mt-2" style="display: none;"></div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
           <input asp-for="ReturnUrl" type="hidden" />
           <input type="hidden"
                 asp-for="ReturnUrl"
@@ -27,7 +28,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn modal-btn-admin">Entrar</button>
+          <button type="submit" class="btn btn-primary">Entrar</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         </div>
       </form>
@@ -36,24 +37,64 @@
 </div>
 
 <script>
-  document.getElementById("loginForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    fetch(this.action, {
-      method: this.method,
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(new FormData(this))
-    })
-    .then(r => r.text())
-    .then(html => {
-      // Substitui o modal atual pelo HTML retornado
-      const temp = document.createElement('div');
-      temp.innerHTML = html;
-      const newModal = temp.querySelector('#loginModal');
-      document.getElementById('loginModal').replaceWith(newModal);
-      // Reabre o modal
-      new bootstrap.Modal(document.getElementById('loginModal')).show();
+    document.addEventListener("DOMContentLoaded", function () {
+        const loginForm = document.getElementById('loginForm');
+        // Pega a referência do elemento de erro que acabamos de criar
+        const errorMessageDiv = document.getElementById('loginErrorMessage');
+
+        if (loginForm) {
+            loginForm.addEventListener("submit", function(e) {
+                e.preventDefault(); // Impede o envio padrão do formulário
+
+                // Esconde mensagens de erro antigas antes de uma nova tentativa
+                if (errorMessageDiv) {
+                    errorMessageDiv.style.display = 'none';
+                }
+                
+                const formData = new FormData(this);
+                const url = this.action;
+                
+                // Pega o token anti-falsificação gerado pelo @Html.AntiForgeryToken()
+                const antiForgeryToken = document.querySelector('input[name="__RequestVerificationToken"]').value;
+
+                fetch(url, {
+                    method: 'POST',
+                    body: formData, // O .NET Core consegue ler FormData diretamente
+                    headers: {
+                        // O cabeçalho 'RequestVerificationToken' é ESSENCIAL para o [ValidateAntiForgeryToken] funcionar com fetch
+                        'RequestVerificationToken': antiForgeryToken
+                    }
+                })
+                .then(response => {
+                    // Se a resposta do servidor não for OK (ex: erro 500), lança um erro
+                    if (!response.ok) {
+                        throw new Error('Falha na comunicação com o servidor. Status: ' + response.status);
+                    }
+                    // Se a resposta for OK, o corpo DEVE ser JSON. Vamos lê-lo.
+                    return response.json();
+                })
+                .then(data => {
+                    // Agora 'data' é o objeto JSON que o seu controller enviou
+                    if (data.success) {
+                        // SUCESSO: redireciona para a URL fornecida pelo backend
+                        window.location.href = data.redirectUrl;
+                    } else {
+                        // FALHA: exibe a mensagem de erro do backend no nosso div
+                        if (errorMessageDiv) {
+                            errorMessageDiv.textContent = data.message;
+                            errorMessageDiv.style.display = 'block'; // Torna o div de erro visível
+                        }
+                    }
+                })
+                .catch(error => {
+                    // Este bloco pega erros de rede ou qualquer erro lançado acima
+                    console.error('Erro na requisição de login:', error);
+                    if (errorMessageDiv) {
+                        errorMessageDiv.textContent = 'Ocorreu um erro inesperado. Tente novamente.';
+                        errorMessageDiv.style.display = 'block';
+                    }
+                });
+            });
+        }
     });
-  });
 </script>
-
-
