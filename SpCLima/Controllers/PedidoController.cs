@@ -50,7 +50,7 @@ namespace SpClima.Controllers
                 var mensagem = $"Olá, sou {pedido.ClienteNome}. Quero orçamento sobre: {itemTitulo}\n" +
                                $"Variação: {variacaoNome}\nEndereço: {pedido.ClienteEndereco}\nTelefone: {pedido.ClienteTelefone}";
 
-                var url = $"https://wa.me/5514996630863?text={Uri.EscapeDataString(mensagem)}";
+                var url = $"https://wa.me/5514997576049?text={Uri.EscapeDataString(mensagem)}";
 
                 // Maybe show a success message before redirecting?
                 // TempData["SuccessMessage"] = "Pedido enviado com sucesso! Entraremos em contato.";
