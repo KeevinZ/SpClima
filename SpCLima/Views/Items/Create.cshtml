@@ -30,12 +30,12 @@
                 <div class="form-group mb-3">
                     <label asp-for="ItemCategoriaId" class="control-label">Categoria</label>
                     <select asp-for="ItemCategoriaId" class="form-control" 
-                            asp-items="ViewBag.ItemCategoriaId"></select>
+                            asp-items="ViewBag.ItemCategoria"></select>
                     <span asp-validation-for="ItemCategoriaId" class="text-danger"></span>
                 </div>
                 <div class="form-check mb-3">
                     <input asp-for="Destaque" class="form-check-input" />
-                    <label asp-for="Destaque" class="form-check-label"></label>
+                    <label asp-for="Destaque" class="form-check-label">Aparecer na Home</label>
                     <span asp-validation-for="Destaque" class="text-danger"></span>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                         
                         <div class="form-group">
                             <label class="control-label">Preço</label>
-                            <input name="Variacoes[0].PrecoVariado" class="form-control" />
+                            <input name="Variacoes[0].Preco" class="form-control" />
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
             let variacaoIndex = 1;
             
 
-            $("#add-variacao").click(function() {
+            $("#add-variacao").click(function() {''
                 const newItem = `
                 <div class="variacao-item mb-3 p-3 border rounded">
                     <button type="button" class="btn btn-sm btn-danger float-end remove-variacao">
@@ -90,7 +90,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label">Preço</label>
-                        <input name="Variacoes[${variacaoIndex}].PrecoVariado" class="form-control" />
+                        <input name="Variacoes[${variacaoIndex}].Preco" class="form-control" />
                     </div>
                 </div>`;
                 

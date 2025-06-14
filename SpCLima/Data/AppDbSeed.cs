@@ -20,7 +20,6 @@ public class AppDbSeed
         };
         builder.Entity<ItemCategoria>().HasData(categorias);
 
-        // 2. Seed dos Itens (REMOVENDO PrecoBase)
         List<Item> items = new() {
             new Item { 
                 Id = 1, 

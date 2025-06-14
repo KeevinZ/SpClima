@@ -30,7 +30,7 @@ namespace SpClima.Controllers
         // GET: Create
         public IActionResult Create()
         {
-            ViewData["CategoriaId"] = new SelectList(_context.ItemCategorias, "Id", "Nome");
+            ViewData["ItemCategoriaId"] = new SelectList(_context.ItemCategorias, "Id", "Nome");
             return View(new Item { Variacoes = new List<ItemVariacao>() });
         }
 
@@ -66,7 +66,7 @@ namespace SpClima.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewData["CategoriaId"] = new SelectList(_context.ItemCategorias, "Id", "Nome", item.ItemCategoriaId);
+            ViewData["ItemCategoriaId"] = new SelectList(_context.ItemCategorias, "Id", "Nome", item.ItemCategoriaId);
             item.Variacoes = variacoes;
             return View(item);
         }
@@ -88,7 +88,7 @@ namespace SpClima.Controllers
                 item.Variacoes.Add(new ItemVariacao { Nome = "Padrão" });
             }
 
-            ViewData["CategoriaId"] = new SelectList(_context.ItemCategorias, "Id", "Nome", item.ItemCategoriaId);
+            ViewData["ItemCategoriaId"] = new SelectList(_context.ItemCategorias, "Id", "Nome", item.ItemCategoriaId);
             return View(item);
         }
 

@@ -39,14 +39,12 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const loginForm = document.getElementById('loginForm');
-        // Pega a referência do elemento de erro que acabamos de criar
         const errorMessageDiv = document.getElementById('loginErrorMessage');
 
         if (loginForm) {
             loginForm.addEventListener("submit", function(e) {
-                e.preventDefault(); // Impede o envio padrão do formulário
-
-                // Esconde mensagens de erro antigas antes de uma nova tentativa
+                e.preventDefault(); 
+                
                 if (errorMessageDiv) {
                     errorMessageDiv.style.display = 'none';
                 }
@@ -59,35 +57,30 @@
 
                 fetch(url, {
                     method: 'POST',
-                    body: formData, // O .NET Core consegue ler FormData diretamente
+                    body: formData, 
                     headers: {
-                        // O cabeçalho 'RequestVerificationToken' é ESSENCIAL para o [ValidateAntiForgeryToken] funcionar com fetch
+                        
                         'RequestVerificationToken': antiForgeryToken
                     }
                 })
                 .then(response => {
-                    // Se a resposta do servidor não for OK (ex: erro 500), lança um erro
+                    
                     if (!response.ok) {
                         throw new Error('Falha na comunicação com o servidor. Status: ' + response.status);
                     }
-                    // Se a resposta for OK, o corpo DEVE ser JSON. Vamos lê-lo.
                     return response.json();
                 })
                 .then(data => {
-                    // Agora 'data' é o objeto JSON que o seu controller enviou
                     if (data.success) {
-                        // SUCESSO: redireciona para a URL fornecida pelo backend
                         window.location.href = data.redirectUrl;
                     } else {
-                        // FALHA: exibe a mensagem de erro do backend no nosso div
                         if (errorMessageDiv) {
                             errorMessageDiv.textContent = data.message;
-                            errorMessageDiv.style.display = 'block'; // Torna o div de erro visível
+                            errorMessageDiv.style.display = 'block';
                         }
                     }
                 })
                 .catch(error => {
-                    // Este bloco pega erros de rede ou qualquer erro lançado acima
                     console.error('Erro na requisição de login:', error);
                     if (errorMessageDiv) {
                         errorMessageDiv.textContent = 'Ocorreu um erro inesperado. Tente novamente.';
