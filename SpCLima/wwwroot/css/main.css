@@ -2073,3 +2073,8 @@ section,
   width: 100%;
   object-fit: cover; /* garante que a imagem preencha corretamente */
 }
+
+
+.carousel-item {
+  transition: transform 0.8s ease-in-out;
+}

@@ -38,27 +38,29 @@
 
 <body class="index-page">
 
-  <header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+  @RenderSection("Header", required: false)
 
-      <a href="index" class="logo d-flex align-items-center me-auto">
-        <h1 class="sitename">SpClima</h1>
-      </a>
+  @if (!IsSectionDefined("Header"))
+  {
+    <header id="header" class="header d-flex align-items-center fixed-top">
+      <div class="container-fluid container-xl position-relative d-flex align-items-center">
+        <a href="index" class="logo d-flex align-items-center me-auto">
+          <h1 class="sitename">SpClima</h1>
+        </a>
 
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="#hero" class="active">Home</a></li>
-          <li><a href="#services">Serviços</a></li>
-          <li><a href="#features">Sobre</a></li>
-          <li><a href="#contact">Contato</a></li>
-          <li><a href="javascript:void(0);" id="calcularBtusBtn">Calculadora BTUs</a></li>
-        </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
-    </div>
-
-    <!-- The Modal -->
-    <div id="calcularBtusModal" class="modal">
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li><a href="#hero" class="active">Home</a></li>
+            <li><a href="#services">Serviços</a></li>
+            <li><a href="#features">Sobre</a></li>
+            <li><a href="#contact">Contato</a></li>
+            <li><a href="javascript:void(0);" id="calcularBtusBtn">Calculadora BTUs</a></li>
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+      </div>
+      
+      <div id="calcularBtusModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
         <h3 class="modal-title">Calcule o Ar Ideal</h3>
@@ -84,7 +86,8 @@
         </div>
       </div>
     </div>
-  </header>
+    </header>
+  }
 
   <main class="main">
     @RenderBody()
@@ -104,7 +107,8 @@
             <p><strong>Email:</strong> <span>sahpereira33@gmail.com</span></p>
           </div>
           <div class="social-links d-flex mt-4">
-            <a href="https://api.whatsapp.com/send/?phone=5514997576049" target="_blank"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://api.whatsapp.com/send/?phone=5514997576049" target="_blank"><i
+                class="bi bi-whatsapp"></i></a>
             <a href="https://www.facebook.com/share/1UVzZyViAY/" target="_blank"><i class="bi bi-facebook"></i></a>
           </div>
         </div>
@@ -158,18 +162,18 @@
   <script src="~/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const btnAdmin = document.getElementById("btnAdmin");
-    if (btnAdmin) {
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const btnAdmin = document.getElementById("btnAdmin");
+      if (btnAdmin) {
         btnAdmin.addEventListener("click", function () {
-            const loginModalElement = document.getElementById("loginModal");
-            const modalInstance = bootstrap.Modal.getOrCreateInstance(loginModalElement);
-            modalInstance.show();
+          const loginModalElement = document.getElementById("loginModal");
+          const modalInstance = bootstrap.Modal.getOrCreateInstance(loginModalElement);
+          modalInstance.show();
         });
-    }
-  });
-</script>
+      }
+    });
+  </script>
 
 
   <!-- Main JS File -->
@@ -178,9 +182,9 @@
   @RenderSection("Scripts", required: false)
 
   <!-- Floating Admin Button -->
- <button id="btnAdmin" class="fab-admin" title="Painel Admin" data-bs-toggle="modal" data-bs-target="#loginModal">
+  <button id="btnAdmin" class="fab-admin" title="Painel Admin" data-bs-toggle="modal" data-bs-target="#loginModal">
     <i class="bi bi-shield-lock-fill"></i>
-</button>
+  </button>
 
 
   @await Html.PartialAsync("_LoginModal", new SpClima.ViewModels.LoginVM

@@ -11,8 +11,8 @@ public class AppDbSeed
         // 1. Seed das Categorias (mantido igual)
         List<ItemCategoria> categorias = new()
         {
-            new ItemCategoria { Id = 1, Nome = "ArCondicionado" },
-            new ItemCategoria { Id = 2, Nome = "CortinaAr" },
+            new ItemCategoria { Id = 1, Nome = "Ar Condicionado" },
+            new ItemCategoria { Id = 2, Nome = "Cortina Ar" },
             new ItemCategoria { Id = 3, Nome = "Lavadora" },
             new ItemCategoria { Id = 4, Nome = "Geladeira" },
             new ItemCategoria { Id = 5, Nome = "Bebedouro" },

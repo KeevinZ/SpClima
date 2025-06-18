@@ -1,38 +1,84 @@
 @model List<SpClima.ViewModels.GaleriaVM>
 
-        <div class="bar1"></div>
-        <div class="bar"></div>
-        <div id="carouselExampleIndicators" class="carousel slide py-3">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="~/img/1.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="~/img/2.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="~/img/3.png" class="d-block w-100" alt="...">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+  @section Header {
+    <header id="header" class="header d-flex align-items-center fixed-top" style="background-color: rgba(0, 0, 0, 0.85)">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center">
+            <a href="index" class="logo d-flex align-items-center me-auto">
+                <h1 class="sitename text-white">SpClima</h1>
+            </a>
+
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="/Home/Index">Home</a></li>
+                    <li><a href="#galeria" class="active">Galeria</a></li>
+                    <li><a href="javascript:void(0);" id="calcularBtusBtn">Calculadora BTUs</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
         </div>
+
+        <div id="calcularBtusModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3 class="modal-title">Calcule o Ar Ideal</h3>
+        <form id="btusForm">
+          <div class="input-container">
+            <label for="largura">Largura (m):</label>
+            <input type="number" id="largura" name="largura" required placeholder="Digite a largura do ambiente">
+          </div>
+          <div class="input-container">
+            <label for="comprimento">Comprimento (m):</label>
+            <input type="number" id="comprimento" name="comprimento" required
+              placeholder="Digite o comprimento do ambiente">
+          </div>
+          <div class="input-container">
+            <label for="altura">Altura (m):</label>
+            <input type="number" id="altura" name="altura" required placeholder="Digite a altura do ambiente">
+          </div>
+          <button type="submit" class="btn-calcular">Calcular</button>
+        </form>
+        <div id="resultadoBTUs" class="resultado-container">
+          <h4>Resultado:</h4>
+          <p id="resultadoTexto" class="resultado-texto"></p>
+        </div>
+      </div>
+    </div>
+    </header>
+}
+
+<div class="bar1"></div>
+<div class="bar"></div>
+<div id="carouselExampleIndicators" class="carousel slide py-3" data-bs-ride="carousel" data-bs-interval="3000">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+    <div class="carousel-item active">
+        <img src="~/img/CarrosselGaleria/1.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+        <img src="~/img/CarrosselGaleria/2.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+        <img src="~/img/CarrosselGaleria/3.png" class="d-block w-100" alt="...">
+    </div>
+</div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
 <div class="container">
     <div class="row">
         @foreach (var grupo in Model)
