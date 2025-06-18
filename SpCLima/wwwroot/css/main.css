@@ -1865,6 +1865,14 @@ section,
 
 
 /* Modal Styles */
+.modal{
+  height: 60%;
+  width: 30%;
+  padding: 0;
+  top: 20%;
+  left: 32%;
+  align-items: start;
+}
 
 .modal-backdrop.show {
   z-index: 1040 !important;
