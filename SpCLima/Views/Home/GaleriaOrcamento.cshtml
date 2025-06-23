@@ -9,8 +9,8 @@
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="/Home/Index">Home</a></li>
-                    <li><a href="#galeria" class="active">Galeria</a></li>
+                    <li><a href="#carouselExampleIndicators">Home</a></li>
+                    <li><a href="#GaleriaServico" class="active">Galeria</a></li>
                     <li><a href="javascript:void(0);" id="calcularBtusBtn">Calculadora BTUs</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -79,7 +79,7 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
-<div class="container">
+<div id="GaleriaServico" class="container">
     <div class="row">
         @foreach (var grupo in Model)
         {
@@ -89,8 +89,8 @@
                 @foreach (var item in grupo.Items)
                 {
                     <div class="col-md-4 mb-4 ">
-                        <div class="card h-100" data-bs-toggle="modal" data-bs-target="#modalItem_@item.Id">
-                            <img src="@item.ImagemUrl" class="card-img-top" alt="@item.Titulo">
+                        <div class="service-item card h-100" data-bs-toggle="modal" data-bs-target="#modalItem_@item.Id">
+                            <img src="@item.ImagemUrl" class="img" alt="@item.Titulo">
                             <div class="card-body">
                                 <h5 class="card-title">@item.Titulo</h5>
                                 <p class="card-text">@item.Descricao</p>
